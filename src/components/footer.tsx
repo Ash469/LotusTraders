@@ -4,17 +4,17 @@ import { FaPhone, FaEnvelope, FaWhatsapp, FaInstagram, FaFacebookF, FaMapMarkerA
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <footer className="bg-gray-900 text-white py-6">
+      <div className="container mx-auto px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {/* Column 1 - Logo and Motto */}
           <div className="lg:col-span-1">
             <Image
               src="/assets/images/logo.png"
               alt="Lotus Logo"
-              width={450}
-              height={450}
-              className="mb-4"
+              width={650}
+              height={650}
+              className="mb-6"
             />
             <p className="text-gray-400">
               Transforming spaces with innovative solutions and exceptional quality.
@@ -33,7 +33,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* New Column - Contact Details */}
+          {/* Column 3 - Categories */}
+          <div className="lg:col-span-1">
+            <h3 className="text-xl font-bold mb-4">Categories</h3>
+            <ul className="space-y-2">
+              <li><Link href="/products/safety-equipment" className="hover:text-blue-400">Safety Equipment</Link></li>
+              <li><Link href="/products/industrial-tools" className="hover:text-blue-400">Industrial Tools</Link></li>
+              <li><Link href="/products/cleaning-supplies" className="hover:text-blue-400">Cleaning Supplies</Link></li>
+              <li><Link href="/products/power-tools" className="hover:text-blue-400">Power Tools</Link></li>
+              <li><Link href="/products/maintenance" className="hover:text-blue-400">Maintenance</Link></li>
+              <li><Link href="/products/workwear" className="hover:text-blue-400">Workwear</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 4 - Contact Details */}
           <div className="lg:col-span-1">
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
             <ul className="space-y-4">
@@ -68,7 +81,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4 - Google Map */}
+          {/* Column 5 - Google Map */}
           <div className="lg:col-span-1">
             <h3 className="text-xl font-bold mb-4">Find Us</h3>
             <div className="w-full h-48">
