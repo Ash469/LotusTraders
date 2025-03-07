@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -13,11 +14,6 @@ interface TestimonialProps {
     image: string;
 }
 
-interface VideoStoryProps {
-    id: number;
-    url: string;
-    thumbnail: string;
-}
 
 const testimonials: TestimonialProps[] = [
     {
@@ -59,28 +55,20 @@ const testimonials: TestimonialProps[] = [
     // Add more testimonials as needed
 ];
 
-const videos: VideoStoryProps[] = [
-    {
-        id: 1,
-        url: "/videos/story1.mp4",
-        thumbnail: "/thumbnails/story1.jpg"
-    },
-    {
-        id: 2,
-        url: "/videos/story2.mp4",
-        thumbnail: "/thumbnails/story2.jpg"
-    },
-    // Add more videos as needed
-];
+
 
 const TestimonialCard = ({ name, role, content, image }: TestimonialProps) => (
     <div className="bg-white p-6 rounded-lg shadow-lg">
         <div className="flex items-center mb-4">
-            <img 
-                src={image} 
-                alt={name} 
-                className="w-12 h-12 rounded-full mr-4 object-cover"
-            />
+            <div className="relative w-12 h-12 mr-4">
+                <Image 
+                    src={image} 
+                    alt={name} 
+                    fill
+                    className="rounded-full object-cover"
+                    sizes="48px"
+                />
+            </div>
             <div>
                 <h3 className="font-bold text-lg">{name}</h3>
                 <p className="text-gray-600 text-sm">{role}</p>

@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import './Categories.css'; // Import the CSS file
 
@@ -62,7 +63,16 @@ const Categories = () => {
             className="category-card"
             ref={(el) => { cardRefs.current[index] = el }}
           >
-            <img src={category.image} alt={category.name} className="category-image" />
+            <div className="relative w-full h-[75%]">
+              <Image 
+                src={category.image} 
+                alt={category.name} 
+                fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="category-image"
+                priority={index < 4} // Prioritize loading first 4 images
+              />
+            </div>
             <div className="category-content">
               <h3 className="category-name">{category.name}</h3>
               <div className="category-description">

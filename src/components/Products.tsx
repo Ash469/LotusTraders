@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import './Products.css'; // Import the CSS file
 
@@ -67,7 +68,16 @@ const Products = () => {
             className="product-card"
             ref={(el) => { cardRefs.current[index] = el }}
           >
-            <img src={product.image} alt={product.name} className="product-image" />
+            <div className="relative w-full h-[75%]">
+              <Image 
+                src={product.image} 
+                alt={product.name} 
+                fill
+                sizes="(max-width: 768px) 33vw, (max-width: 1024px) 25vw, 16.66vw"
+                className="product-image"
+                priority={index < 6} // Prioritize loading first 6 images
+              />
+            </div>
             <div className="product-content">
               <h3 className="product-name">{product.name}</h3>
               <div className="product-description">
