@@ -58,29 +58,31 @@ const testimonials: TestimonialProps[] = [
 
 
 const TestimonialCard = ({ name, role, content, image }: TestimonialProps) => (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center mb-4">
-            <div className="relative w-12 h-12 mr-4">
-                <Image 
-                    src={image} 
-                    alt={name} 
-                    fill
-                    className="rounded-full object-cover"
-                    sizes="48px"
-                />
+    <div className="bg-white p-6 sm:p-8 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.16)] transition-shadow duration-300 h-full flex flex-col min-h-[280px]">
+        <div>
+            <div className="flex items-center mb-4">
+                <div className="relative w-12 sm:w-16 h-12 sm:h-16 mr-3 sm:mr-4">
+                    <Image 
+                        src={image} 
+                        alt={name} 
+                        fill
+                        className="rounded-full object-cover border-2 border-gray-100"
+                        sizes="(max-width: 640px) 48px, 64px"
+                    />
+                </div>
+                <div>
+                    <h3 className="font-bold text-lg sm:text-xl text-gray-900">{name}</h3>
+                    <p className="text-gray-500 text-xs sm:text-sm">{role}</p>
+                </div>
             </div>
-            <div>
-                <h3 className="font-bold text-lg">{name}</h3>
-                <p className="text-gray-600 text-sm">{role}</p>
-            </div>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed italic">&ldquo;{content}&rdquo;</p>
         </div>
-        <p className="text-gray-700">{content}</p>
     </div>
 );
 
 const Testimonials = () => {
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
             <div className="container mx-auto px-4">
                 {/* Testimonials Section */}
                 <h2 className="text-3xl text-black font-bold text-center mb-12">
@@ -99,10 +101,10 @@ const Testimonials = () => {
                         640: { slidesPerView: 2 },
                         1024: { slidesPerView: 3 }
                     }}
-                    className="mb-16"
+                    className="mb-16 !pb-12"
                 >
                     {testimonials.map((testimonial, index) => (
-                        <SwiperSlide key={index}>
+                        <SwiperSlide key={index} className="h-auto">
                             <TestimonialCard {...testimonial} />
                         </SwiperSlide>
                     ))}
