@@ -9,14 +9,17 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
           {/* Column 1 - Logo and Motto */}
           <div className="lg:col-span-1">
-            <Image
-              src="/assets/images/logo.png"
-              alt="Lotus Logo"
-              width={650}
-              height={650}
-              className="mb-6"
-            />
-            <p className="text-gray-400">
+            <div className="relative w-[180px] h-[100px] sm:w-[200px] sm:h-[120px] md:w-[220px] md:h-[80px]">
+              <Image
+                src="/assets/images/logo.png"
+                alt="Lotus Logo"
+                fill
+                sizes="(max-width: 640px) 180px, (max-width: 768px) 200px, 220px"
+                className="object-fill"
+                priority
+              />
+            </div>
+            <p className="text-gray-400 mt-4">
               Transforming spaces with innovative solutions and exceptional quality.
               Your trusted partner in industrial excellence.
             </p>
