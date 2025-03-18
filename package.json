@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@splinetool/react-spline": "^4.0.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "framer-motion": "^12.4.12",
     "gsap": "^3.12.7",
     "next": "^15.2.1",
     "react": "^19.0.0",

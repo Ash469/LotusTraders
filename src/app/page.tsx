@@ -6,6 +6,7 @@ import Founder from '@/components/founder';
 import Testimonials from '@/components/testimonial';
 import Footer from '@/components/footer';
 
+
 export default function Home() {
   return (
     <div>

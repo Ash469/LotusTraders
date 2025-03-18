@@ -5,7 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import './Categories.css'; // Import the CSS file
 
-const categories = [
+
+export const categories = [
   { id: 1, name: 'CONCRETE MIXER MACHINE', image: '/assets/cateogries/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
   { id: 2, name: 'BRICK MAKING MACHINE', image: '/assets/cateogries/cat2.png', description: 'Combines manual and automated processes for enhanced efficiency' },
   { id: 3, name: 'TRIMIX SYSTEM', image: '/assets/cateogries/cat3.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
