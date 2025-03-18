@@ -40,7 +40,7 @@ const EnquiryPage = () => {
                         <div className="w-full md:w-1/2 relative h-[250px] md:h-auto md:aspect-[16/12] overflow-hidden"> {/* reduced height and changed aspect ratio */}
                             <div className="absolute inset-3 rounded-xl overflow-hidden"> {/* reduced inset-4 to inset-3 */}
                                 <Image
-                                    src="/assets/cateogries/cat1.png"
+                                    src="/assets/categories/cat1.png"
                                     alt="Civil Engineering Equipment"
                                     fill
                                     className="object-contain hover:scale-105 transition-transform duration-300"

@@ -17,13 +17,13 @@ const ProductsPage = () => {
     const sampleProduct = {
         title: "Premium Wireless Headphones",
         description: "High-quality wireless headphones with active noise cancellation, 30-hour battery life, and premium sound quality. Perfect for music enthusiasts and professionals.",
-        mainImage: "/assets/cateogries/cat1.png",
+        mainImage: "/assets/categories/cat1.png",
         thumbnails: [
-            '/assets/cateogries/cat1.png',
-            '/assets/cateogries/cat2.png',
-            '/assets/cateogries/cat3.png',
-            '/assets/cateogries/cat3.png',
-            '/assets/cateogries/cat3.png',
+            '/assets/categories/cat1.png',
+            '/assets/categories/cat2.png',
+            '/assets/categories/cat3.png',
+            '/assets/categories/cat3.png',
+            '/assets/categories/cat3.png',
         ]
     };
 
@@ -33,31 +33,31 @@ const ProductsPage = () => {
             id: 1,
             title: "Bluetooth Earbuds",
             rating: 4.8,
-            image: "/assets/cateogries/cat1.png",
+            image: "/assets/categories/cat1.png",
         },
         {
             id: 2,
             title: "Noise-Cancelling Headphones",
             rating: 4.5,
-            image: "/assets/cateogries/cat2.png",
+            image: "/assets/categories/cat2.png",
         },
         {
             id: 3,
             title: "Studio Monitors",
             rating: 4.9,
-            image: "/assets/cateogries/cat3.png",
+            image: "/assets/categories/cat3.png",
         },
         {
             id: 4,
             title: "Gaming Headset",
             rating: 4.7,
-            image: "/assets/cateogries/cat1.png",
+            image: "/assets/categories/cat1.png",
         },
         {
             id: 5,
             title: "DJ Headphones",
             rating: 4.6,
-            image: "/assets/cateogries/cat2.png",
+            image: "/assets/categories/cat2.png",
         }
     ];
 
@@ -369,10 +369,10 @@ const ProductsPage = () => {
                         <div className="w-full md:w-1/2">
                             <div className="rounded-xl overflow-hidden shadow relative h-64 sm:h-80 md:h-96">
                                 <Image
-                                    src={activeTab === 'How to Use' ? '/assets/cateogries/cat2.png' :
-                                        activeTab === 'Reviews' ? '/assets/cateogries/cat3.png' :
-                                            activeTab === 'FAQs' ? '/assets/cateogries/cat1.png' :
-                                                '/assets/cateogries/cat1.png'}
+                                    src={activeTab === 'How to Use' ? '/assets/categories/cat2.png' :
+                                        activeTab === 'Reviews' ? '/assets/categories/cat3.png' :
+                                            activeTab === 'FAQs' ? '/assets/categories/cat1.png' :
+                                                '/assets/categories/cat1.png'}
                                     alt={`${activeTab} illustration`}
                                     fill
                                     className="object-contain"
@@ -395,7 +395,7 @@ const ProductsPage = () => {
                             <div key={item} className="bg-white rounded-lg shadow-md overflow-hidden">
                                 <div className="relative h-48">
                                     <Image
-                                        src={`/assets/cateogries/cat${item}.png`}
+                                        src={`/assets/categories/cat${item}.png`}
                                         alt={`Product ${item}`}
                                         fill
                                         className="object-contain"

@@ -7,14 +7,14 @@ import './Categories.css'; // Import the CSS file
 
 
 export const categories = [
-  { id: 1, name: 'CONCRETE MIXER MACHINE', image: '/assets/cateogries/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 2, name: 'BRICK MAKING MACHINE', image: '/assets/cateogries/cat2.png', description: 'Combines manual and automated processes for enhanced efficiency' },
-  { id: 3, name: 'TRIMIX SYSTEM', image: '/assets/cateogries/cat3.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 4, name: 'TROLLEY', image: '/assets/cateogries/cat4.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 5, name: 'MOULDS', image: '/assets/cateogries/cat5.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 6, name: 'CONSTRUCTION CHEMICALS AND COLORS', image: '/assets/cateogries/cat6.png', description: 'Combines manual and automated processes for enhanced efficiency' },
-  { id: 7, name: 'CONSTRUCTION TESTING EQUIPMENT', image: '/assets/cateogries/cat7.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 8, name: 'OTHER MACHINERY', image: '/assets/cateogries/cat8.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
+  { id: 1, name: 'CONCRETE MIXER MACHINE', image: '/assets/categories/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
+  { id: 2, name: 'BRICK MAKING MACHINE', image: '/assets/categories/cat2.png', description: 'Combines manual and automated processes for enhanced efficiency' },
+  { id: 3, name: 'TRIMIX SYSTEM', image: '/assets/categories/cat3.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
+  { id: 4, name: 'TROLLEY', image: '/assets/categories/cat4.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
+  { id: 5, name: 'MOULDS', image: '/assets/categories/cat5.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
+  { id: 6, name: 'CONSTRUCTION CHEMICALS AND COLORS', image: '/assets/categories/cat6.png', description: 'Combines manual and automated processes for enhanced efficiency' },
+  { id: 7, name: 'CONSTRUCTION TESTING EQUIPMENT', image: '/assets/categories/cat7.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
+  { id: 8, name: 'OTHER MACHINERY', image: '/assets/categories/cat8.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
 ];
 
 const Categories = () => {

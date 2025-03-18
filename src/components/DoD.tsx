@@ -7,19 +7,19 @@ const deals = [
     id: 1,
     name: 'Deal 1',
     description: 'Description for deal 1',
-    image: 'https://via.placeholder.com/300x200', // Replace with your image URL
+    image: '/assets/categories/cat1.png', // Replace with your image URL
   },
   {
     id: 2,
     name: 'Deal 2',
     description: 'Description for deal 2',
-    image: 'https://via.placeholder.com/300x200', // Replace with your image URL
+    image: '/assets/categories/cat1.png', // Replace with your image URL
   },
   {
     id: 3,
     name: 'Deal 3',
     description: 'Description for deal 3',
-    image: 'https://via.placeholder.com/300x200', // Replace with your image URL
+    image: '/assets/categories/cat1.png', // Replace with your image URL
   },
 ];
 
@@ -83,7 +83,9 @@ const DealsOfTheDay = () => {
                 <Image
                   src={deal.image}
                   alt={deal.name}
-                  className="absolute inset-0 w-full h-full object-cover rounded"
+                  width={300}
+                  height={200}
+                  className="absolute inset-0 w-full h-full object-contain rounded"
                 />
                 </div>
               <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
