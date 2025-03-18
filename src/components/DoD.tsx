@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const deals = [
   {
@@ -79,7 +80,7 @@ const DealsOfTheDay = () => {
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
                 <div className="relative h-48 sm:h-56 lg:h-64 border border-gray-500 rounded">
-                <img
+                <Image
                   src={deal.image}
                   alt={deal.name}
                   className="absolute inset-0 w-full h-full object-cover rounded"

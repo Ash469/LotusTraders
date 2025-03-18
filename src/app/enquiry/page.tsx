@@ -98,7 +98,6 @@ const EnquiryPage = () => {
                                             type={field === 'email' ? 'email' : 'text'}
                                             name={field}
                                             placeholder={`Enter ${field}`}
-                                            value={formData[field]}
                                             onChange={handleChange}
                                             className={inputStyles}
                                             required={field !== 'company'}
