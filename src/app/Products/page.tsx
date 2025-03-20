@@ -62,7 +62,7 @@ const ProductsPage = () => {
     ];
 
     // Function to render star ratings
-    const renderStarRating = (rating) => {
+    const renderStarRating = (rating: number) => {
         const stars = [];
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating % 1 >= 0.5;

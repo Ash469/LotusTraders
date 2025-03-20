@@ -1,0 +1,752 @@
+[
+    {
+      "id": "concrete_mixer",
+      "name": "CONCRETE MIXER MACHINE",
+      "description": "Efficiently blends and mixes cement, sand, and water to create uniform concrete for construction projects of all sizes.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Portable Concrete Mixer",
+          "image": "/assets/images/products/concrete_mixer/portable.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 2,
+          "name": "High-Capacity Industrial Mixer",
+          "image": "/assets/images/products/concrete_mixer/industrial.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 3,
+          "name": "Diesel-Powered Mixer",
+          "image": "/assets/images/products/concrete_mixer/diesel.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 4,
+          "name": "Electric Mini Mixer",
+          "image": "/assets/images/products/concrete_mixer/mini.jpg",
+          "rating": 4.5
+        },
+        {
+          "id": 5,
+          "name": "Self-Loading Concrete Mixer",
+          "image": "/assets/images/products/concrete_mixer/self_loading.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 6,
+          "name": "Hydraulic Concrete Mixer",
+          "image": "/assets/images/products/concrete_mixer/hydraulic.jpg",
+          "rating": 4.7
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Industrial Mixer Package",
+          "description": "Complete mixing solution with spare parts and maintenance kit",
+          "discount": "15% OFF",
+          "image": "/assets/images/products/concrete_mixer/package_deal.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Construction Site Bundle",
+          "description": "Mixer with wheelbarrows and safety equipment included",
+          "discount": "20% OFF",
+          "image": "/assets/images/products/concrete_mixer/site_bundle.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Eco-Friendly Electric Mixer",
+          "rating": 4.8,
+          "image": "/assets/images/products/concrete_mixer/eco_mixer.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Smart Concrete Mixer with Timer",
+          "rating": 4.7,
+          "image": "/assets/images/products/concrete_mixer/smart_mixer.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Heavy-Duty All-Terrain Mixer",
+          "rating": 4.9,
+          "image": "/assets/images/products/concrete_mixer/all_terrain.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Digital Control Mixer System",
+          "rating": 4.9,
+          "image": "/assets/images/products/concrete_mixer/digital_mixer.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Lightweight Portable Mixer",
+          "rating": 4.6,
+          "image": "/assets/images/products/concrete_mixer/lightweight.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Solar-Powered Concrete Mixer",
+          "rating": 4.7,
+          "image": "/assets/images/products/concrete_mixer/solar_mixer.jpg"
+        }
+      ]
+    },
+    {
+      "id": "brick_making_machine",
+      "name": "BRICK MAKING MACHINE",
+      "description": "Combines manual and automated processes for enhanced efficiency in brick production, suitable for various construction needs.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Automatic Clay Brick Machine",
+          "image": "/assets/images/products/brick_making/clay_machine.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 2,
+          "name": "Hydraulic Press Brick Maker",
+          "image": "/assets/images/products/brick_making/hydraulic_press.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 3,
+          "name": "Mobile Brick Production Unit",
+          "image": "/assets/images/products/brick_making/mobile_unit.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 4,
+          "name": "Interlocking Brick Machine",
+          "image": "/assets/images/products/brick_making/interlocking.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 5,
+          "name": "Fly Ash Brick Machine",
+          "image": "/assets/images/products/brick_making/fly_ash.jpg",
+          "rating": 4.7
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Complete Brick Factory Setup",
+          "description": "Full production line with mixer, conveyor and brick machine",
+          "discount": "25% OFF",
+          "image": "/assets/images/products/brick_making/factory_setup.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Industrial Brick Making System",
+          "description": "High-capacity production system with training and installation",
+          "discount": "18% OFF",
+          "image": "/assets/images/products/brick_making/industrial_system.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Eco-Brick Production Machine",
+          "rating": 4.8,
+          "image": "/assets/images/products/brick_making/eco_brick.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Multi-Material Brick Press",
+          "rating": 4.7,
+          "image": "/assets/images/products/brick_making/multi_material.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Automatic Palletizing System",
+          "rating": 4.9,
+          "image": "/assets/images/products/brick_making/palletizing.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Smart Brick Quality Control System",
+          "rating": 4.8,
+          "image": "/assets/images/products/brick_making/quality_control.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Compressed Earth Block Machine",
+          "rating": 4.7,
+          "image": "/assets/images/products/brick_making/earth_block.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Solar-Powered Brick Plant",
+          "rating": 4.9,
+          "image": "/assets/images/products/brick_making/solar_plant.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trimix_system",
+      "name": "TRIMIX SYSTEM",
+      "description": "Ensures precise material binding for perfect quality, consistency, and controlled preparation of concrete surfaces.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Vacuum Dewatering System",
+          "image": "/assets/images/products/trimix/vacuum.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 2,
+          "name": "Power Floater Machine",
+          "image": "/assets/images/products/trimix/power_floater.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 3,
+          "name": "Concrete Vibrator",
+          "image": "/assets/images/products/trimix/vibrator.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 4,
+          "name": "Surface Screed Machine",
+          "image": "/assets/images/products/trimix/screed.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 5,
+          "name": "Complete Trimix Package",
+          "image": "/assets/images/products/trimix/complete_package.jpg",
+          "rating": 4.9
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Industrial Flooring Solution",
+          "description": "Complete trimix system with training and 1-year service package",
+          "discount": "22% OFF",
+          "image": "/assets/images/products/trimix/flooring_solution.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Concrete Finishing Kit",
+          "description": "Professional-grade tools for perfect concrete surface finishing",
+          "discount": "15% OFF",
+          "image": "/assets/images/products/trimix/finishing_kit.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Ride-On Power Trowel",
+          "rating": 4.9,
+          "image": "/assets/images/products/trimix/ride_on_trowel.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Laser Screed System",
+          "rating": 4.8,
+          "image": "/assets/images/products/trimix/laser_screed.jpg"
+        },
+        {
+          "id": 3,
+          "name": "High-Frequency Vibrator",
+          "rating": 4.7,
+          "image": "/assets/images/products/trimix/high_frequency.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Battery-Powered Trimix System",
+          "rating": 4.8,
+          "image": "/assets/images/products/trimix/battery_system.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Remote Control Floater",
+          "rating": 4.9,
+          "image": "/assets/images/products/trimix/remote_floater.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Eco-Friendly Concrete Curing System",
+          "rating": 4.7,
+          "image": "/assets/images/products/trimix/eco_curing.jpg"
+        }
+      ]
+    },
+    {
+      "id": "trolley",
+      "name": "TROLLEY",
+      "description": "Essential equipment for material transport and handling on construction sites, enhancing efficiency and reducing manual labor.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Heavy-Duty Wheelbarrow",
+          "image": "/assets/images/products/trolley/wheelbarrow.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 2,
+          "name": "Platform Trolley",
+          "image": "/assets/images/products/trolley/platform.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 3,
+          "name": "Concrete Transport Cart",
+          "image": "/assets/images/products/trolley/concrete_cart.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 4,
+          "name": "Multi-Level Material Trolley",
+          "image": "/assets/images/products/trolley/multi_level.jpg",
+          "rating": 4.5
+        },
+        {
+          "id": 5,
+          "name": "Folding Hand Truck",
+          "image": "/assets/images/products/trolley/hand_truck.jpg",
+          "rating": 4.6
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Site Transportation Kit",
+          "description": "Set of 5 different trolleys for complete construction site coverage",
+          "discount": "30% OFF",
+          "image": "/assets/images/products/trolley/site_kit.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Reinforced Trolley Bundle",
+          "description": "Extra-durable trolleys for heavy construction materials",
+          "discount": "25% OFF",
+          "image": "/assets/images/products/trolley/reinforced_bundle.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Electric Material Mover",
+          "rating": 4.8,
+          "image": "/assets/images/products/trolley/electric_mover.jpg"
+        },
+        {
+          "id": 2,
+          "name": "All-Terrain Wheelbarrow",
+          "rating": 4.7,
+          "image": "/assets/images/products/trolley/all_terrain.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Stair Climbing Trolley",
+          "rating": 4.9,
+          "image": "/assets/images/products/trolley/stair_climbing.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Self-Balancing Electric Trolley",
+          "rating": 4.9,
+          "image": "/assets/images/products/trolley/self_balancing.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Collapsible Site Cart",
+          "rating": 4.7,
+          "image": "/assets/images/products/trolley/collapsible.jpg"
+        },
+        {
+          "id": 3,
+          "name": "GPS-Tracked Material Trolley",
+          "rating": 4.8,
+          "image": "/assets/images/products/trolley/gps_tracked.jpg"
+        }
+      ]
+    },
+    {
+      "id": "moulds",
+      "name": "MOULDS",
+      "description": "Precision tools for creating consistent concrete shapes, blocks, and decorative elements for construction and landscaping projects.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Concrete Block Mould Set",
+          "image": "/assets/images/products/moulds/block_set.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 2,
+          "name": "Paver Mould Collection",
+          "image": "/assets/images/products/moulds/paver_collection.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 3,
+          "name": "Column Formwork System",
+          "image": "/assets/images/products/moulds/column_system.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 4,
+          "name": "Decorative Concrete Moulds",
+          "image": "/assets/images/products/moulds/decorative.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 5,
+          "name": "Interlocking Brick Moulds",
+          "image": "/assets/images/products/moulds/interlocking.jpg",
+          "rating": 4.8
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Complete Paving Solution",
+          "description": "Set of 20 paver moulds with different patterns and sizes",
+          "discount": "35% OFF",
+          "image": "/assets/images/products/moulds/paving_solution.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Industrial Mould Package",
+          "description": "Heavy-duty moulds for commercial production with accessories",
+          "discount": "20% OFF",
+          "image": "/assets/images/products/moulds/industrial_package.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Modular Formwork System",
+          "rating": 4.9,
+          "image": "/assets/images/products/moulds/modular_formwork.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Rubber Concrete Texture Moulds",
+          "rating": 4.8,
+          "image": "/assets/images/products/moulds/texture_moulds.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Custom Logo Brick Moulds",
+          "rating": 4.7,
+          "image": "/assets/images/products/moulds/logo_moulds.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Reusable Plastic Formwork",
+          "rating": 4.8,
+          "image": "/assets/images/products/moulds/reusable_plastic.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Heated Concrete Moulds",
+          "rating": 4.7,
+          "image": "/assets/images/products/moulds/heated_moulds.jpg"
+        },
+        {
+          "id": 3,
+          "name": "3D-Designed Architectural Moulds",
+          "rating": 4.9,
+          "image": "/assets/images/products/moulds/3d_architectural.jpg"
+        }
+      ]
+    },
+    {
+      "id": "construction_chemicals_and_colors",
+      "name": "CONSTRUCTION CHEMICALS AND COLORS",
+      "description": "Specialized additives, admixtures, and colorants that enhance concrete performance, appearance, and durability for construction projects.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Concrete Waterproofing Compound",
+          "image": "/assets/images/products/chemicals/waterproofing.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 2,
+          "name": "Concrete Color Pigments Set",
+          "image": "/assets/images/products/chemicals/color_pigments.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 3,
+          "name": "High-Strength Concrete Admixture",
+          "image": "/assets/images/products/chemicals/admixture.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 4,
+          "name": "Concrete Curing Compound",
+          "image": "/assets/images/products/chemicals/curing.jpg",
+          "rating": 4.6
+        },
+        {
+          "id": 5,
+          "name": "Concrete Surface Hardener",
+          "image": "/assets/images/products/chemicals/hardener.jpg",
+          "rating": 4.8
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Complete Chemical Package",
+          "description": "All essential chemicals for a medium-scale construction project",
+          "discount": "25% OFF",
+          "image": "/assets/images/products/chemicals/complete_package.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Decorative Concrete Kit",
+          "description": "Colors, sealers, and tools for decorative concrete finishing",
+          "discount": "30% OFF",
+          "image": "/assets/images/products/chemicals/decorative_kit.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Eco-Friendly Concrete Admixture",
+          "rating": 4.9,
+          "image": "/assets/images/products/chemicals/eco_admixture.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Fast-Setting Concrete Formula",
+          "rating": 4.8,
+          "image": "/assets/images/products/chemicals/fast_setting.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Color-Changing Concrete Stain",
+          "rating": 4.7,
+          "image": "/assets/images/products/chemicals/color_changing.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Self-Healing Concrete Admixture",
+          "rating": 4.9,
+          "image": "/assets/images/products/chemicals/self_healing.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Temperature-Resistant Formula",
+          "rating": 4.8,
+          "image": "/assets/images/products/chemicals/temperature_resistant.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Nano-Technology Concrete Sealer",
+          "rating": 4.7,
+          "image": "/assets/images/products/chemicals/nano_sealer.jpg"
+        }
+      ]
+    },
+    {
+      "id": "construction_testing_equipment",
+      "name": "CONSTRUCTION TESTING EQUIPMENT",
+      "description": "Specialized tools and machinery for evaluating concrete quality, strength, and other critical parameters to ensure construction standards.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Concrete Compression Testing Machine",
+          "image": "/assets/images/products/testing/compression.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 2,
+          "name": "Concrete Slump Test Set",
+          "image": "/assets/images/products/testing/slump_test.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 3,
+          "name": "Digital Moisture Meter",
+          "image": "/assets/images/products/testing/moisture_meter.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 4,
+          "name": "Concrete Core Drilling Machine",
+          "image": "/assets/images/products/testing/core_drilling.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 5,
+          "name": "Ultrasonic Concrete Tester",
+          "image": "/assets/images/products/testing/ultrasonic.jpg",
+          "rating": 4.9
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Field Testing Laboratory Kit",
+          "description": "Complete portable testing equipment for on-site quality control",
+          "discount": "20% OFF",
+          "image": "/assets/images/products/testing/field_lab.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Concrete Quality Control Package",
+          "description": "Essential testing equipment with training and calibration service",
+          "discount": "15% OFF",
+          "image": "/assets/images/products/testing/quality_control.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Wireless Concrete Strength Monitor",
+          "rating": 4.9,
+          "image": "/assets/images/products/testing/wireless_monitor.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Digital Concrete Crack Analyzer",
+          "rating": 4.8,
+          "image": "/assets/images/products/testing/crack_analyzer.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Portable XRF Analyzer",
+          "rating": 4.7,
+          "image": "/assets/images/products/testing/xrf_analyzer.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "AI-Powered Concrete Assessment System",
+          "rating": 4.9,
+          "image": "/assets/images/products/testing/ai_assessment.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Smartphone-Connected Testing Kit",
+          "rating": 4.8,
+          "image": "/assets/images/products/testing/smartphone_kit.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Drone-Based Construction Inspection System",
+          "rating": 4.7,
+          "image": "/assets/images/products/testing/drone_inspection.jpg"
+        }
+      ]
+    },
+    {
+      "id": "other_machinery",
+      "name": "OTHER MACHINERY",
+      "description": "Specialized construction equipment for various applications, including cutting, grinding, lifting, and other essential construction operations.",
+      "products": [
+        {
+          "id": 1,
+          "name": "Concrete Cutting Saw",
+          "image": "/assets/images/products/other/cutting_saw.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 2,
+          "name": "Concrete Grinding Machine",
+          "image": "/assets/images/products/other/grinding.jpg",
+          "rating": 4.7
+        },
+        {
+          "id": 3,
+          "name": "Construction Scaffold System",
+          "image": "/assets/images/products/other/scaffold.jpg",
+          "rating": 4.9
+        },
+        {
+          "id": 4,
+          "name": "Concrete Pump",
+          "image": "/assets/images/products/other/pump.jpg",
+          "rating": 4.8
+        },
+        {
+          "id": 5,
+          "name": "Rebar Bender and Cutter",
+          "image": "/assets/images/products/other/rebar.jpg",
+          "rating": 4.6
+        }
+      ],
+      "deals": [
+        {
+          "id": 1,
+          "name": "Construction Starter Package",
+          "description": "Essential machinery for small construction businesses",
+          "discount": "30% OFF",
+          "image": "/assets/images/products/other/starter_package.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Concrete Processing Bundle",
+          "description": "Complete set of equipment for concrete processing and finishing",
+          "discount": "25% OFF",
+          "image": "/assets/images/products/other/processing_bundle.jpg"
+        }
+      ],
+      "trendingProducts": [
+        {
+          "id": 1,
+          "name": "Robotic Construction Assistant",
+          "rating": 4.9,
+          "image": "/assets/images/products/other/robotic_assistant.jpg"
+        },
+        {
+          "id": 2,
+          "name": "Laser-Guided Construction Tool",
+          "rating": 4.8,
+          "image": "/assets/images/products/other/laser_guided.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Compact Excavator",
+          "rating": 4.7,
+          "image": "/assets/images/products/other/excavator.jpg"
+        }
+      ],
+      "newReleases": [
+        {
+          "id": 1,
+          "name": "Remote-Controlled Demolition Robot",
+          "rating": 4.9,
+          "image": "/assets/images/products/other/demolition_robot.jpg"
+        },
+        {
+          "id": 2,
+          "name": "AR-Enhanced Construction System",
+          "rating": 4.8,
+          "image": "/assets/images/products/other/ar_system.jpg"
+        },
+        {
+          "id": 3,
+          "name": "Electric Mini Loader",
+          "rating": 4.7,
+          "image": "/assets/images/products/other/mini_loader.jpg"
+        }
+      ]
+    }
+  ]
