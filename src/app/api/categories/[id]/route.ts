@@ -1,17 +1,18 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb'; // Your MongoDB connection utility
+import clientPromise from '@/lib/mongodb';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id: categoryId } = params;
+  // Await the params Promise to get the id
+  const { id: categoryId } = await params;
 
   try {
     // Connect to MongoDB
     const client = await clientPromise;
-    const db = client.db('lotus'); // Replace with your database name
-    const collection = db.collection('categories'); // Replace with your collection name
+    const db = client.db('lotus');
+    const collection = db.collection('categories');
 
     // Find the category by ID
     const category = await collection.findOne({ id: categoryId });
