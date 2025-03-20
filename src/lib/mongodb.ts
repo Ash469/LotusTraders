@@ -5,7 +5,7 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient>;
 }
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/lotus'; // MongoDB URI from .env.local or local fallback
+const uri = process.env.MONGODB_URI || 'mongodb+srv://ashshandilya4:VpRWSEhHzVJBMeRL@cluster0.nygvy.mongodb.net/'; // MongoDB URI from .env.local or local fallback
 const options = {};
 
 let client;

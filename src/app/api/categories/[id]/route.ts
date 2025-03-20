@@ -11,7 +11,7 @@ export async function GET(
   try {
     // Connect to MongoDB
     const client = await clientPromise;
-    const db = client.db('lotus');
+    const db = client.db('Lotus');
     const collection = db.collection('categories');
 
     // Find the category by ID
