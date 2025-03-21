@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero';
 import Categories from '@/components/landing_categories';
-import Products from '@/components/Products';
+import Products from '@/components/landing_products';
 import DealsOfTheDay from '@/components/DoD';
 import Founder from '@/components/founder';
 import Testimonials from '@/components/testimonial';

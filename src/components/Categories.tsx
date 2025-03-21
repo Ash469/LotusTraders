@@ -1,4 +1,4 @@
-
+import Image from 'next/image';
 import { CategoryData } from '@/types/type';
 
 interface CategoriesProps {
@@ -19,7 +19,7 @@ export default function Categories({ category }: CategoriesProps) {
         <div>
           {products.map((product) => (
             <div key={product.id}>
-              <img src={product.image} alt={product.name} />
+              <Image src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>Rating: {product.rating}</p>
             </div>
@@ -33,7 +33,7 @@ export default function Categories({ category }: CategoriesProps) {
         <div>
           {deals.map((deal) => (
             <div key={deal.id}>
-              <img src={deal.image} alt={deal.name} />
+              <Image src={deal.image} alt={deal.name} />
               <h3>{deal.name}</h3>
               <p>{deal.description}</p>
               <p>{deal.discount}</p>
@@ -48,7 +48,7 @@ export default function Categories({ category }: CategoriesProps) {
         <div>
           {trendingProducts.map((product) => (
             <div key={product.id}>
-              <img src={product.image} alt={product.name} />
+              <Image src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>Rating: {product.rating}</p>
             </div>
@@ -62,7 +62,7 @@ export default function Categories({ category }: CategoriesProps) {
         <div>
           {newReleases.map((product) => (
             <div key={product.id}>
-              <img src={product.image} alt={product.name} />
+              <Image src={product.image} alt={product.name} />
               <h3>{product.name}</h3>
               <p>Rating: {product.rating}</p>
             </div>

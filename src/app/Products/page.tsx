@@ -117,6 +117,53 @@ const ProductsPage = () => {
                     {/* Main Product */}
                     <ProductCard {...sampleProduct} />
 
+                    {/* Product Specifications Section */}
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden my-8">
+                        <div className="px-6 py-8">
+                            <h2 className="text-3xl font-bold text-gray-900 mb-2">Product Specifications</h2>
+                            <div className="w-20 h-1 bg-red-500 mb-6"></div>
+                            
+                            <div className="overflow-x-auto">
+                                <table className="w-full">
+                                    <tbody>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50 w-1/3">Sound Quality</td>
+                                            <td className="py-3 px-4 text-gray-700">Hi-Fi Sound with 40mm dynamic drivers</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Battery Life</td>
+                                            <td className="py-3 px-4 text-gray-700">Up to 30 hours playtime, 3 hours charging time</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Connectivity</td>
+                                            <td className="py-3 px-4 text-gray-700">Bluetooth 5.2, 10m range</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Noise Cancellation</td>
+                                            <td className="py-3 px-4 text-gray-700">Active Noise Cancellation (ANC) with ambient mode</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Weight</td>
+                                            <td className="py-3 px-4 text-gray-700">280g</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Materials</td>
+                                            <td className="py-3 px-4 text-gray-700">Premium memory foam ear cushions, aluminum frame</td>
+                                        </tr>
+                                        <tr className="border-b">
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Water Resistance</td>
+                                            <td className="py-3 px-4 text-gray-700">IPX4 - Sweat and splash resistant</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="py-3 px-4 font-medium text-gray-900 bg-gray-50">Warranty</td>
+                                            <td className="py-3 px-4 text-gray-700">2-year limited warranty</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Related Products Section */}
                     <div id="related" className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16 -mx-4 px-4 md:px-8 lg:px-16">
                         <div className="container mx-auto">

@@ -165,6 +165,7 @@ export default function CategoryPage() {
                 navigation
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 5000 }}
+                loop={true}
                 effect="cube"
                 cubeEffect={{
                   shadow: true,

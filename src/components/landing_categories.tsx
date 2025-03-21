@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import './Categories.css'; // Import the CSS file
+import './landing_categories.css'; // Import the CSS file
 
 
 export const categories = [
