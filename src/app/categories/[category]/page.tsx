@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Footer from '@/components/footer';
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
+import LoadingState from './LoadingState';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -16,6 +17,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-cube';
+import CategoryNotFound from './NotFound';
 
 // Star rating component
 const renderStarRating = (rating: number) => {
@@ -72,8 +74,12 @@ export default function CategoryPage() {
     fetchData();
   }, [categoryId]); // Only re-fetch when category ID changes
 
-  if (loading) return <div>Loading...</div>;
-  if (!category) return <div>No data found</div>;
+  if (loading) {
+    return <LoadingState />;
+  }else if (!category) {
+    return <CategoryNotFound />;
+}
+
 
   return (
     <div className="min-h-screen bg-gray-50">
