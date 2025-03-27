@@ -13,11 +13,12 @@ import Footer from '@/components/footer';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import LoadingState from './LoadingState';
+import ProductNotFound from './NotFound';
 
 const ProductPage = () => {
     const params = useParams();
     const productId = params?.product as string || '';
-    
+
     const [product, setProduct] = useState<Product | null>(null);
     const [activeTab, setActiveTab] = useState('Benefits');
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -114,8 +115,12 @@ const ProductPage = () => {
         );
     };
 
-    if (loading || !product) {
+    if (loading) {
         return <LoadingState />;
+    } else if (!product) {
+        return (
+            <ProductNotFound />
+        );
     }
 
     return (
@@ -137,40 +142,40 @@ const ProductPage = () => {
                         {/* Navigation Buttons - Desktop */}
                         <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
                             <Link
-                                href="/"
+                                href={`/products/${productId}`}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
                             >
                                 Home
                             </Link>
-                            <a
-                                href="#products"
+                            <button
+                                onClick={() => document.getElementById('specification')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                Our Products
-                            </a>
-                            <a
-                                href="#trending"
+                                Specification
+                            </button>
+                            <button
+                                onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                Trending
-                            </a>
-                            <a
-                                href="#new-releases"
+                                Products
+                            </button>
+                            <button
+                                onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                New Releases
-                            </a>
-                            <a
-                                href="#deals"
+                                Details
+                            </button>
+                            <button
+                                onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                Deals of the Day
-                            </a>
+                                How To Use
+                            </button>
                             <Link
-                                href="/enquiry"
+                                href="/contact"
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
                             >
-                                Enquiry
+                                Connect with us
                             </Link>
                         </div>
                     </div>
@@ -187,65 +192,69 @@ const ProductPage = () => {
                         mainImage={product.HeroImages[0]}
                         thumbnails={product.HeroImages}
                         rating={product.rating}
+                        id={product.id.toString()} // Pass the product ID as string
                     />
 
-                    {/* Product Specifications Section */}
-                    <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div className="px-6 py-8">
-                            <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-3xl font-bold text-gray-900">Product Specifications</h2>
-                                <div className="w-20 h-1 bg-red-500"></div>
-                            </div>
 
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <tbody>
-                                        {Object.entries(product.Specification).map(([key, value]) => (
-                                            <tr key={key} className="border-b hover:bg-gray-50 transition-colors">
-                                                <td className="py-4 px-6 font-medium text-gray-900 bg-gray-50 w-1/3">
-                                                    {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-                                                </td>
-                                                <td className="py-4 px-6 text-gray-700">
-                                                    {Array.isArray(value) ? value.join(', ') : value}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                    {/* Product Specifications Section */}
+                    <section id="specification" className="bg-gray-50 py-12 md:py-16">
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div className="px-6 py-8">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-3xl font-bold text-gray-900">Product Specifications</h2>
+                                    <div className="w-20 h-1 bg-red-500"></div>
+                                </div>
+
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <tbody>
+                                            {Object.entries(product.Specification).map(([key, value]) => (
+                                                <tr key={key} className="border-b hover:bg-gray-50 transition-colors">
+                                                    <td className="py-4 px-6 font-medium text-gray-900 bg-gray-50 w-1/3">
+                                                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                                                    </td>
+                                                    <td className="py-4 px-6 text-gray-700">
+                                                        {Array.isArray(value) ? value.join(', ') : value}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    {/* Related Products Section */}
-                    <div id="related" className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
-                        <div className="container mx-auto">
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
-                                <div>
-                                    <h2 className="text-3xl font-bold text-gray-900">Related Products</h2>
-                                    <p className="text-gray-600 mt-2">Products you might also like</p>
+                    <section id='products'>
+                        {/* Related Products Section */}
+                        <div id="related" className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
+                            <div className="container mx-auto">
+                                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+                                    <div>
+                                        <h2 className="text-3xl font-bold text-gray-900">Related Products</h2>
+                                        <p className="text-gray-600 mt-2">Products you might also like</p>
+                                    </div>
+                                    <div className="w-20 h-1 bg-red-500 mt-4"></div>
                                 </div>
-                                <div className="w-20 h-1 bg-red-500 mt-4"></div>
-                            </div>
 
-                            {relatedProducts.length > 0 ? (
-                                <Swiper
-                                    modules={[Navigation, Autoplay]}
-                                    navigation
-                                    autoplay={{ delay: 5000, disableOnInteraction: false }}
-                                    loop={relatedProducts.length > 3}
-                                    slidesPerView={1}
-                                    spaceBetween={24}
-                                    breakpoints={{
-                                        640: { slidesPerView: 2 },
-                                        768: { slidesPerView: 3 },
-                                        1024: { slidesPerView: 4 },
-                                    }}
-                                    className="py-4"
-                                >
-                                    {relatedProducts.map((relatedProduct) => (
-                                        <SwiperSlide key={relatedProduct.id}>
-                                            <Link href={`/products/${relatedProduct.id}`} className="block h-full">
-                                                <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1">
+                                {relatedProducts.length > 0 ? (
+                                    <Swiper
+                                        modules={[Navigation, Autoplay]}
+                                        navigation
+                                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                                        loop={relatedProducts.length > 3}
+                                        slidesPerView={1}
+                                        spaceBetween={24}
+                                        breakpoints={{
+                                            640: { slidesPerView: 2 },
+                                            768: { slidesPerView: 3 },
+                                            1024: { slidesPerView: 4 },
+                                        }}
+                                        className="py-4"
+                                    >
+                                        {relatedProducts.map((relatedProduct) => (
+                                            <SwiperSlide key={relatedProduct.id}>
+                                                <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 group relative">
                                                     <div className="relative h-64 w-full">
                                                         <Image
                                                             src={relatedProduct.HeroImages[0]}
@@ -254,36 +263,57 @@ const ProductPage = () => {
                                                             className="object-cover"
                                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                         />
-                                                        {relatedProduct.discount_price && (
-                                                            <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                                                                SALE
-                                                            </div>
-                                                        )}
+
                                                     </div>
                                                     <div className="p-5 flex-grow">
-                                                        <h3 className="text-lg font-semibold mb-2 line-clamp-2">{relatedProduct.name}</h3>
-                                                        {renderStarRating(relatedProduct.rating)}
-                                                        <div className="mt-4 flex justify-between items-center">
-                                                            <button className="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                                                                View Details
-                                                            </button>
+                                                        <h3 className="text-lg font-semibold text-black line-clamp-2 mb-2">{relatedProduct.name}</h3>
+                                                        <div className="flex items-center justify-between mt-4">
+                                                            <div className="w-full space-y-4">
+                                                                {/* Rating shown by default, hidden on hover */}
+                                                                <div className="group-hover:hidden">
+                                                                    {renderStarRating(relatedProduct.rating)}
+                                                                </div>
+                                                                {/* Buttons shown on hover */}
+                                                                <div className="hidden group-hover:flex justify-between items-center w-full">
+                                                                    <Link
+                                                                        href={{
+                                                                            pathname: '/enquiry',
+                                                                            query: {
+                                                                                productId: relatedProduct.id,
+                                                                                productName: relatedProduct.name,
+                                                                                productImage: relatedProduct.HeroImages && relatedProduct.HeroImages.length > 0
+                                                                                    ? relatedProduct.HeroImages[0]
+                                                                                    : '',
+                                                                                quantity: 1
+                                                                            }
+                                                                        }}
+                                                                        className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition"
+                                                                    >
+                                                                        Enquiry
+                                                                    </Link>
+                                                                    <Link href={`/products/${relatedProduct.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition">
+                                                                        Details
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </Link>
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
-                            ) : (
-                                <div className="text-center py-12">
-                                    <p className="text-gray-500">No related products found</p>
-                                </div>
-                            )}
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                ) : (
+                                    <div className="text-center py-12">
+                                        <p className="text-gray-500">No related products found</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    </section>
+
 
                     {/* Product Details Tabs */}
-                    <section className="bg-white rounded-xl shadow-md overflow-hidden">
+                    <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
                         <div className="flex flex-wrap border-b border-gray-200">
                             {['Benefits', 'How to Use', 'Reviews', 'FAQs'].map((tab) => (
                                 <button
@@ -375,6 +405,7 @@ const ProductPage = () => {
                     </section>
 
                     {/* Other Products Section */}
+
                     <div className="bg-white py-12">
                         <div className="container mx-auto">
                             <div className="text-center mb-10">
@@ -392,18 +423,14 @@ const ProductPage = () => {
                                                         src={otherProduct.HeroImages[0]}
                                                         alt={otherProduct.name}
                                                         fill
-                                                        className="object-cover"
+                                                        className="object-contain"
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                     />
-                                                    {otherProduct.discount_price && (
-                                                        <div className="absolute top-4 right-4 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                                                            SALE
-                                                        </div>
-                                                    )}
+                                                   
                                                 </div>
                                                 <div className="p-5 flex-grow">
-                                                    <h3 className="text-lg font-semibold mb-2 line-clamp-2">{otherProduct.name}</h3>
-                                                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">{otherProduct.Description}</p>
+                                                    <h3 className="text-lg font-semibold text-black  mb-2 line-clamp-2">{otherProduct.name}</h3>
+                                                    <p className=" text-sm text-gray-800 mb-4 line-clamp-3">{otherProduct.Description}</p>
                                                     <div className="mt-auto flex justify-between items-center">
                                                         <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
                                                             View Details →
@@ -422,7 +449,7 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-50 py-12">
+                <div id='video' className="bg-gray-50 py-12">
                     <div className="container mx-auto px-4">
                         <div className="text-center mb-8">
                             <h2 className="text-3xl font-bold text-gray-900">How to Use</h2>

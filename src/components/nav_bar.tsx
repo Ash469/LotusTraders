@@ -26,11 +26,11 @@ const NavBar = () => {
           </div>
         </div>
 
-        <Link href="/enquiry" className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
-          <span>Enquiry</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-          </svg>
+        <Link
+          href="/contact"
+          className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
+        >
+          Connect with us
         </Link>
 
         <button className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -53,8 +53,11 @@ const NavBar = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full p-3 rounded-lg border border-gray-300 focus:border-red-600 outline-none mb-4 transition-all duration-300"
           />
-          <Link href="/enquiry" className="block text-center bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg">
-            Enquiry
+          <Link
+            href="/contact"
+            className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
+          >
+            Connect with us
           </Link>
         </div>
       )}

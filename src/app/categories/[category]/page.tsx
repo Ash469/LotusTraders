@@ -4,7 +4,7 @@ import { CategoryData } from '@/types/type';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCube } from 'swiper/modules';
-import { FaStar, FaChevronRight, FaHeart, FaClock, FaShoppingCart} from 'react-icons/fa';
+import { FaStar, FaChevronRight, FaHeart, FaClock, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Footer from '@/components/footer';
 import { useState, useEffect } from 'react';
@@ -48,10 +48,10 @@ const renderStarRating = (rating: number) => {
 export default function CategoryPage() {
   const params = useParams();
   const categoryId = params?.category as string || '';
-  
+
   const [category, setCategory] = useState<CategoryData | null>(null);
   const [loading, setLoading] = useState(true);
-  
+
   // For timer functionality
   const timeLeft = {
     hours: 5,
@@ -70,15 +70,15 @@ export default function CategoryPage() {
         setLoading(false);
       }
     }
-    
+
     fetchData();
   }, [categoryId]); // Only re-fetch when category ID changes
 
   if (loading) {
     return <LoadingState />;
-  }else if (!category) {
+  } else if (!category) {
     return <CategoryNotFound />;
-}
+  }
 
 
   return (
@@ -100,47 +100,47 @@ export default function CategoryPage() {
 
             {/* Navigation Buttons - Desktop */}
             <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
-                <Link 
+              <Link
                 href="/"
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
-                >
+              >
                 Home
-                </Link>
-              <a 
-                href="#products"
+              </Link>
+              <button
+                onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
               >
                 Our Products
-              </a>
-              <a 
-                href="#trending"
+              </button>
+              <button
+                onClick={() => document.getElementById('trending')?.scrollIntoView({ behavior: 'smooth' })}
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
               >
                 Trending
-              </a>
-              <a 
-                href="#new-releases"
+              </button>
+              <button
+                onClick={() => document.getElementById('new-releases')?.scrollIntoView({ behavior: 'smooth' })}
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
               >
                 New Releases
-              </a>
-              <a 
-                href="#deals"
+              </button>
+              <button
+                onClick={() => document.getElementById('deals')?.scrollIntoView({ behavior: 'smooth' })}
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
               >
                 Deals of the Day
-              </a>
-              <Link 
-                href="/enquiry"
+              </button>
+              <Link
+                href="/contact"
                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
-                >
-                Enquiry
-                </Link>
+              >
+                Connect with us
+              </Link>
             </div>
           </div>
         </div>
       </div>
-      
+
       {/* Hero Section */}
       <div id="hero" className="relative bg-gradient-to-b from-blue-50 to-white py-16 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center">
@@ -155,7 +155,10 @@ export default function CategoryPage() {
               {category.description}
             </p>
             <div className="flex space-x-4">
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-1 transition-all">
+              <button
+                onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transform hover:-translate-y-1 transition-all"
+              >
                 Explore Products
               </button>
               <button className="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-all">
@@ -208,9 +211,9 @@ export default function CategoryPage() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Products</h2>
               <div className="w-20 h-1 bg-blue-600 mt-4"></div>
             </div>
-            <Link href="/all-products" className="mt-4 md:mt-0 flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
+            {/* <Link href="/all-products" className="mt-4 md:mt-0 flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
               View all products <FaChevronRight className="ml-2" size={14} />
-            </Link>
+            </Link> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -235,9 +238,23 @@ export default function CategoryPage() {
                   <div className="relative">
                     {renderStarRating(product.rating)}
                     {/* Enquiry Button that appears over the rating on hover */}
-                    <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-start transition-opacity">
-                      <Link href="/enquiry" className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                    <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                      <Link 
+                        href={{
+                          pathname: '/enquiry',
+                          query: {
+                            productId: product.id,
+                            productName: product.name,
+                            productImage: product.image,
+                            quantity: 1
+                          }
+                        }} 
+                        className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
                         <span>Enquiry</span>
+                        <FaChevronRight size={10} className="ml-1" />
+                      </Link>
+                      <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                        <span>Details</span>
                         <FaChevronRight size={10} className="ml-1" />
                       </Link>
                     </div>
@@ -249,66 +266,81 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {/* Trending Products Section */}
-      {category.trendingProducts && (
-        <div id="trending" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8 lg:px-16">
-          <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-              <div>
-                <span className="inline-block px-4 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold mb-4">HOT & TRENDING</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Trending Products</h2>
-                <div className="w-20 h-1 bg-red-500 mt-4"></div>
+     
+        {category.trendingProducts && (
+          <div id="trending" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8 lg:px-16">
+            <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+            <div>
+              <span className="inline-block px-4 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold mb-4">HOT & TRENDING</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Trending Products</h2>
+              <div className="w-20 h-1 bg-red-500 mt-4"></div>
+            </div>
+          </div>
+
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            navigation
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop={true}
+            slidesPerView={1}
+            spaceBetween={24}
+            breakpoints={{
+              640: { slidesPerView: 2 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 4 },
+            }}
+            className="w-full"
+          >
+            {category.trendingProducts.map((product) => (
+              <SwiperSlide key={product.id} className="h-auto">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-[400px] transform hover:-translate-y-2 transition-transform duration-300 group">
+              <div className="relative h-64 w-full flex-shrink-0">
+                <div className="absolute top-0 left-0 bg-red-500 text-white px-4 py-1 z-10 rounded-br-lg font-semibold">
+              TRENDING
+                </div>
+                <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-contain"
+                />
+              </div>
+              <div className="p-5 flex-grow flex flex-col justify-between">
+                <h3 className="text-lg font-semibold text-black line-clamp-2">{product.name}</h3>
+                <div className="relative h-6 mt-auto">
+              {renderStarRating(product.rating)}
+              <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                <Link 
+                  href={{
+                    pathname: '/enquiry',
+                    query: {
+                      productId: product.id,
+                      productName: product.name,
+                      productImage: product.image,
+                      quantity: 1
+                    }
+                  }} 
+                  className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                  <span>Enquiry</span>
+                  <FaChevronRight size={10} className="ml-1" />
+                </Link>
+                <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                  <span>Details</span>
+                  <FaChevronRight size={10} className="ml-1" />
+                </Link>
+              </div>
+                </div>
               </div>
             </div>
-
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              loop={true}
-              slidesPerView={1}
-              spaceBetween={24}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                768: { slidesPerView: 3 },
-                1024: { slidesPerView: 4 },
-              }}
-              className="w-full"
-            >
-              {category.trendingProducts.map((product) => (
-                <SwiperSlide key={product.id}>
-                  <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full transform hover:-translate-y-2 transition-transform duration-300">
-                    <div className="relative h-64 w-full">
-                      <div className="absolute top-0 left-0 bg-red-500 text-white px-4 py-1 z-10 rounded-br-lg font-semibold">
-                        TRENDING
-                      </div>
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="p-5">
-                      <h3 className="text-lg font-semibold text-black mb-2">{product.name}</h3>
-                      <div className="flex items-center mb-3">
-                        {renderStarRating(product.rating)}
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <button className="text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium">
-                          View Details <FaChevronRight className="ml-1" size={10} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* New Release Products Section */}
+        {/* New Release Products Section */}
       {category.newReleases && (
         <div id="new-releases" className="bg-white py-16 px-4 md:px-8 lg:px-16">
           <div className="container mx-auto">
@@ -318,9 +350,9 @@ export default function CategoryPage() {
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900">New Releases</h2>
                 <div className="w-20 h-1 bg-green-500 mt-4"></div>
               </div>
-              <Link href="/new-products" className="mt-4 md:mt-0 flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
+              {/* <Link href="/new-products" className="mt-4 md:mt-0 flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors">
                 View all new arrivals <FaChevronRight className="ml-2" size={14} />
-              </Link>
+              </Link> */}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -345,10 +377,24 @@ export default function CategoryPage() {
                     <div className="flex items-center mb-2 relative">
                       {renderStarRating(product.rating)}
 
-                      {/* Enquiry Button that appears over the rating on hover */}
-                      <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-start transition-opacity">
-                        <Link href="/enquiry" className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                      {/* Enquiry and Details Buttons that appear over the rating on hover */}
+                      <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                        <Link 
+                          href={{
+                            pathname: '/enquiry',
+                            query: {
+                              productId: product.id,
+                              productName: product.name,
+                              productImage: product.image,
+                              quantity: 1
+                            }
+                          }}
+                          className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
                           <span>Enquiry</span>
+                          <FaChevronRight size={10} className="ml-1" />
+                        </Link>
+                        <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                          <span>Details</span>
                           <FaChevronRight size={10} className="ml-1" />
                         </Link>
                       </div>
@@ -378,7 +424,7 @@ export default function CategoryPage() {
               <span className="inline-block px-4 py-1 bg-yellow-400 text-yellow-900 rounded-full text-sm font-semibold mb-4">LIMITED TIME OFFER</span>
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Deals of the Day</h2>
               <p className="text-white max-w-2xl mx-auto">Don&apos;t miss out on these amazing offers. Limited stock available!</p>
-              
+
               {/* Countdown timer like in the main page */}
               <div className="flex items-center justify-center mt-6 space-x-4">
                 <div className="flex flex-col items-center bg-white bg-opacity-30 px-4 py-2 rounded-lg w-20">

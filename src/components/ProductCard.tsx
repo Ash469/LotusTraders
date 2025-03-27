@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProductCardProps {
   title: string;
@@ -10,6 +11,7 @@ interface ProductCardProps {
   reviews?: number;
   enquiries?: number;
   estimatedDelivery?: string;
+  id?: string; // Adding id parameter
 }
 
 const ProductCard = ({ 
@@ -21,9 +23,31 @@ const ProductCard = ({
   reviews = 128,
   enquiries = 45,
   estimatedDelivery = "3-5 business days",
+  id,
 }: ProductCardProps) => {
   const [selectedImage, setSelectedImage] = useState(mainImage);
   const [quantity, setQuantity] = useState(1);
+
+  // Handle quantity change
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
+    }
+  };
+
+  // Handle button clicks for quantity adjustment
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  console.log("Current quantity in ProductCard:", quantity);
 
   return (
     <div className="flex flex-col md:flex-row gap-4 md:gap-8 px-0 md:px-16">
@@ -119,16 +143,22 @@ const ProductCard = ({
           <div className="flex items-center border-2 border-gray-300 rounded-lg">
             <button 
               className="px-3 md:px-4 py-1.5 md:py-2 border-r-2 border-gray-300 hover:bg-gray-100 text-gray-600 text-base md:text-lg font-medium"
-              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              onClick={decrementQuantity}
+              type="button"
             >
-              −
+              -
             </button>
-            <span className="px-4 md:px-6 py-1.5 md:py-2 text-gray-900 font-semibold text-base md:text-lg min-w-[2.5rem] md:min-w-[3rem] text-center">
-              {quantity}
-            </span>
+            <input
+              type="number"
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="px-2 md:px-3 py-1.5 md:py-2 text-gray-900 font-semibold text-base md:text-lg w-12 md:w-16 text-center focus:outline-none"
+              min="1"
+            />
             <button 
               className="px-3 md:px-4 py-1.5 md:py-2 border-l-2 border-gray-300 hover:bg-gray-100 text-gray-600 text-base md:text-lg font-medium"
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={incrementQuantity}
+              type="button"
             >
               +
             </button>
@@ -137,14 +167,22 @@ const ProductCard = ({
 
         {/* CTA Button */}
         <div className="space-y-4">
-          <button 
-            onClick={() => window.location.href = '/enquiry'}
+          <Link 
+            href={{
+              pathname: '/enquiry',
+              query: {
+                productId: id,
+                productName: title,
+                productImage: mainImage,
+                quantity: quantity.toString()
+              }
+            }}
             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 
             text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-semibold text-base md:text-lg shadow-md 
             transition-all duration-200 ease-in-out transform hover:scale-[1.02]"
           >
             Ask for Price
-          </button>
+          </Link>
         </div>
       </div>
     </div>
