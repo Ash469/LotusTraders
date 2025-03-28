@@ -3,23 +3,22 @@ export interface Product {
   category_id: number;
   name: string;
   rating: number;
-  stock: number;
-  Specification: {
+  specification: {
     weight: string;
     dimensions: string;
     ingredients: string[];
     skinType: string[];
     shelfLife: string;
   };
-  HeroImages: string[];
-  RelatedProducts: number[];
-  Other_products: number[];
-  YoutubeLink: string;
-  Description: string;
-  Details: {
+  heroImages: string[];
+  relatedProducts: number[];
+  other_products: number[];
+  youtubeLink: string;
+  description: string;
+  details: {
     benefits: string[];
     how_to_use: string;
-    Reviews: {
+    reviews: {
       user: string;
       rating: number;
       comment: string;

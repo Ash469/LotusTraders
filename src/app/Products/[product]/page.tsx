@@ -31,35 +31,60 @@ const ProductPage = () => {
                 setLoading(true);
                 // Fetch main product data
                 const res = await fetch(`/api/products/${productId}`);
-                if (!res.ok) throw new Error('Failed to fetch product data');
+                if (!res.ok) throw new Error(`Failed to fetch product data: ${res.statusText}`);
                 const data = await res.json();
                 setProduct(data);
 
-                // Fetch related products
-                if (data.RelatedProducts && data.RelatedProducts.length > 0) {
-                    const relatedProductPromises = data.RelatedProducts.map(async (id: number) => {
-                        const relatedRes = await fetch(`/api/products/${id}`);
-                        if (relatedRes.ok) {
-                            return await relatedRes.json();
+                // Fetch related products with better error handling
+                if (Array.isArray(data.relatedProducts) && data.relatedProducts.length > 0) {
+                    console.log('Fetching related products:', data.relatedProducts);
+                    const relatedProductPromises = data.relatedProducts.map(async (id: number) => {
+                        try {
+                            const relatedRes = await fetch(`/api/products/${id}`);
+                            if (!relatedRes.ok) {
+                                console.warn(`Failed to fetch related product ${id}: ${relatedRes.statusText}`);
+                                return null;
+                            }
+                            const relatedData = await relatedRes.json();
+                            return relatedData;
+                        } catch (error) {
+                            console.error(`Error fetching related product ${id}:`, error);
+                            return null;
                         }
-                        return null;
                     });
                     const relatedResults = await Promise.all(relatedProductPromises);
-                    setRelatedProducts(relatedResults.filter(Boolean));
+                    const validRelatedProducts = relatedResults.filter(Boolean);
+                    console.log('Loaded related products:', validRelatedProducts.length);
+                    setRelatedProducts(validRelatedProducts);
+                } else {
+                    console.log('No related products found in data');
                 }
 
-                // Fetch other products
-                if (data.Other_products && data.Other_products.length > 0) {
-                    const otherProductPromises = data.Other_products.map(async (id: number) => {
-                        const otherRes = await fetch(`/api/products/${id}`);
-                        if (otherRes.ok) {
-                            return await otherRes.json();
+                // Fetch other products with better error handling
+                if (Array.isArray(data.other_products) && data.other_products.length > 0) {
+                    console.log('Fetching other products:', data.other_products);
+                    const otherProductPromises = data.other_products.map(async (id: number) => {
+                        try {
+                            const otherRes = await fetch(`/api/products/${id}`);
+                            if (!otherRes.ok) {
+                                console.warn(`Failed to fetch other product ${id}: ${otherRes.statusText}`);
+                                return null;
+                            }
+                            const otherData = await otherRes.json();
+                            return otherData;
+                        } catch (error) {
+                            console.error(`Error fetching other product ${id}:`, error);
+                            return null;
                         }
-                        return null;
                     });
                     const otherResults = await Promise.all(otherProductPromises);
-                    setOtherProducts(otherResults.filter(Boolean));
+                    const validOtherProducts = otherResults.filter(Boolean);
+                    console.log('Loaded other products:', validOtherProducts.length);
+                    setOtherProducts(validOtherProducts);
+                } else {
+                    console.log('No other products found in data');
                 }
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -163,7 +188,7 @@ const ProductPage = () => {
                                 onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                Details
+                                details
                             </button>
                             <button
                                 onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
@@ -188,11 +213,11 @@ const ProductPage = () => {
                     {/* Main Product */}
                     <ProductCard
                         title={product.name}
-                        description={product.Description}
-                        mainImage={product.HeroImages[0]}
-                        thumbnails={product.HeroImages}
+                        description={product.description}
+                        mainImage={product.heroImages?.[0]}
+                        thumbnails={product.heroImages || []}
                         rating={product.rating}
-                        id={product.id.toString()} // Pass the product ID as string
+                        id={product.id.toString()}
                     />
 
 
@@ -208,10 +233,10 @@ const ProductPage = () => {
                                 <div className="overflow-x-auto">
                                     <table className="w-full">
                                         <tbody>
-                                            {Object.entries(product.Specification).map(([key, value]) => (
+                                            {product.specification && Object.entries(product.specification).map(([key, value]) => (
                                                 <tr key={key} className="border-b hover:bg-gray-50 transition-colors">
                                                     <td className="py-4 px-6 font-medium text-gray-900 bg-gray-50 w-1/3">
-                                                        {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+                                                        {key}
                                                     </td>
                                                     <td className="py-4 px-6 text-gray-700">
                                                         {Array.isArray(value) ? value.join(', ') : value}
@@ -257,7 +282,7 @@ const ProductPage = () => {
                                                 <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 group relative">
                                                     <div className="relative h-64 w-full">
                                                         <Image
-                                                            src={relatedProduct.HeroImages[0]}
+                                                            src={relatedProduct.heroImages?.[0]}
                                                             alt={relatedProduct.name}
                                                             fill
                                                             className="object-cover"
@@ -281,8 +306,8 @@ const ProductPage = () => {
                                                                             query: {
                                                                                 productId: relatedProduct.id,
                                                                                 productName: relatedProduct.name,
-                                                                                productImage: relatedProduct.HeroImages && relatedProduct.HeroImages.length > 0
-                                                                                    ? relatedProduct.HeroImages[0]
+                                                                                productImage: relatedProduct.heroImages && relatedProduct.heroImages.length > 0
+                                                                                    ? relatedProduct.heroImages[0]
                                                                                     : '',
                                                                                 quantity: 1
                                                                             }
@@ -292,7 +317,7 @@ const ProductPage = () => {
                                                                         Enquiry
                                                                     </Link>
                                                                     <Link href={`/products/${relatedProduct.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition">
-                                                                        Details
+                                                                        details
                                                                     </Link>
                                                                 </div>
                                                             </div>
@@ -312,10 +337,10 @@ const ProductPage = () => {
                     </section>
 
 
-                    {/* Product Details Tabs */}
+                    {/* Product details Tabs */}
                     <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
                         <div className="flex flex-wrap border-b border-gray-200">
-                            {['Benefits', 'How to Use', 'Reviews', 'FAQs'].map((tab) => (
+                            {['Benefits', 'How to Use', 'reviews', 'FAQs'].map((tab) => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
@@ -334,14 +359,18 @@ const ProductPage = () => {
                                 <div className="space-y-6">
                                     <h3 className="text-2xl font-semibold text-gray-900">Key Benefits</h3>
                                     <ul className="space-y-4">
-                                        {product.Details.benefits.map((benefit, index) => (
-                                            <li key={index} className="flex items-start">
-                                                <svg className="flex-shrink-0 h-5 w-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                </svg>
-                                                <span className="text-gray-700">{benefit}</span>
-                                            </li>
-                                        ))}
+                                        {product.details?.benefits ? (
+                                            product.details.benefits.map((benefit, index) => (
+                                                <li key={index} className="flex items-start">
+                                                    <svg className="flex-shrink-0 h-5 w-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                    </svg>
+                                                    <span className="text-gray-700">{benefit}</span>
+                                                </li>
+                                            ))
+                                        ) : (
+                                            <li className="text-gray-500">No benefits information available</li>
+                                        )}
                                     </ul>
                                 </div>
                             )}
@@ -350,24 +379,26 @@ const ProductPage = () => {
                                 <div className="space-y-6">
                                     <h3 className="text-2xl font-semibold text-gray-900">How to Use</h3>
                                     <div className="prose max-w-none text-gray-700">
-                                        <p>{product.Details.how_to_use}</p>
+                                        <p>{product.details?.how_to_use || 'No usage information available'}</p>
                                     </div>
                                 </div>
                             )}
 
-                            {activeTab === 'Reviews' && (
+                            {activeTab === 'reviews' && (
                                 <div className="space-y-8">
                                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                                        <h3 className="text-2xl font-semibold text-gray-900">Customer Reviews</h3>
+                                        <h3 className="text-2xl font-semibold text-gray-900">Customer reviews</h3>
                                         <div className="flex items-center mt-4 sm:mt-0">
                                             {renderStarRating(product.rating)}
-                                            <span className="ml-2 text-gray-600">{product.Details.Reviews.length} reviews</span>
+                                            <span className="ml-2 text-gray-600">
+                                                {product.details?.reviews?.length || 0} reviews
+                                            </span>
                                         </div>
                                     </div>
 
-                                    {product.Details.Reviews.length > 0 ? (
+                                    {product.details?.reviews?.length > 0 ? (
                                         <div className="space-y-6 divide-y divide-gray-200">
-                                            {product.Details.Reviews.map((review, index) => (
+                                            {product.details.reviews.map((review, index) => (
                                                 <div key={index} className="pt-6 first:pt-0">
                                                     <div className="flex items-center justify-between mb-2">
                                                         <div className="flex items-center">
@@ -392,12 +423,16 @@ const ProductPage = () => {
                                 <div className="space-y-8">
                                     <h3 className="text-2xl font-semibold text-gray-900">Frequently Asked Questions</h3>
                                     <div className="space-y-6 divide-y divide-gray-200">
-                                        {product.Details.faqs.map((faq, index) => (
-                                            <div key={index} className="pt-6 first:pt-0">
-                                                <h4 className="font-medium text-lg text-gray-900">{faq.question}</h4>
-                                                <p className="mt-2 text-gray-700">{faq.answer}</p>
-                                            </div>
-                                        ))}
+                                        {product.details?.faqs?.length > 0 ? (
+                                            product.details.faqs.map((faq, index) => (
+                                                <div key={index} className="pt-6 first:pt-0">
+                                                    <h4 className="font-medium text-lg text-gray-900">{faq.question}</h4>
+                                                    <p className="mt-2 text-gray-700">{faq.answer}</p>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p className="text-gray-500">No FAQs available</p>
+                                        )}
                                     </div>
                                 </div>
                             )}
@@ -420,20 +455,20 @@ const ProductPage = () => {
                                             <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer">
                                                 <div className="relative h-56 w-full">
                                                     <Image
-                                                        src={otherProduct.HeroImages[0]}
+                                                        src={otherProduct.heroImages?.[0]}
                                                         alt={otherProduct.name}
                                                         fill
                                                         className="object-contain"
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                     />
-                                                   
+
                                                 </div>
                                                 <div className="p-5 flex-grow">
                                                     <h3 className="text-lg font-semibold text-black  mb-2 line-clamp-2">{otherProduct.name}</h3>
-                                                    <p className=" text-sm text-gray-800 mb-4 line-clamp-3">{otherProduct.Description}</p>
+                                                    <p className=" text-sm text-gray-800 mb-4 line-clamp-3">{otherProduct.description}</p>
                                                     <div className="mt-auto flex justify-between items-center">
                                                         <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                                                            View Details →
+                                                            View details →
                                                         </span>
                                                     </div>
                                                 </div>
@@ -458,7 +493,15 @@ const ProductPage = () => {
 
                         <div className="max-w-3xl mx-auto">
                             <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
-                                <iframe width="800" height="450" src={product.YoutubeLink} title="New &#39;High IQ&#39; AI Model From China Just Shocked The World - ERNIE 4.5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                                <iframe 
+                                    width="800" 
+                                    height="450" 
+                                    src={`https://www.youtube.com/embed/${product.youtubeLink.split('v=')[1]}`}
+                                    title="Product Demo Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    frameBorder="0"
+                                    allowFullScreen
+                                ></iframe>
                             </div>
 
                             <div className="mt-6 text-center">
