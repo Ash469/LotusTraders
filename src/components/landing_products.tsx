@@ -22,7 +22,7 @@ const products = [
 const Products = () => {
   return (
     <div>
-      <h2 className="products-title">Products</h2>
+      <h2 className="products-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 text-gray-800">Products</h2>
       <div className="products-grid">
         {products.map((product) => (
           <div key={product.id} className="product-card">

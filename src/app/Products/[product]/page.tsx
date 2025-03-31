@@ -38,7 +38,7 @@ const ProductPage = () => {
                 // Fetch related products with better error handling
                 if (Array.isArray(data.relatedProducts) && data.relatedProducts.length > 0) {
                     console.log('Fetching related products:', data.relatedProducts);
-                    const relatedProductPromises = data.relatedProducts.map(async (id: number) => {
+                    const relatedProductPromises = data.relatedProducts.map(async (id: string) => {
                         try {
                             const relatedRes = await fetch(`/api/products/${id}`);
                             if (!relatedRes.ok) {
@@ -63,7 +63,7 @@ const ProductPage = () => {
                 // Fetch other products with better error handling
                 if (Array.isArray(data.other_products) && data.other_products.length > 0) {
                     console.log('Fetching other products:', data.other_products);
-                    const otherProductPromises = data.other_products.map(async (id: number) => {
+                    const otherProductPromises = data.other_products.map(async (id: string) => {
                         try {
                             const otherRes = await fetch(`/api/products/${id}`);
                             if (!otherRes.ok) {
@@ -154,14 +154,10 @@ const ProductPage = () => {
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between py-3">
                         {/* Logo Image */}
-                        <div className="flex-shrink-0">
-                            <Image
-                                src="/assets/images/logo.png"
-                                alt="Lotus Logo"
-                                width={200}
-                                height={60}
-                                className="object-contain h-8 md:h-12 w-auto"
-                            />
+                        <div className="relative h-16 w-82">
+                            <Link href="/">
+                                <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
+                            </Link>
                         </div>
 
                         {/* Navigation Buttons - Desktop */}
@@ -188,7 +184,7 @@ const ProductPage = () => {
                                 onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
                             >
-                                details
+                                Details
                             </button>
                             <button
                                 onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
@@ -421,14 +417,33 @@ const ProductPage = () => {
 
                             {activeTab === 'FAQs' && (
                                 <div className="space-y-8">
-                                    <h3 className="text-2xl font-semibold text-gray-900">Frequently Asked Questions</h3>
-                                    <div className="space-y-6 divide-y divide-gray-200">
+                                    <div className="space-y-4">
                                         {product.details?.faqs?.length > 0 ? (
                                             product.details.faqs.map((faq, index) => (
-                                                <div key={index} className="pt-6 first:pt-0">
-                                                    <h4 className="font-medium text-lg text-gray-900">{faq.question}</h4>
-                                                    <p className="mt-2 text-gray-700">{faq.answer}</p>
-                                                </div>
+                                                <details
+                                                    key={index}
+                                                    className="group bg-white border border-gray-200 rounded-lg overflow-hidden"
+                                                >
+                                                    <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+                                                        <h4 className="font-medium text-lg text-black">{faq.question}</h4>
+                                                        <svg
+                                                            className="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M19 9l-7 7-7-7"
+                                                            />
+                                                        </svg>
+                                                    </summary>
+                                                    <div className="p-4 border-t border-gray-200 bg-gray-50">
+                                                        <p className="text-gray-700">{faq.answer}</p>
+                                                    </div>
+                                                </details>
                                             ))
                                         ) : (
                                             <p className="text-gray-500">No FAQs available</p>
@@ -493,12 +508,12 @@ const ProductPage = () => {
 
                         <div className="max-w-3xl mx-auto">
                             <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
-                                <iframe 
-                                    width="800" 
-                                    height="450" 
+                                <iframe
+                                    width="800"
+                                    height="450"
                                     src={`https://www.youtube.com/embed/${product.youtubeLink.split('v=')[1]}`}
                                     title="Product Demo Video"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     frameBorder="0"
                                     allowFullScreen
                                 ></iframe>

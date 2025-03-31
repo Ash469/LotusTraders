@@ -1,6 +1,6 @@
 // types.ts
 export interface Product {
-    id: number;
+    id: string;
     name: string;
     rating: number;
     image: string;
@@ -15,6 +15,7 @@ export interface Product {
   }
   
   export interface CategoryData {
+    heroImages: string[];
     id: string;
     name: string;
     description: string;

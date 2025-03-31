@@ -1,5 +1,4 @@
 'use client';
-
 import { CategoryData } from '@/types/type';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -88,14 +87,10 @@ export default function CategoryPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-3">
             {/* Logo Image */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/assets/images/logo.png"
-                alt="Lotus Logo"
-                width={200}
-                height={60}
-                className="object-contain h-8 md:h-12 w-auto"
-              />
+            <div className="relative h-16 w-82">
+              <Link href="/">
+                <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
+              </Link>
             </div>
 
             {/* Navigation Buttons - Desktop */}
@@ -168,7 +163,7 @@ export default function CategoryPage() {
           </div>
 
           <div className="w-full md:w-1/2">
-            {category.products && category.products.length > 0 && (
+            {category.heroImages && category.heroImages.length > 0 && (
               <Swiper
                 modules={[Navigation, Pagination, Autoplay, EffectCube]}
                 navigation
@@ -182,16 +177,18 @@ export default function CategoryPage() {
                   shadowOffset: 20,
                   shadowScale: 0.94,
                 }}
-                className="rounded-xl overflow-hidden shadow-2xl"
+                className="w-full h-[400px] rounded-xl overflow-hidden shadow-2xl"
               >
-                {category.products.map((product) => (
-                  <SwiperSlide key={product.id}>
-                    <div className="relative aspect-[16/9]">
+                {category.heroImages.map((image: string, index: number) => (
+                  <SwiperSlide key={index}>
+                    <div className="relative w-full h-full">
                       <Image
-                        src={product.image}
-                        alt={product.name}
+                        src={image}
+                        alt={`${category.name} hero image ${index + 1}`}
                         fill
-                        className="object-cover"
+                        priority
+                        className="object-contain p-4"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
                   </SwiperSlide>
@@ -239,7 +236,7 @@ export default function CategoryPage() {
                     {renderStarRating(product.rating)}
                     {/* Enquiry Button that appears over the rating on hover */}
                     <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
-                      <Link 
+                      <Link
                         href={{
                           pathname: '/enquiry',
                           query: {
@@ -248,7 +245,7 @@ export default function CategoryPage() {
                             productImage: product.image,
                             quantity: 1
                           }
-                        }} 
+                        }}
                         className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
                         <span>Enquiry</span>
                         <FaChevronRight size={10} className="ml-1" />
@@ -266,81 +263,81 @@ export default function CategoryPage() {
         </div>
       </div>
 
-     
-        {category.trendingProducts && (
-          <div id="trending" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8 lg:px-16">
-            <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-            <div>
-              <span className="inline-block px-4 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold mb-4">HOT & TRENDING</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Trending Products</h2>
-              <div className="w-20 h-1 bg-red-500 mt-4"></div>
-            </div>
-          </div>
 
-          <Swiper
-            modules={[Navigation, Autoplay]}
-            navigation
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            loop={true}
-            slidesPerView={1}
-            spaceBetween={24}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 3 },
-              1024: { slidesPerView: 4 },
-            }}
-            className="w-full"
-          >
-            {category.trendingProducts.map((product) => (
-              <SwiperSlide key={product.id} className="h-auto">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-[400px] transform hover:-translate-y-2 transition-transform duration-300 group">
-              <div className="relative h-64 w-full flex-shrink-0">
-                <div className="absolute top-0 left-0 bg-red-500 text-white px-4 py-1 z-10 rounded-br-lg font-semibold">
-              TRENDING
-                </div>
-                <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-contain"
-                />
-              </div>
-              <div className="p-5 flex-grow flex flex-col justify-between">
-                <h3 className="text-lg font-semibold text-black line-clamp-2">{product.name}</h3>
-                <div className="relative h-6 mt-auto">
-              {renderStarRating(product.rating)}
-              <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
-                <Link 
-                  href={{
-                    pathname: '/enquiry',
-                    query: {
-                      productId: product.id,
-                      productName: product.name,
-                      productImage: product.image,
-                      quantity: 1
-                    }
-                  }} 
-                  className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
-                  <span>Enquiry</span>
-                  <FaChevronRight size={10} className="ml-1" />
-                </Link>
-                <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
-                  <span>Details</span>
-                  <FaChevronRight size={10} className="ml-1" />
-                </Link>
-              </div>
-                </div>
+      {category.trendingProducts && (
+        <div id="trending" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8 lg:px-16">
+          <div className="container mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
+              <div>
+                <span className="inline-block px-4 py-1 bg-red-100 text-red-800 rounded-full text-sm font-semibold mb-4">HOT & TRENDING</span>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Trending Products</h2>
+                <div className="w-20 h-1 bg-red-500 mt-4"></div>
               </div>
             </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-            </div>
-          </div>
-        )}
 
-        {/* New Release Products Section */}
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              navigation
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              loop={true}
+              slidesPerView={1}
+              spaceBetween={24}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+              }}
+              className="w-full"
+            >
+              {category.trendingProducts.map((product) => (
+                <SwiperSlide key={product.id} className="h-auto">
+                  <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-[400px] transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div className="relative h-64 w-full flex-shrink-0">
+                      <div className="absolute top-0 left-0 bg-red-500 text-white px-4 py-1 z-10 rounded-br-lg font-semibold">
+                        TRENDING
+                      </div>
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="p-5 flex-grow flex flex-col justify-between">
+                      <h3 className="text-lg font-semibold text-black line-clamp-2">{product.name}</h3>
+                      <div className="relative h-6 mt-auto">
+                        {renderStarRating(product.rating)}
+                        <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                          <Link
+                            href={{
+                              pathname: '/enquiry',
+                              query: {
+                                productId: product.id,
+                                productName: product.name,
+                                productImage: product.image,
+                                quantity: 1
+                              }
+                            }}
+                            className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                            <span>Enquiry</span>
+                            <FaChevronRight size={10} className="ml-1" />
+                          </Link>
+                          <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                            <span>Details</span>
+                            <FaChevronRight size={10} className="ml-1" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
+      )}
+
+      {/* New Release Products Section */}
       {category.newReleases && (
         <div id="new-releases" className="bg-white py-16 px-4 md:px-8 lg:px-16">
           <div className="container mx-auto">
@@ -379,7 +376,7 @@ export default function CategoryPage() {
 
                       {/* Enquiry and Details Buttons that appear over the rating on hover */}
                       <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
-                        <Link 
+                        <Link
                           href={{
                             pathname: '/enquiry',
                             query: {

@@ -5,21 +5,15 @@ import Image from 'next/image';
 const deals = [
   {
     id: 1,
-    name: 'Deal 1',
-    description: 'Description for deal 1',
-    image: '/assets/categories/cat1.png', // Replace with your image URL
+    name: 'Heavy-Duty Concrete Mixer',
+    description: 'Professional 4.5 cubic ft. drum capacity concrete mixer with durable steel frame. Perfect for construction projects.',
+    image: '/assets/DoD/landing_dod_1.jpg',
   },
   {
     id: 2,
-    name: 'Deal 2',
-    description: 'Description for deal 2',
-    image: '/assets/categories/cat1.png', // Replace with your image URL
-  },
-  {
-    id: 3,
-    name: 'Deal 3',
-    description: 'Description for deal 3',
-    image: '/assets/categories/cat1.png', // Replace with your image URL
+    name: 'Portable Cement Mixer',
+    description: 'Compact 2.2 cubic ft. electric cement mixer with wheels. Ideal for home renovations and small jobs.',
+    image: '/assets/DoD/landing_dod_2.jpg',
   },
 ];
 
@@ -85,14 +79,14 @@ const DealsOfTheDay = () => {
                   alt={deal.name}
                   width={300}
                   height={200}
-                  className="absolute inset-0 w-full h-full object-contain rounded"
+                  className="absolute inset-0 w-full h-full object-fill rounded"
                 />
                 </div>
               <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-gray-800">
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-[#ff6b00]">
                     {deal.name}
-                  </h3>
+                    </h3>
                   <p className="text-sm sm:text-base text-gray-600 mb-4">
                     {deal.description}
                   </p>

@@ -8,7 +8,7 @@ const getProduct = unstable_cache(
     const client = await clientPromise;
     const db = client.db('Lotus');
     const collection = db.collection('products');
-    return collection.findOne({ id: parseInt(id, 10) });
+    return collection.findOne({id});
   },
   ['product'],
   { revalidate: 3600 }

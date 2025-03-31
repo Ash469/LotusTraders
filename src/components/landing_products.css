@@ -21,7 +21,7 @@
   height: 220px;
   cursor: pointer;
   overflow: visible;
-  padding: 12px;
+  padding: 28px;
   z-index: 1;
   background: linear-gradient(to bottom, #ffffff, #f8f8f8);
 }

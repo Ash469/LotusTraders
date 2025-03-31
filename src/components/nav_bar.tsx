@@ -9,8 +9,10 @@ const NavBar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
       <div className="flex items-center justify-between h-20 max-w-7xl mx-auto px-4">
-        <div className="relative h-16 w-72">
-          <Image src="/assets/images/logo.png" alt="Logo" fill priority className="object-contain" />
+        <div className="relative h-16 w-82">
+            <Link href="/">
+            <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
+            </Link>
         </div>
 
         <div className="hidden md:flex items-center flex-1 max-w-md mx-8">

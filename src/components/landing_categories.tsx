@@ -1,41 +1,66 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import './landing_categories.css'; // Import the CSS file
+import './landing_categories.css';
 
-
-export const categories = [
-  { id: 1, name: 'CONCRETE MIXER', image: '/assets/categories/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 2, name: 'BRICK MAKING MACHINE', image: '/assets/categories/cat2.png', description: 'Combines manual and automated processes for enhanced efficiency' },
-  { id: 3, name: 'TRIMIX SYSTEM', image: '/assets/categories/cat3.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 4, name: 'TROLLEY', image: '/assets/categories/cat4.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 5, name: 'MOULDS', image: '/assets/categories/cat5.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 6, name: 'CONSTRUCTION CHEMICALS AND COLORS', image: '/assets/categories/cat6.png', description: 'Combines manual and automated processes for enhanced efficiency' },
-  { id: 7, name: 'CONSTRUCTION TESTING EQUIPMENT', image: '/assets/categories/cat7.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 8, name: 'OTHER MACHINERY', image: '/assets/categories/cat8.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-];
+interface Category {
+  _id: string;
+  id: string;
+  name: string;
+  description: string;
+  heroImages: string[];
+}
 
 const Categories = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories');
+        const data = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-8">Loading categories...</div>;
+  }
+
   return (
     <div>
-      <h2 className="categories-title">Categories</h2>
+      <h2 className="categories-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 text-gray-800">Categories</h2>
       <div className="categories-grid">
         {categories.map((category) => (
           <Link
-            key={category.id}
-            href={`/categories/${category.name.toLowerCase().replace(/\s+/g, '_')}`}
+            key={category._id}
+            href={`/categories/${category.id}`}
             className="category-card"
+            style={{
+              background: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
+                          url('/assets/categories/categories-bg.png')`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center'
+            }}
           >
             <div className="relative w-full h-[65%]">
               <Image 
-                src={category.image} 
+                src={`/assets/categories/${category.id}_1.png`} 
                 alt={category.name} 
                 fill
                 sizes="(max-width: 768px) 50vw, 25vw"
                 className="category-image"
-                priority={category.id <= 4}
+                priority
               />
             </div>
             <div className="category-content">

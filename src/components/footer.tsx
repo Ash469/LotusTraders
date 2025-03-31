@@ -11,11 +11,11 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="relative w-[250px] h-[140px] sm:w-[300px] sm:h-[160px] md:w-[320px] md:h-[120px]">
               <Image
-                src="/assets/images/logo.png"
+                src="/logo.png"
                 alt="Lotus Logo"
                 fill
-                sizes="(max-width: 640px) 250px, (max-width: 768px) 300px, 320px"
-                className="object-fill"
+                sizes="(max-width: 640px) 300px, (max-width: 768px) 350px, 370px"
+                className="object-cover"
                 priority
               />
             </div>
