@@ -336,7 +336,7 @@ const ProductPage = () => {
                     {/* Product details Tabs */}
                     <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
                         <div className="flex flex-wrap border-b border-gray-200">
-                            {['Benefits', 'How to Use', 'reviews', 'FAQs'].map((tab) => (
+                            {['Benefits', 'How to Use', 'Reviews', 'FAQs'].map((tab) => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
