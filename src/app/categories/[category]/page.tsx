@@ -97,7 +97,7 @@ export default function CategoryPage() {
             <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
               <Link
                 href="/"
-                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
+                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
               >
                 Home
               </Link>

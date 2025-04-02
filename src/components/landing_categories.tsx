@@ -34,7 +34,28 @@ const Categories = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center py-8">Loading categories...</div>;
+    return (
+      <div>
+        <div className="animate-pulse categories-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 bg-gray-200 h-12 w-48 mx-auto rounded"></div>
+        <div className="categories-grid">
+          {[1, 2, 3, 4].map((item) => (
+            <div 
+              key={item}
+              className="category-card animate-pulse"
+              style={{
+                background: 'linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6))'
+              }}
+            >
+              <div className="relative w-full h-[65%] bg-gray-200 rounded-lg"></div>
+              <div className="category-content">
+                <div className="h-5 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-full mx-auto"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
