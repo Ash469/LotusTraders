@@ -17,7 +17,7 @@ export interface Product {
   description: string;
   details: {
     benefits: string[];
-    how_to_use: string;
+    information: string[];
     reviews: {
       user: string;
       rating: number;

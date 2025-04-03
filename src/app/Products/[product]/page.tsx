@@ -336,7 +336,7 @@ const ProductPage = () => {
                     {/* Product details Tabs */}
                     <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
                         <div className="flex flex-wrap border-b border-gray-200">
-                            {['Benefits', 'Description', 'Reviews', 'FAQs'].map((tab) => (
+                            {['Benefits', 'Information', 'Reviews', 'FAQs'].map((tab) => (
                                 <button
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
@@ -371,27 +371,21 @@ const ProductPage = () => {
                                 </div>
                             )}
 
-                            {activeTab === 'Description' && (
+                            {activeTab === 'Information' && (
                                 <div className="space-y-6">
-                                    <h3 className="text-2xl font-semibold text-gray-900">Description</h3>
+                                    <h3 className="text-2xl font-semibold text-gray-900">Information</h3>
                                     <div className="prose max-w-none text-gray-700">
-                                        {product.details?.how_to_use ? (
-                                            Array.isArray(product.details.how_to_use) ? (
-                                                <ul className="space-y-4">
-                                                    {product.details.how_to_use.map((instruction, index) => (
-                                                        <li key={index} className="flex items-start">
-                                                            {index !== 0 && (
-                                                                <svg className="flex-shrink-0 h-5 w-5 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                                                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                                </svg>
-                                                            )}
-                                                            <span className="text-gray-700">{instruction}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            ) : (
-                                                <p className="text-gray-700">{product.details.how_to_use}</p>
-                                            )
+                                        {Array.isArray(product.details?.information) ? (
+                                            <ul className="space-y-4">
+                                                {product.details.information.map((instruction, index) => (
+                                                    <li key={index} className="flex items-start">
+                                                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                        </svg>
+                                                        <span>{instruction}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
                                         ) : (
                                             <p>No usage information available</p>
                                         )}
