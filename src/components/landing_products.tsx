@@ -1,31 +1,104 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import './landing_products.css';
+import Link from 'next/link';
 
-const products = [
-  { id: 1, name: 'Concrete Mixer', image: '/assets/images/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 2, name: 'Brick Machines', image: '/assets/images/cat1.png', description: 'Combines manual and automated processes for enhanced efficiency and productivity' },
-  { id: 3, name: 'Trimix Systems', image: '/assets/images/cat1.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 4, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 5, name: 'Concrete Mixer', image: '/assets/images/cat1.png', description: 'Efficiently blends and mixes cement, sand, and water to create uniform concrete.' },
-  { id: 6, name: 'Brick Machines', image: '/assets/images/cat1.png', description: 'Combines manual and automated processes for enhanced efficiency and productivity' },
-  { id: 7, name: 'Trimix Systems', image: '/assets/images/cat1.png', description: 'Ensures precise material binding for perfect quality, consistency, and controlled preparation' },
-  { id: 8, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 9, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 10, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 11, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-  { id: 12, name: 'Lab Equipments', image: '/assets/images/cat1.png', description: 'Used for hands-on learning, fostering experimentation, research, and scientific' },
-];
+interface Product {
+  id: string;
+  name: string;
+  image: string;
+  rating: number;
+}
+
+interface Category {
+  _id: string;
+  id: string;
+  name: string;
+  products?: Product[];
+}
 
 const Products = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProductsFromCategories = async () => {
+      try {
+        // First fetch categories
+        const categoryResponse = await fetch('/api/categories');
+        if (!categoryResponse.ok) {
+          throw new Error(`Failed to fetch categories: ${categoryResponse.statusText}`);
+        }
+        const categories: Category[] = await categoryResponse.json();
+
+        // Get first two products from each category's products array
+        let allProducts: Product[] = [];
+        
+        categories.forEach(category => {
+          if (category.products && category.products.length > 0) {
+            // Take first two products
+            const categoryProducts = category.products.slice(0, 2);
+            allProducts = [...allProducts, ...categoryProducts];
+          }
+        });
+        
+        setProducts(allProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        setError(error instanceof Error ? error.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProductsFromCategories();
+  }, []);
+
+  if (loading) {
+    return (
+      <div>
+        <h2 className="products-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 text-gray-800">Products</h2>
+        <div className="products-grid">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <div key={item} className="product-card animate-pulse">
+              <div className="relative w-full h-[80%] bg-gray-200"></div>
+              <div className="product-content">
+                <div className="h-5 bg-gray-200 rounded w-3/4 mb-2"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center text-red-500">
+        <h2 className="products-title text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-gray-800">Products</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
+  if (!products.length) {
+    return (
+      <div className="text-center">
+        <h2 className="products-title text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-gray-800">Products</h2>
+        <p>No products found</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2 className="products-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 text-gray-800">Products</h2>
       <div className="products-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="product-card group">
             <div className="relative w-full h-[80%]">
               <Image 
                 src={product.image} 
@@ -35,9 +108,15 @@ const Products = () => {
                 className="product-image"
                 priority
               />
+            
             </div>
             <div className="product-content">
-              <h3 className="product-name">{product.name}</h3>
+              <Link 
+                href={`/products/${product.id}`}
+                className="product-name-link"
+              >
+                <h3 className="product-name">{product.name}</h3>
+              </Link>
             </div>
           </div>
         ))}
