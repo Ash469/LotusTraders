@@ -99,21 +99,32 @@ const Products = () => {
       <div className="products-grid">
         {products.map((product) => (
           <div key={product.id} className="product-card group">
-            <div className="relative w-full h-[80%]">
+            <div 
+              className="relative w-full h-[80%]"
+              style={{
+              background: `linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5)), 
+                    url('/assets/categories/categories-bg.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '12px',
+              padding: '12px'
+              }}
+            >
               <Image 
-                src={product.image} 
-                alt={product.name} 
-                fill
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16.66vw"
-                className="product-image"
-                priority
+              src={product.image} 
+              alt={product.name} 
+              fill
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16.66vw"
+              className="product-image"
+              priority
+              style={{ objectFit: 'contain' }}
               />
-            
             </div>
             <div className="product-content">
               <Link 
                 href={`/products/${product.id}`}
                 className="product-name-link"
+                
               >
                 <h3 className="product-name">{product.name}</h3>
               </Link>
