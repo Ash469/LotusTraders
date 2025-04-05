@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 
@@ -14,15 +14,32 @@ import './Hero.css';
 import NavBar from './nav_bar';
 
 const Hero = () => {
-
-
-  const images = [
-    '/assets/banner/banner1.jpg',
-    '/assets/banner/banner2.jpg',
-    '/assets/banner/banner3.jpg',
-    '/assets/banner/banner4.jpg',
-    '/assets/banner/banner5.jpg',
-
+  const bannerContent = [
+    {
+      image: '/assets/banner/banner1.jpg',
+      link: '/categories/bar_bending_and_cutting_machine',
+      title: 'bar_bending_and_cutting_machine'
+    },
+    {
+      image: '/assets/banner/banner2.jpg',
+      link: '/categories/concrete_mixer',
+      title: 'concrete_mixer'
+    },
+    {
+      image: '/assets/banner/banner3.jpg',
+      link: '/categories/moulds',
+      title: 'moulds'
+    },
+    {
+      image: '/assets/banner/banner4.jpg',
+      link: '/categories/trimix_system',
+      title: 'trimix_system'
+    },
+    {
+      image: '/assets/banner/banner5.jpg',
+      link: '/categories/trolley',
+      title: 'trolley'
+    },
   ];
 
   return (
@@ -40,19 +57,19 @@ const Hero = () => {
           fadeEffect={{ crossFade: true }}
           className="w-full aspect-[16/8] sm:aspect-[16/6]"
         >
-          {images.map((image, index) => (
+          {bannerContent.map((banner, index) => (
             <SwiperSlide key={index} className="relative w-full">
-              <div className="relative w-full aspect-[16/8] sm:aspect-[16/6]">
+              <Link href={banner.link} className="block relative w-full aspect-[16/8] sm:aspect-[16/6]">
                 <Image
-                  src={image}
-                  alt={`Banner ${index + 1}`}
+                  src={banner.image}
+                  alt={banner.title}
                   fill
                   priority={index === 0}
                   sizes="100vw"
                   quality={90}
                   className="object-cover object-center"
                 />
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

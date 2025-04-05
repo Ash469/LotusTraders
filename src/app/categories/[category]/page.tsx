@@ -50,13 +50,8 @@ export default function CategoryPage() {
 
   const [category, setCategory] = useState<CategoryData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [dealTimeLeft, setDealTimeLeft] = useState<number>(0);
 
-  // For timer functionality
-  const timeLeft = {
-    hours: 5,
-    minutes: 45,
-    seconds: 30
-  };
 
   useEffect(() => {
     async function fetchData() {
@@ -72,6 +67,46 @@ export default function CategoryPage() {
 
     fetchData();
   }, [categoryId]); // Only re-fetch when category ID changes
+
+  useEffect(() => {
+    // Calculate time until midnight for deals timer
+    const calculateTimeUntilMidnight = () => {
+      const now = new Date();
+      const midnight = new Date();
+      midnight.setHours(24, 0, 0, 0);
+      return Math.floor((midnight.getTime() - now.getTime()) / 1000);
+    };
+    
+    // Initialize timer
+    setDealTimeLeft(calculateTimeUntilMidnight());
+    
+    // Update timer every second
+    const timerInterval = setInterval(() => {
+      setDealTimeLeft(prev => {
+        if (prev <= 1) {
+          return calculateTimeUntilMidnight(); // Reset at midnight
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    
+    return () => clearInterval(timerInterval);
+  }, []);
+  
+  // Format the time from seconds to HH:MM:SS
+  const formatTime = (totalSeconds: number) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    
+    return {
+      hours,
+      minutes,
+      seconds
+    };
+  };
+  
+  const formattedTime = formatTime(dealTimeLeft);
 
   if (loading) {
     return <LoadingState />;
@@ -499,20 +534,20 @@ export default function CategoryPage() {
               <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Deals of the Day</h2>
               <p className="text-white max-w-2xl mx-auto">Don&apos;t miss out on these amazing offers. Limited stock available!</p>
 
-              {/* Countdown timer like in the main page */}
+              {/* Active countdown timer */}
               <div className="flex items-center justify-center mt-6 space-x-4">
                 <div className="flex flex-col items-center bg-white bg-opacity-30 px-4 py-2 rounded-lg w-20">
-                  <span className="text-2xl font-bold text-black">{timeLeft.hours.toString().padStart(2, '0')}</span>
+                  <span className="text-2xl font-bold text-black">{formattedTime.hours.toString().padStart(2, '0')}</span>
                   <span className="text-xs text-black">Hours</span>
                 </div>
                 <span className="text-2xl text-white font-bold">:</span>
                 <div className="flex flex-col items-center bg-white bg-opacity-90 px-4 py-2 rounded-lg w-20">
-                  <span className="text-2xl font-bold text-black">{timeLeft.minutes.toString().padStart(2, '0')}</span>
+                  <span className="text-2xl font-bold text-black">{formattedTime.minutes.toString().padStart(2, '0')}</span>
                   <span className="text-xs text-black">Minutes</span>
                 </div>
                 <span className="text-2xl text-white font-bold">:</span>
                 <div className="flex flex-col items-center bg-white bg-opacity-90 px-4 py-2 rounded-lg w-20">
-                  <span className="text-2xl font-bold text-black">{timeLeft.seconds.toString().padStart(2, '0')}</span>
+                  <span className="text-2xl font-bold text-black">{formattedTime.seconds.toString().padStart(2, '0')}</span>
                   <span className="text-xs text-black">Seconds</span>
                 </div>
               </div>
@@ -559,10 +594,21 @@ export default function CategoryPage() {
                         </div>
                         <span className="text-sm font-medium text-red-600">75% sold</span>
                       </div>
-                      <button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center justify-center">
+                      <Link
+                        href={{
+                          pathname: '/enquiry',
+                          query: {
+                            productId: deal.id,
+                            productName: deal.name,
+                            productImage: deal.image,
+                            quantity: 1
+                          }
+                        }}
+                        className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center justify-center"
+                      >
                         <FaShoppingCart className="mr-2" />
                         Buy Now
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </SwiperSlide>

@@ -16,6 +16,9 @@ interface Category {
 const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndices, setCurrentImageIndices] = useState<{ [key: string]: number }>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [sliding, setSliding] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -32,6 +35,38 @@ const Categories = () => {
 
     fetchCategories();
   }, []);
+
+  useEffect(() => {
+    if (!loading && categories.length > 0) {
+      const columnCount = 4; // Number of columns in the grid
+      
+      const startColumnDominoEffect = async () => {
+        // Wait for initial delay before starting the cycle
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Loop through each column
+        for (let col = 0; col < columnCount; col++) {
+          // Update all categories in current column
+          categories.forEach((category, index) => {
+            if (category.heroImages.length > 1 && index % columnCount === col) {
+              setTimeout(() => {
+                setCurrentImageIndices(prev => ({
+                  ...prev,
+                  [category._id]: ((prev[category._id] || 0) + 1) % category.heroImages.length
+                }));
+              }, col * 1000); // 0.5s delay between columns
+            }
+          });
+        }
+      };
+
+      const interval = setInterval(() => {
+        startColumnDominoEffect();
+      }, 5000); // Complete cycle every 5 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [loading, categories]);
 
   if (loading) {
     return (
@@ -60,7 +95,7 @@ const Categories = () => {
 
   return (
     <div>
-      <h2 className="categories-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-8 text-gray-800">Categories</h2>
+      <h2 className="categories-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 mt-4 text-gray-800">Categories</h2>
       <div className="categories-grid">
         {categories.map((category) => (
           <Link
@@ -77,19 +112,28 @@ const Categories = () => {
               backgroundAttachment: 'fixed',
             }}
           >
-            <div className="relative w-full h-[65%]">
-              <Image 
-                src={`/assets/categories/${category.id}_1.png`} 
-                alt={category.name} 
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="category-image"
-                priority
-              />
+            <div className="category-image-container">
+              {category.heroImages.map((image, index) => (
+                <Image
+                  key={`${category._id}-${index}`}
+                  src={`${image}`}
+                  alt={`${category.name} ${index + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className={`category-image ${
+                    index === currentImageIndices[category._id] 
+                      ? 'active'
+                      : index === ((currentImageIndices[category._id] || 0) - 1 + category.heroImages.length) % category.heroImages.length
+                      ? 'prev'
+                      : ''
+                  }`}
+                  priority={index === 0}
+                />
+              ))}
             </div>
             <div className="category-content">
               <h3 className="category-name">{category.name}</h3>
-              <p className="category-description">{category.description}</p>
+              {/* <p className="category-description">{category.description}</p> */}
             </div>
           </Link>
         ))}

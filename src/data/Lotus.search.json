@@ -1,0 +1,320 @@
+[{
+  "id": "earth_compactor",
+  "name": "EARTH COMPACTOR"
+},
+{
+  "id": "double_beam_surface_vibrator",
+  "name": "DOUBLE BEAM SURFACE VIBRATOR"
+},
+{
+  "id": "colour_mixer_pan_type",
+  "name": "COLOUR MIXER PAN TYPE"
+},
+{
+  "id": "semi_automatic_double_cavity_brick_block_making_machine",
+  "name": "SEMI AUTOMATIC DOUBLE CAVITY BRICK/BLOCK MAKING MACHINE"
+},
+{
+  "id": "egg_laying_type_block_making_machine",
+  "name": "EGG LAYING TYPE BLOCK MAKING MACHINE"
+},
+{
+  "id": "tamping_rammer",
+  "name": "TAMPING RAMMER"
+},
+{
+  "id": "vacuum_dewatering_pump",
+  "name": "INDUSTRIAL VACUUM DEWATERING SYSTEM"
+},
+{
+  "id": "laboratory_concrete_mixer",
+  "name": "LABORATORY CONCRETE MIXER"
+},
+{
+  "id": "half_bag_concrete_mixer",
+  "name": "HALF BAG CONCRETE MIXER"
+},
+{
+  "id": "manual_4_cavity_brick_making_machine",
+  "name": "MANUAL 4 CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "concrete_mixer_with_hopper",
+  "name": "CONCRETE MIXER WITH HOPPER"
+},
+{
+  "id": "lift_concrete_mixer",
+  "name": "LIFT CONCRETE MIXER"
+},
+{
+  "id": "manual_interlocking_single_cavity_brick_making_machine",
+  "name": "MANUAL INTERLOCKING SINGLE CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "automatic_4_cavity_brick_making_machine",
+  "name": "AUTOMATIC 4 CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "bull_floater",
+  "name": "BULL FLOATER"
+},
+{
+  "id": "pan_mixer_machine",
+  "name": "PAN MIXER MACHINE"
+},
+{
+  "id": "trolley_concrete_mixer",
+  "name": "TROLLEY CONCRETE MIXER"
+},
+{
+  "id": "reversible_concrete_mixer",
+  "name": "REVERSIBLE CONCRETE MIXER"
+},
+{
+  "id": "1_bag_concrete_mixer",
+  "name": "1 BAG CONCRETE MIXER"
+},
+{
+  "id": "3_in_1_hydraulic_concrete_block_making_machine",
+  "name": "3 IN 1 HYDRAULIC CONCRETE BLOCK MAKING MACHINE"
+},
+{
+  "id": "vibration_table",
+  "name": "VIBRATION TABLE"
+},
+{
+  "id": "plate_vibrator",
+  "name": "PLATE VIBRATOR"
+},
+{
+  "id": "manual_interlocking_double_cavity_brick_making_machine",
+  "name": "MANUAL INTERLOCKING DOUBLE CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "concrete_power_trowel",
+  "name": "INDUSTRIAL CONCRETE FINISHING SYSTEM"
+},
+{
+  "id": "texture_brush",
+  "name": "TEXTURE BRUSH"
+},
+{
+  "id": "hydraulic_semi_automatic_brick_making_machine_dhokla",
+  "name": "HYDRAULIC SEMI AUTOMATIC BRICK MAKING MACHINE (DHOKLA)"
+},
+{
+  "id": "single_wheel_trolley",
+  "name": "SINGLE WHEEL TROLLEY"
+},
+{
+  "id": "double_wheel_trolley",
+  "name": "DOUBLE WHEEL TROLLEY"
+},
+{
+  "id": "hand_pallet_truck",
+  "name": "HAND PALLET TRUCK"
+},
+{
+  "id": "mini_automatic_3_cavity_brick_making_machine",
+  "name": "MINI AUTOMATIC 3 CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "groove_cutting_machine",
+  "name": "GROOVE CUTTING MACHINE"
+},
+{
+  "id": "automatic_6_cavity_brick_making_machine",
+  "name": "AUTOMATIC 6 CAVITY BRICK MAKING MACHINE"
+},
+{
+  "id": "brick_shifting_trolley",
+  "name": "BRICK SHIFTING TROLLEY"
+},
+{
+  "id": "iron_oxide_red_chemical",
+  "name": "IRON OXIDE RED"
+},
+{
+  "id": "iron_oxide_yellow_chemical",
+  "name": "IRON OXIDE YELLOW"
+},
+{
+  "id": "silicon_emulsion_chemical",
+  "name": "SILICON EMULSION"
+},
+{
+  "id": "iron_oxide_black_chemical",
+  "name": "IRON OXIDE BLACK"
+},
+{
+  "id": "hardner_powder_chemical",
+  "name": "HARDNER POWDER"
+},
+{
+  "id": "iron_oxide_blue_chemical",
+  "name": "IRON OXIDE BLUE"
+},
+{
+  "id": "hardner_chemicals_chemical",
+  "name": "HARDNER CHEMICALS"
+},
+{
+  "id": "lecquers_polish_chemical",
+  "name": "LECQUERS POLISH"
+},
+{
+  "id": "iron_oxide_green_chemical",
+  "name": "IRON OXIDE GREEN"
+},
+{
+  "id": "chatai_mould",
+  "name": "CHATAI"
+},
+{
+  "id": "diamond_mould",
+  "name": "DIAMOND"
+},
+{
+  "id": "solid_brick_3_cavity_mould",
+  "name": "SOLID BRICK 3 CAVITY"
+},
+{
+  "id": "brick_plastic_mould",
+  "name": "BRICK PLASTIC MOULD"
+},
+{
+  "id": "damru_mould",
+  "name": "DAMRU MOULD"
+},
+{
+  "id": "vg_03_mould",
+  "name": "VG-03"
+},
+{
+  "id": "zig_zag_plastic_mould",
+  "name": "ZIG ZAG PLASTIC MOULD"
+},
+{
+  "id": "cosmic_mould",
+  "name": "COSMIC MOULD"
+},
+{
+  "id": "tablet_mould",
+  "name": "TABLET"
+},
+{
+  "id": "flower_2_mould",
+  "name": "FLOWER 2"
+},
+{
+  "id": "hexa_mould",
+  "name": "HEXA"
+},
+{
+  "id": "mosaic_mould",
+  "name": "MOSAIC"
+},
+{
+  "id": "om_1_mould",
+  "name": "OM 1"
+},
+{
+  "id": "vg_14_mould",
+  "name": "VG-14"
+},
+{
+  "id": "dumble_single_ring_mould",
+  "name": "DUMBLE SINGLE RING"
+},
+{
+  "id": "sunflower_mould",
+  "name": "SUNFLOWER"
+},
+{
+  "id": "solid_brick_single_cavity_mould",
+  "name": "SOLID BRICK SINGLE CAVITY"
+},
+{
+  "id": "flower_1_mould",
+  "name": "FLOWER 1"
+},
+{
+  "id": "three_cavity_zig_zag_mould",
+  "name": "THREE CAVITY ZIG ZAG"
+},
+{
+  "id": "solid_brick_2_cavity_mould",
+  "name": "SOLID BRICK 2 CAVITY"
+},
+{
+  "id": "solid_brick_4_cavity_mould",
+  "name": "SOLID BRICK 4 CAVITY"
+},
+{
+  "id": "grass_mould",
+  "name": "GRASS"
+},
+{
+  "id": "dumble_single_set_mould",
+  "name": "DUMBLE SINGLE SET"
+},
+{
+  "id": "milano_mould",
+  "name": "MILANO MOULD"
+},
+{
+  "id": "100_db_mould",
+  "name": "100 DB"
+},
+{
+  "id": "om_round_2_mould",
+  "name": "OM ROUND 2"
+},
+{
+  "id": "vg_17_mould",
+  "name": "VG-17"
+},
+{
+  "id": "diamond_paver_mould",
+  "name": "DIAMOND PAVER MOULD"
+},
+{
+  "id": "zig_zag_paver_mould",
+  "name": "ZIG ZAG PAVER MOULD"
+},
+{
+  "id": "damru_paver_mould",
+  "name": "DAMRU PAVER MOULD"
+},
+{
+  "id": "hexagonal_mould",
+  "name": "HEXAGONAL"
+},
+{
+  "id": "vg_08_mould",
+  "name": "VG-08"
+},
+{
+  "id": "double_cavity_zig_zag_mould",
+  "name": "DOUBLE CAVITY ZIG ZAG"
+},
+{
+  "id": "i_shape_mould",
+  "name": "I SHAPE MOULD"
+},
+{
+  "id": "16_db_mould",
+  "name": "16 DB"
+},
+{
+  "id": "colorado_paver_mould",
+  "name": "COLORADO PAVER MOULD"
+},
+{
+  "id": "thrihex_mould",
+  "name": "THRIHEX"
+},
+{
+  "id": "milano_paver_mould",
+  "name": "MILANO PAVER MOULD"
+}]

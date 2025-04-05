@@ -9,7 +9,7 @@ const Founder = () => {
         {/* Image Container */}
         <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
             <img 
-              src="/assets/banner/founder.png" 
+              src="/assets/banner/founder.jpg" 
               alt="Founder" 
               className="w-full h-full object-fill rounded-full"
             />

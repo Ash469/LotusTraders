@@ -8,8 +8,13 @@ export async function GET() {
     const collection = db.collection('categories');
 
     const categories = await collection.find({}).toArray();
+    // Transform _id to string before sending
+    const transformedCategories = categories.map(cat => ({
+      ...cat,
+      _id: cat._id.toString()
+    }));
 
-    return NextResponse.json(categories);
+    return NextResponse.json(transformedCategories);
   } catch (error) {
     console.error('Error fetching categories:', error);
     return NextResponse.json(

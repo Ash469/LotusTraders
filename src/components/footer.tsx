@@ -15,7 +15,7 @@ const Footer = () => {
                 src="/logo.png"
                 alt="Lotus Logo"
                 fill
-                sizes="(max-width: 640px) 300px, (max-width: 768px) 350px, 370px"
+                sizes="(max-width: 740px) 400px, (max-width: 768px) 350px, 370px"
                 className="object-cover"
                 priority
               />
