@@ -6,18 +6,24 @@ import Founder from '@/components/founder';
 import Testimonials from '@/components/testimonial';
 import Footer from '@/components/footer';
 
-
 export default function Home() {
   return (
     <div>
       <Hero />
-      <Categories />
+      <div id="categories">
+        <Categories />
+      </div>
+      <div id="dod">
       <DealsOfTheDay />
+      </div>
+      <div id="products">
       <Products />
-      <Founder />
+      </div>
+      <div id="about">
+        <Founder />
+      </div>
       <Testimonials />
       <Footer />
-     
     </div>
   );
 }

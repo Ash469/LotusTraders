@@ -71,7 +71,10 @@ const Categories = () => {
               background: `linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), 
                           url('/assets/categories/categories-bg.png')`,
               backgroundSize: 'contain',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              zIndex: 3,
+              backgroundRepeat: 'no-repeat',
+              backgroundAttachment: 'fixed',
             }}
           >
             <div className="relative w-full h-[65%]">

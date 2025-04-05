@@ -58,6 +58,7 @@ const ProductCard = ({
           {thumbnails.map((thumb, index) => (
             <div 
               key={index} 
+              
               className={`w-16 md:w-20 h-16 md:h-20 border-2 rounded cursor-pointer transition-all duration-200 ${
                 selectedImage === thumb ? 'border-blue-500' : 'border-gray-200 hover:border-blue-300'
               }`}
@@ -75,7 +76,19 @@ const ProductCard = ({
         </div>
         {/* Main image */}
         <div className="flex-grow flex items-center justify-center bg-gray-50 rounded-lg p-2 md:p-4">
-          <div className="relative w-full h-[250px] md:h-[400px]">
+          <div className="relative w-full h-[250px] md:h-[400px]"
+          style={{
+            background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            padding: '12px',
+            border: '1px solid rgba(229, 231, 235, 1)',
+            borderRadius: '8px',
+            margin: '8px',
+            height: '100%',
+            width: '100%'
+        }}>
             <Image
               src={selectedImage}
               alt={title}

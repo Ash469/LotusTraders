@@ -3,7 +3,7 @@ import { CategoryData } from '@/types/type';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectCube } from 'swiper/modules';
-import { FaStar, FaChevronRight, FaHeart, FaClock, FaShoppingCart } from 'react-icons/fa';
+import { FaStar, FaChevronRight, FaClock, FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link';
 import Footer from '@/components/footer';
 import { useState, useEffect } from 'react';
@@ -81,7 +81,7 @@ export default function CategoryPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       {/* Section Navigation */}
       <div className="sticky top-0 z-30 bg-white shadow-md">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +137,7 @@ export default function CategoryPage() {
       </div>
 
       {/* Hero Section */}
-      <div id="hero" className="relative bg-gradient-to-b from-blue-50 to-white py-16 px-4 md:px-8 lg:px-16">
+      <div id="hero" className="relative bg-gradient-to-b bg-[linear-gradient(135deg,#f6f8fa_0%,#e9ecef_100%)] py-16 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-12">
             <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
@@ -182,14 +182,24 @@ export default function CategoryPage() {
                 {category.heroImages.map((image: string, index: number) => (
                   <SwiperSlide key={index}>
                     <div className="relative w-full h-full">
-                      <Image
-                        src={image}
-                        alt={`${category.name} hero image ${index + 1}`}
-                        fill
-                        priority
-                        className="object-contain p-4"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                      <div
+                        style={{
+                          background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                          backgroundSize: 'contain',
+                          backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                        }}
+                        className="relative w-full h-full"
+                      >
+                        <Image
+                          src={image}
+                          alt={`${category.name} hero image ${index + 1}`}
+                          fill
+                          priority
+                          className="object-contain p-4"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
                     </div>
                   </SwiperSlide>
                 ))}
@@ -200,7 +210,7 @@ export default function CategoryPage() {
       </div>
 
       {/* Products Grid Section */}
-      <div id="products" className="bg-white py-16 px-4 md:px-8 lg:px-16">
+      <div id="products" className="bg-[linear-gradient(135deg,#f6f8fa_0%,#e9ecef_100%)] py-16 px-4 md:px-8 lg:px-16">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
             <div>
@@ -215,27 +225,44 @@ export default function CategoryPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {category.products?.map((product) => (
-              <div key={product.id} className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="relative h-64 w-full overflow-hidden bg-gray-50">
+              <div 
+                key={product.id} 
+                className="group rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                style={{
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                }}
+              >
+                <div 
+                  className="relative h-64 w-full overflow-hidden"
+                  style={{
+                  background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  padding: '12px',
+                  border: '1px solid rgba(229, 231, 235, 1)',
+                  borderRadius: '8px',
+                  margin: '8px',
+                  }}
+                >
                   <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-contain transition-transform group-hover:scale-105"
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-contain transition-transform group-hover:scale-105 p-2"
+                  style={{ 
+                    filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                  }}
                   />
-                  <div className="absolute top-3 right-3">
-                    <button className="bg-white rounded-full p-2 shadow-sm hover:bg-gray-100 transition-colors">
-                      <FaHeart className="text-gray-400 hover:text-red-500" size={16} />
-                    </button>
-                  </div>
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
+                <div className="p-4 bg-gradient-to-b from-white to-gray-50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem]">
+                    {product.name}
+                  </h3>
                   <div className="relative">
                     {renderStarRating(product.rating)}
-                    {/* Enquiry Button that appears over the rating on hover */}
-                    <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                    <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
                       <Link
                         href={{
                           pathname: '/enquiry',
@@ -246,11 +273,15 @@ export default function CategoryPage() {
                             quantity: 1
                           }
                         }}
-                        className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                      >
                         <span>Enquiry</span>
                         <FaChevronRight size={10} className="ml-1" />
                       </Link>
-                      <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                      <Link 
+                        href={`/products/${product.id}`} 
+                        className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                      >
                         <span>Details</span>
                         <FaChevronRight size={10} className="ml-1" />
                       </Link>
@@ -265,7 +296,7 @@ export default function CategoryPage() {
 
 
       {category.trendingProducts && (
-        <div id="trending" className="bg-gradient-to-b from-gray-50 to-white py-16 px-4 md:px-8 lg:px-16">
+        <div id="trending" className="bg-[linear-gradient(135deg,#f6f8fa_0%,#e9ecef_100%)] py-16 px-4 md:px-8 lg:px-16">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
               <div>
@@ -291,8 +322,25 @@ export default function CategoryPage() {
             >
               {category.trendingProducts.map((product) => (
                 <SwiperSlide key={product.id} className="h-auto">
-                  <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-[400px] transform hover:-translate-y-2 transition-transform duration-300 group">
-                    <div className="relative h-64 w-full flex-shrink-0">
+                  <div 
+                    className="group bg-white rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                    style={{
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    }}
+                  >
+                    <div 
+                      className="relative h-64 w-full overflow-hidden"
+                      style={{
+                        background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                        backgroundSize: 'contain',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        padding: '12px',
+                        border: '1px solid rgba(229, 231, 235, 1)',
+                        borderRadius: '8px',
+                        margin: '8px',
+                      }}
+                    >
                       <div className="absolute top-0 left-0 bg-red-500 text-white px-4 py-1 z-10 rounded-br-lg font-semibold">
                         TRENDING
                       </div>
@@ -300,14 +348,19 @@ export default function CategoryPage() {
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-contain"
+                        className="object-contain transition-transform group-hover:scale-105 p-2"
+                        style={{ 
+                          filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                        }}
                       />
                     </div>
-                    <div className="p-5 flex-grow flex flex-col justify-between">
-                      <h3 className="text-lg font-semibold text-black line-clamp-2">{product.name}</h3>
-                      <div className="relative h-6 mt-auto">
+                    <div className="p-4 bg-gradient-to-b from-white to-gray-50">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem]">
+                        {product.name}
+                      </h3>
+                      <div className="relative">
                         {renderStarRating(product.rating)}
-                        <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                        <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
                           <Link
                             href={{
                               pathname: '/enquiry',
@@ -318,11 +371,15 @@ export default function CategoryPage() {
                                 quantity: 1
                               }
                             }}
-                            className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                          >
                             <span>Enquiry</span>
                             <FaChevronRight size={10} className="ml-1" />
                           </Link>
-                          <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                          <Link 
+                            href={`/products/${product.id}`} 
+                            className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                          >
                             <span>Details</span>
                             <FaChevronRight size={10} className="ml-1" />
                           </Link>
@@ -339,7 +396,7 @@ export default function CategoryPage() {
 
       {/* New Release Products Section */}
       {category.newReleases && (
-        <div id="new-releases" className="bg-white py-16 px-4 md:px-8 lg:px-16">
+        <div id="new-releases" className="bg-[linear-gradient(135deg,#f6f8fa_0%,#e9ecef_100%)] py-16 px-4 md:px-8 lg:px-16">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
               <div>
@@ -354,28 +411,47 @@ export default function CategoryPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {category.newReleases.map((product) => (
-                <div key={product.id} className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
-                  <div className="relative">
+                <div 
+                  key={product.id} 
+                  className="group bg-white rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                  style={{
+                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                  }}
+                >
+                  <div 
+                    className="relative h-64 w-full overflow-hidden"
+                    style={{
+                      background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                      backgroundSize: 'contain',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                      padding: '12px',
+                      border: '1px solid rgba(229, 231, 235, 1)',
+                      borderRadius: '8px',
+                      margin: '8px',
+                    }}
+                  >
                     <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 z-10 rounded-bl-lg font-medium">
                       NEW
                     </div>
-                    <div className="relative h-64 w-full overflow-hidden bg-gray-50">
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-contain transition-transform group-hover:scale-105"
-                      />
-                    </div>
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain transition-transform group-hover:scale-105 p-2"
+                      style={{ 
+                        filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                      }}
+                    />
                   </div>
 
-                  <div className="p-4 relative">
-                    <h3 className="text-lg font-semibold text-black mb-1 group-hover:text-grey-600 transition-colors">{product.name}</h3>
-                    <div className="flex items-center mb-2 relative">
+                  <div className="p-4 bg-gradient-to-b from-white to-gray-50">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3.5rem]">
+                      {product.name}
+                    </h3>
+                    <div className="relative">
                       {renderStarRating(product.rating)}
-
-                      {/* Enquiry and Details Buttons that appear over the rating on hover */}
-                      <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between px-2 transition-opacity">
+                      <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
                         <Link
                           href={{
                             pathname: '/enquiry',
@@ -386,18 +462,19 @@ export default function CategoryPage() {
                               quantity: 1
                             }
                           }}
-                          className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                        >
                           <span>Enquiry</span>
                           <FaChevronRight size={10} className="ml-1" />
                         </Link>
-                        <Link href={`/products/${product.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition flex items-center">
+                        <Link 
+                          href={`/products/${product.id}`} 
+                          className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                        >
                           <span>Details</span>
                           <FaChevronRight size={10} className="ml-1" />
                         </Link>
                       </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded">Just Launched</span>
                     </div>
                   </div>
                 </div>

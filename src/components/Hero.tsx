@@ -17,9 +17,12 @@ const Hero = () => {
 
 
   const images = [
-    '/assets/images/PAN INDIA WEBSITE WORK.jpg',
-    '/assets/images/PAN INDIA WEBSITE WORK 2.jpg',
-    '/assets/images/PAN INDIA WEBSITE WORK 3.jpg',
+    '/assets/banner/banner1.jpg',
+    '/assets/banner/banner2.jpg',
+    '/assets/banner/banner3.jpg',
+    '/assets/banner/banner4.jpg',
+    '/assets/banner/banner5.jpg',
+
   ];
 
   return (
@@ -47,7 +50,7 @@ const Hero = () => {
                   priority={index === 0}
                   sizes="100vw"
                   quality={90}
-                  className="object-contain"
+                  className="object-cover object-center"
                 />
               </div>
             </SwiperSlide>

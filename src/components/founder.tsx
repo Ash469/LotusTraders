@@ -8,13 +8,12 @@ const Founder = () => {
       <div className="flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Image Container */}
         <div className="relative w-64 h-64 md:w-80 md:h-80 flex-shrink-0">
-          <div className="absolute inset-0 rounded-full border-4 border-orange-500 shadow-lg transform hover:scale-105 transition-transform duration-300">
             <img 
-              src="/assets/images/founder.jpg" 
+              src="/assets/banner/founder.png" 
               alt="Founder" 
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-fill rounded-full"
             />
-          </div>
+  
         </div>
 
         {/* Content Container */}

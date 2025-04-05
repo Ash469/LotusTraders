@@ -277,14 +277,32 @@ const ProductPage = () => {
                                             <SwiperSlide key={relatedProduct.id}>
                                                 <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 group relative">
                                                     <div className="relative h-64 w-full">
-                                                        <Image
-                                                            src={relatedProduct.heroImages?.[0]}
-                                                            alt={relatedProduct.name}
-                                                            fill
-                                                            className="object-cover"
-                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        />
-
+                                                        <div
+                                                            style={{
+                                                                background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                                                                backgroundSize: 'contain',
+                                                                backgroundPosition: 'center',
+                                                                backgroundRepeat: 'no-repeat',
+                                                                padding: '12px',
+                                                                border: '1px solid rgba(229, 231, 235, 1)',
+                                                                borderRadius: '8px',
+                                                                margin: '8px',
+                                                                height: '100%',
+                                                                width: '100%'
+                                                            }}
+                                                            className="relative"
+                                                        >
+                                                            <Image
+                                                                src={relatedProduct.heroImages?.[0]}
+                                                                alt={relatedProduct.name}
+                                                                fill
+                                                                className="object-contain p-4"
+                                                                style={{ 
+                                                                    filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                                                                }}
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                            />
+                                                        </div>
                                                     </div>
                                                     <div className="p-5 flex-grow">
                                                         <h3 className="text-lg font-semibold text-black line-clamp-2 mb-2">{relatedProduct.name}</h3>
@@ -482,14 +500,32 @@ const ProductPage = () => {
                                         <Link href={`/products/${otherProduct.id}`} key={otherProduct.id}>
                                             <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer">
                                                 <div className="relative h-56 w-full">
-                                                    <Image
-                                                        src={otherProduct.heroImages?.[0]}
-                                                        alt={otherProduct.name}
-                                                        fill
-                                                        className="object-contain"
-                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                    />
-
+                                                    <div
+                                                        style={{
+                                                            background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                                                            backgroundSize: 'contain',
+                                                            backgroundPosition: 'center',
+                                                            backgroundRepeat: 'no-repeat',
+                                                            padding: '12px',
+                                                            border: '1px solid rgba(229, 231, 235, 1)',
+                                                            borderRadius: '8px',
+                                                            margin: '8px',
+                                                            height: '100%',
+                                                            width: '100%'
+                                                        }}
+                                                        className="relative"
+                                                    >
+                                                        <Image
+                                                            src={otherProduct.heroImages?.[0]}
+                                                            alt={otherProduct.name}
+                                                            fill
+                                                            className="object-contain p-4"
+                                                            style={{ 
+                                                                filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                                                            }}
+                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                        />
+                                                    </div>
                                                 </div>
                                                 <div className="p-5 flex-grow">
                                                     <h3 className="text-lg font-semibold text-black  mb-2 line-clamp-2">{otherProduct.name}</h3>

@@ -2,18 +2,28 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+
 const deals = [
   {
     id: 1,
-    name: 'Heavy-Duty Concrete Mixer',
-    description: 'Professional 4.5 cubic ft. drum capacity concrete mixer with durable steel frame. Perfect for construction projects.',
+    name: 'One Bag Concrete Mixer',
+    description: 'Durable and efficient concrete mixer with a capacity of 10 cft Unmixed and 7 cft Mixed, designed for professional construction projects.',
     image: '/assets/DoD/landing_dod_1.jpg',
+    link: '/products/1_bag_concrete_mixer',
   },
   {
     id: 2,
-    name: 'Portable Cement Mixer',
-    description: 'Compact 2.2 cubic ft. electric cement mixer with wheels. Ideal for home renovations and small jobs.',
+    name: 'Lift Cement Mixer',
+    description: 'Compact and portable lift cement mixer with advanced lifting mechanism, perfect for efficient mixing and pouring in construction tasks.',
     image: '/assets/DoD/landing_dod_2.jpg',
+    link: '/products/lift_concrete_mixer',
+  },
+  {
+    id: 3,
+    name: 'Hydraulic Semi Automatic Brick Machine',
+    description: 'Efficient and reliable hydraulic semi-automatic brick machine designed for high-quality brick production in construction projects.',
+    image: '/assets/DoD/landing_dod_3.jpg',
+    link: '/products/hydraulic_semi_automatic_brick_making_machine_dhokla',
   },
 ];
 
@@ -92,9 +102,12 @@ const DealsOfTheDay = () => {
                   </p>
                 </div>
                 <div className="mt-auto">
-                  <button className="w-full bg-blue-500 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300 text-sm sm:text-base">
+                    <a
+                    href={deal.link}
+                    className="w-full bg-blue-500 text-white px-4 sm:px-6 py-2 rounded-full hover:bg-blue-600 transition duration-300 text-sm sm:text-base text-center block"
+                    >
                     Grab the Deal
-                  </button>
+                    </a>
                   <div className="mt-3 text-red-500 font-semibold text-sm sm:text-base text-center">
                     Time left: {formatTime(timers[deal.id] || 0)}
                   </div>

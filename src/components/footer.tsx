@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaPhone, FaEnvelope, FaWhatsapp, FaInstagram, FaFacebookF, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaPhone, FaWhatsapp, FaYoutube } from 'react-icons/fa';
+import { FaLocationPin, FaMessage } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -30,10 +31,10 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/" className="hover:text-blue-400">Home</Link></li>
-              <li><Link href="/about" className="hover:text-blue-400">About Us</Link></li>
-              <li><Link href="/categories" className="hover:text-blue-400">Categories</Link></li>
-              <li><Link href="/products" className="hover:text-blue-400">Products</Link></li>
-              <li><Link href="/enquiry" className="hover:text-blue-400">Enquiry</Link></li>
+              <li><Link href="/#about" className="hover:text-blue-400">About Us</Link></li>
+              <li><Link href="/#categories" className="hover:text-blue-400">Categories</Link></li>
+              <li><Link href="/#products" className="hover:text-blue-400">Products</Link></li>
+              <li><Link href="/contact" className="hover:text-blue-400">Enquiry</Link></li>
             </ul>
           </div>
 
@@ -42,8 +43,8 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Categories</h3>
             <ul className="space-y-2">
               <li><Link href="/categories/brick_making_machine" className="hover:text-blue-400">Brick Making Machine</Link></li>
-              <li><Link href="/categories/concrete_mixer_machine" className="hover:text-blue-400">Concrete Mixer Machine</Link></li>
-              <li><Link href="/categories/construction_chemical_and_colors" className="hover:text-blue-400">Construction Chemical And Colors</Link></li>
+              <li><Link href="/categories/concrete_mixer" className="hover:text-blue-400">Concrete Mixer Machine</Link></li>
+              <li><Link href="/categories/bar_bending_and_cutting_machine" className="hover:text-blue-400">Bar Cutting and Bending</Link></li>
               <li><Link href="/categories/moulds" className="hover:text-blue-400">Moulds</Link></li>
               <li><Link href="/categories/trimix_system" className="hover:text-blue-400">Trimix System</Link></li>
               <li><Link href="/categories/other_machinery" className="hover:text-blue-400">Other Machinery</Link></li>
@@ -56,29 +57,25 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-center gap-2">
                 <FaPhone className="text-blue-400" />
-                <a href="tel:+919801589162" className="hover:text-blue-400">+91 9801589162</a>
+                <a href="tel:+919435559130" className="hover:text-blue-400">+91 9435559130</a>
               </li>
               <li className="flex items-center gap-2">
-                <FaEnvelope className="text-blue-400" />
-                <a href="mailto:info@lotus.com" className="hover:text-blue-400">info@lotus.com</a>
+                <FaMessage className="text-blue-400" />
+                <a href="mailto:info@lotustraders.co.in" className="hover:text-blue-400">info@lotustraders.co.in</a>
               </li>
               <li className="flex items-center gap-2">
-                <FaMapMarkerAlt className="text-blue-400" />
-                <span>123 Business Street, City, Country</span>
+              <FaLocationPin className="text-blue-400" />
+              <a href="https://www.google.com/maps/place/Lotus+Traders/@26.175182,91.776836,15z/data=!4m6!3m5!1s0x375a59a0dd4459ad:0x1622d50b645999ad!8m2!3d26.175182!4d91.776836!16s%2Fg%2F1s0477r0c?entry=ttu&g_ep=EgoyMDI1MDQwMi4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" className="hover:text-blue-400">Zoo Tiniali, Guwahati, Assam 781021</a>
               </li>
               <li className="pt-4">
                 <div className="flex gap-4">
-                  <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" 
+                  <a href="https://wa.me/9435559130" target="_blank" rel="noopener noreferrer" 
                      className="hover:text-blue-400">
                     <FaWhatsapp size={24} />
                   </a>
-                  <a href="https://instagram.com/lotus" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.youtube.com/@LOTUSTRADERS" target="_blank" rel="noopener noreferrer"
                      className="hover:text-blue-400">
-                    <FaInstagram size={24} />
-                  </a>
-                  <a href="https://facebook.com/lotus" target="_blank" rel="noopener noreferrer"
-                     className="hover:text-blue-400">
-                    <FaFacebookF size={24} />
+                    <FaYoutube size={24} />
                   </a>
                 </div>
               </li>
@@ -90,7 +87,7 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Find Us</h3>
             <div className="w-full h-48">
               <iframe
-                src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAPS_EMBED_CODE"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.683259945561!2d91.77427527536754!3d26.175181976345233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59a0dd4459ad%3A0x1622d50b645999ad!2sLotus%20Traders!5e0!3m2!1sen!2sin!4v1712305184315!5i0"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
