@@ -124,7 +124,7 @@ function EnquiryForm() {
         e.preventDefault();
         
         if (!productDetails.id) {
-            alert('No product selected. Please select a product first.');
+            // alert('No product selected. Please select a product first.');
             return;
         }
 
@@ -171,14 +171,14 @@ function EnquiryForm() {
                 quantity: 1
             });
             
-            alert('Enquiry submitted successfully!');
+            // alert('Enquiry submitted successfully!');
             
         } catch (error) {
             console.error('Error submitting enquiry:', error);
-            const errorMessage = error instanceof Error 
-                ? error.message
-                : 'Failed to submit enquiry. Please try again later.';
-            alert(errorMessage);
+            // const errorMessage = error instanceof Error 
+            //     ? error.message
+            //     : 'Failed to submit enquiry. Please try again later.';
+            // // alert(errorMessage);
         } finally {
             // Reset button state
             const submitButton = document.querySelector('button[type="submit"]') as HTMLButtonElement;
