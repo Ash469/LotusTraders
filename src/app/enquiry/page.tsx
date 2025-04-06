@@ -129,7 +129,13 @@ function EnquiryForm() {
         }
 
         try {
-            // Prepare the data
+            // Show loading state
+            const submitButton = e.currentTarget.querySelector('button[type="submit"]') as HTMLButtonElement;
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span>Submitting...</span>';
+            }
+
             const enquiryData = {
                 ...formData,
                 product: {
@@ -140,18 +146,46 @@ function EnquiryForm() {
                 }
             };
 
-            // Here you would typically send this to your API
-            console.log('Submitting enquiry:', enquiryData);
+            const response = await fetch('/api/enquiry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(enquiryData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || data.message || 'Failed to submit enquiry');
+            }
+
+            // Clear the form
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                company: '',
+                phone: '',
+                message: '',
+                quantity: 1
+            });
             
-            // Show success message
             alert('Enquiry submitted successfully!');
-            
-            // Optionally redirect to home or product page
-            // router.push('/');
             
         } catch (error) {
             console.error('Error submitting enquiry:', error);
-            alert('Failed to submit enquiry. Please try again.');
+            const errorMessage = error instanceof Error 
+                ? error.message
+                : 'Failed to submit enquiry. Please try again later.';
+            alert(errorMessage);
+        } finally {
+            // Reset button state
+            const submitButton = document.querySelector('button[type="submit"]') as HTMLButtonElement;
+            if (submitButton) {
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<span>Submit Enquiry</span>';
+            }
         }
     };
 
