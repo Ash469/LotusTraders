@@ -17,56 +17,63 @@ const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndices, setCurrentImageIndices] = useState<{ [key: string]: number }>({});
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [sliding, setSliding] = useState<{ [key: string]: boolean }>({});
+  const [initialized, setInitialized] = useState(false);
 
+  // Separate data fetching effect
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/api/categories');
+        const response = await fetch('/api/categories', {
+          cache: 'force-cache' // Add caching
+        });
         const data = await response.json();
         setCategories(data);
+        
+        // Initialize image indices immediately
+        const initialIndices: { [key: string]: number } = {};
+        data.forEach((category: Category) => {
+          initialIndices[category._id] = 0;
+        });
+        setCurrentImageIndices(initialIndices);
+        
       } catch (error) {
         console.error('Error fetching categories:', error);
       } finally {
         setLoading(false);
+        setInitialized(true);
       }
     };
 
     fetchCategories();
   }, []);
 
+  // Animation effect
   useEffect(() => {
-    if (!loading && categories.length > 0) {
-      const columnCount = 4; // Number of columns in the grid
+    if (!loading && initialized && categories.length > 0) {
+      const columnCount = 4;
       
-      const startColumnDominoEffect = async () => {
-        // Wait for initial delay before starting the cycle
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Loop through each column
+      const startColumnDominoEffect = () => {
         for (let col = 0; col < columnCount; col++) {
-          // Update all categories in current column
           categories.forEach((category, index) => {
             if (category.heroImages.length > 1 && index % columnCount === col) {
               setTimeout(() => {
                 setCurrentImageIndices(prev => ({
                   ...prev,
                   [category._id]: ((prev[category._id] || 0) + 1) % category.heroImages.length
-                }));
-              }, col * 1000); // 0.5s delay between columns
+                })); 
+              }, col * 1000);
             }
           });
         }
       };
 
-      const interval = setInterval(() => {
-        startColumnDominoEffect();
-      }, 5000); // Complete cycle every 5 seconds
-
+      // Start animation immediately
+      startColumnDominoEffect();
+      
+      const interval = setInterval(startColumnDominoEffect, 5000);
       return () => clearInterval(interval);
     }
-  }, [loading, categories]);
+  }, [loading, initialized, categories]);
 
   if (loading) {
     return (
