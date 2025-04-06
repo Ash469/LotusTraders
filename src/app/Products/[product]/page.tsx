@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import LoadingState from './LoadingState';
 import ProductNotFound from './NotFound';
+import { FaChevronRight } from 'react-icons/fa';  // Add this import
 
 const ProductPage = () => {
     const params = useParams();
@@ -312,8 +313,8 @@ const ProductPage = () => {
                                                                 <div className="group-hover:hidden">
                                                                     {renderStarRating(relatedProduct.rating)}
                                                                 </div>
-                                                                {/* Buttons shown on hover */}
-                                                                <div className="hidden group-hover:flex justify-between items-center w-full">
+                                                                {/* Buttons shown on hover - updated for mobile visibility */}
+                                                                <div className="flex flex-col sm:flex-row gap-2 items-stretch justify-between w-full mt-2">
                                                                     <Link
                                                                         href={{
                                                                             pathname: '/enquiry',
@@ -326,12 +327,17 @@ const ProductPage = () => {
                                                                                 quantity: 1
                                                                             }
                                                                         }}
-                                                                        className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-blue-700 transition"
+                                                                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                                                                     >
-                                                                        Enquiry
+                                                                        <span>Enquiry</span>
+                                                                        <FaChevronRight size={10} className="ml-1" />
                                                                     </Link>
-                                                                    <Link href={`/products/${relatedProduct.id}`} className="bg-gray-800 text-white px-3 py-1 rounded-md text-sm font-medium hover:bg-gray-900 transition">
-                                                                        details
+                                                                    <Link 
+                                                                        href={`/products/${relatedProduct.id}`} 
+                                                                        className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
+                                                                    >
+                                                                        <span>Details</span>
+                                                                        <FaChevronRight size={10} className="ml-1" />
                                                                     </Link>
                                                                 </div>
                                                             </div>
@@ -555,12 +561,11 @@ const ProductPage = () => {
                             <div className="w-20 h-1 bg-red-500 mx-auto mt-4"></div>
                         </div>
 
-                        <div className="max-w-3xl mx-auto">
-                            <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lg">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden shadow-lg">
                                 <iframe
-                                    width="800"
-                                    height="450"
-                                    src={`https://www.youtube.com/embed/${product.youtubeLink.split('v=')[1]}`}
+                                    className="absolute top-0 left-0 w-full h-full"
+                                    src={`https://www.youtube.com/embed/${product.youtubeLink?.split('v=')[1] || ''}`}
                                     title="Product Demo Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     frameBorder="0"

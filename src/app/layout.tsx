@@ -18,6 +18,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Lotus Traders",
   description: "Construction Equipments Based Trading Company from Guwahati",
+  icons: {
+    icon: '/title_logo.png', // Replace logo.png with your actual logo filename
+ 
+  }
 };
 
 export default function RootLayout({

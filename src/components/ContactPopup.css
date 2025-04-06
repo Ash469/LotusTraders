@@ -1,0 +1,160 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-start;  /* Changed from center to flex-start */
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-out;
+  padding-top: 5vh;  /* Add some top padding */
+}
+
+.popup {
+  background-color: #F7ECDF;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px -15px 0px 0px #FE7F4C inset;
+  width: 100%;
+  max-width: 600px; /* Increased from 400px to 600px */
+  transform: translateY(-100vh);
+  animation: slideDown 1.2s ease-out forwards; /* Updated duration */
+  position: relative;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: #FE7F4C;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  transition: background-color 0.3s;
+}
+
+.closeButton:hover {
+  background-color: #e36c3d;
+  transform: scale(1.1);
+}
+
+.formContent {
+  text-align: center;
+}
+
+.formContent h2 {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: #FE7F4C;  /* Changed to orange */
+  font-weight: 600;
+  padding-top: 15px; /* Added to account for orange inset */
+}
+
+.formContent p {
+  margin-bottom: 2rem;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  position: relative;
+  background-color: transparent;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #000000;  /* Changed to black for better visibility */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  border-bottom: 2px solid #FE7F4C;
+  border-radius: 0;
+  font-size: 1.1rem;
+  background-color: transparent;
+  transition: border-color 0.3s;
+  color: #333;
+}
+
+.formGroup input::placeholder {
+  color: #999;
+  font-size: 1rem;
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-bottom-color: #e36c3d;
+  background-color: transparent;
+}
+
+.submitButton {
+  background-color: #FE7F4C; /* Changed to orange */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.submitButton:hover {
+  background-color: #e36c3d; /* Darker shade of the orange */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(254, 127, 76, 0.3);
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to { 
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+ 
+}

@@ -297,7 +297,7 @@ export default function CategoryPage() {
                   </h3>
                   <div className="relative">
                     {renderStarRating(product.rating)}
-                    <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
+                    <div className="md:absolute inset-0 bg-white bg-opacity-90 md:opacity-0 md:group-hover:opacity-100 flex flex-col sm:flex-row gap-2 items-stretch justify-between transition-all duration-300 mt-2 md:mt-0">
                       <Link
                         href={{
                           pathname: '/enquiry',
@@ -308,14 +308,14 @@ export default function CategoryPage() {
                             quantity: 1
                           }
                         }}
-                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                       >
                         <span>Enquiry</span>
                         <FaChevronRight size={10} className="ml-1" />
                       </Link>
                       <Link 
                         href={`/products/${product.id}`} 
-                        className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                        className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                       >
                         <span>Details</span>
                         <FaChevronRight size={10} className="ml-1" />
@@ -395,7 +395,7 @@ export default function CategoryPage() {
                       </h3>
                       <div className="relative">
                         {renderStarRating(product.rating)}
-                        <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
+                        <div className="md:absolute inset-0 bg-white bg-opacity-90 md:opacity-0 md:group-hover:opacity-100 flex flex-col sm:flex-row gap-2 items-stretch justify-between transition-all duration-300 mt-2 md:mt-0">
                           <Link
                             href={{
                               pathname: '/enquiry',
@@ -406,14 +406,14 @@ export default function CategoryPage() {
                                 quantity: 1
                               }
                             }}
-                            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                           >
                             <span>Enquiry</span>
                             <FaChevronRight size={10} className="ml-1" />
                           </Link>
                           <Link 
                             href={`/products/${product.id}`} 
-                            className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                            className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                           >
                             <span>Details</span>
                             <FaChevronRight size={10} className="ml-1" />
@@ -486,7 +486,7 @@ export default function CategoryPage() {
                     </h3>
                     <div className="relative">
                       {renderStarRating(product.rating)}
-                      <div className="absolute inset-0 bg-white bg-opacity-90 opacity-0 group-hover:opacity-100 flex items-center justify-between transition-all duration-300">
+                      <div className="md:absolute inset-0 bg-white bg-opacity-90 md:opacity-0 md:group-hover:opacity-100 flex flex-col sm:flex-row gap-2 items-stretch justify-between transition-all duration-300 mt-2 md:mt-0">
                         <Link
                           href={{
                             pathname: '/enquiry',
@@ -497,14 +497,14 @@ export default function CategoryPage() {
                               quantity: 1
                             }
                           }}
-                          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center"
+                          className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                         >
                           <span>Enquiry</span>
                           <FaChevronRight size={10} className="ml-1" />
                         </Link>
                         <Link 
                           href={`/products/${product.id}`} 
-                          className="bg-gradient-to-r from-gray-800 to-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg flex items-center"
+                          className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
                         >
                           <span>Details</span>
                           <FaChevronRight size={10} className="ml-1" />
