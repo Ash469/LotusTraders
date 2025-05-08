@@ -112,7 +112,7 @@ const Products = () => {
             >
               <Image 
               src={product.image} 
-              alt={product.name} 
+              alt={product.name || 'Product Image'} 
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16.66vw"
               className="product-image"

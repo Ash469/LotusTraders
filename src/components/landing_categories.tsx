@@ -124,7 +124,7 @@ const Categories = () => {
                 <Image
                   key={`${category._id}-${index}`}
                   src={`${image}`}
-                  alt={`${category.name} ${index + 1}`}
+                  alt={`${category.name || 'Category Image'} ${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
                   className={`category-image ${

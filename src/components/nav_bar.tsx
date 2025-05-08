@@ -152,60 +152,108 @@ const NavBar = () => {
     </div>
   );
 
+  // Breadcrumb Schema for SEO
+  const BreadcrumbSchema = () => {
+    const path = typeof window !== 'undefined' ? window.location.pathname : '';
+    const pathSegments = path.split('/').filter(Boolean);
+    
+    // Don't render if we're on the homepage
+    if (pathSegments.length === 0) return null;
+    
+    const breadcrumbs = [
+      {
+        position: 1,
+        name: 'Home',
+        item: 'https://www.lotustradersmachinery.com/'
+      }
+    ];
+    
+    let currentPath = '';
+    pathSegments.forEach((segment, index) => {
+      currentPath += `/${segment}`;
+      breadcrumbs.push({
+        position: index + 2,
+        name: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/_/g, ' '),
+        item: `https://www.lotustradersmachinery.com${currentPath}`
+      });
+    });
+    
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((crumb) => ({
+        "@type": "ListItem",
+        "position": crumb.position,
+        "name": crumb.name,
+        "item": crumb.item
+      }))
+    };
+    
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    );
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
-      <div className="flex items-center justify-between h-20 max-w-7xl mx-auto px-4">
-        <div className="relative h-16 w-82">
-          <Link href="/" passHref>
-            <Image 
-              src="/logo.png" 
-              alt="Logo" 
-              fill 
-              priority 
-              className="object-cover"
-              style={{ position: 'absolute' }}
-            />
-          </Link>
-        </div>
+    <>
+      <BreadcrumbSchema />
+      <nav className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50">
+        <div className="flex items-center justify-between h-20 max-w-7xl mx-auto px-4">
+          <div className="relative h-16 w-82">
+            <Link href="/" passHref>
+              <Image 
+                src="/logo.png" 
+                alt="Logo" 
+                fill 
+                priority 
+                className="object-cover"
+                style={{ position: 'absolute' }}
+              />
+            </Link>
+          </div>
 
-        <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
-          <SearchInput />
-        </div>
+          <div className="hidden md:flex items-center flex-1 max-w-md mx-8">
+            <SearchInput />
+          </div>
 
-        <Link
-          href="/contact"
-          className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white hover:bg-red-700"
-        >
-          Connect with us
-        </Link>
-
-        <button 
-          className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {isMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      </div>
-
-      {isMenuOpen && (
-        <div className="p-6 md:hidden bg-gray-50 border-t">
-          <SearchInput isMobile={true} />
           <Link
             href="/contact"
-            className="block mt-4 whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white hover:bg-red-700 text-center"
+            className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white hover:bg-red-700"
           >
             Connect with us
           </Link>
+
+          <button 
+            className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
-      )}
-    </nav>
+
+        {isMenuOpen && (
+          <div className="p-6 md:hidden bg-gray-50 border-t">
+            <SearchInput isMobile={true} />
+            <Link
+              href="/contact"
+              className="block mt-4 whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white hover:bg-red-700 text-center"
+            >
+              Connect with us
+            </Link>
+          </div>
+        )}
+      </nav>
+    </>
   );
 };
 

@@ -14,7 +14,8 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import LoadingState from './LoadingState';
 import ProductNotFound from './NotFound';
-import { FaChevronRight } from 'react-icons/fa';  // Add this import
+import { FaChevronRight } from 'react-icons/fa';
+import Head from 'next/head';
 
 const ProductPage = () => {
     const params = useParams();
@@ -25,6 +26,8 @@ const ProductPage = () => {
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [otherProducts, setOtherProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
+    const [pageTitle, setPageTitle] = useState('Product | Lotus Traders');
+    const [pageDescription, setPageDescription] = useState('High-quality construction equipment by Lotus Traders in Guwahati, Assam');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,6 +38,12 @@ const ProductPage = () => {
                 if (!res.ok) throw new Error(`Failed to fetch product data: ${res.statusText}`);
                 const data = await res.json();
                 setProduct(data);
+
+                // Update page metadata when product loads
+                const title = `${data.name} - Construction Equipment | Lotus Traders`;
+                const desc = `${data.description?.substring(0, 150)}... Get high-quality ${data.name} from Lotus Traders, Guwahati.`;
+                setPageTitle(title);
+                setPageDescription(desc);
 
                 // Fetch related products with better error handling
                 if (Array.isArray(data.relatedProducts) && data.relatedProducts.length > 0) {
@@ -141,6 +150,45 @@ const ProductPage = () => {
         );
     };
 
+    // Product JSON-LD Schema for SEO
+    const ProductSchema = ({ product }: { product: Product }) => {
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "image": product.heroImages?.[0] || "",
+            "description": product.description,
+            "brand": {
+                "@type": "Brand",
+                "name": "Lotus Traders"
+            },
+            "manufacturer": {
+                "@type": "Organization",
+                "name": "Lotus Traders",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Guwahati",
+                    "addressRegion": "Assam",
+                    "addressCountry": "IN"
+                }
+            },
+            "offers": {
+                "@type": "Offer",
+                "priceCurrency": "INR",
+                "price": "",
+                "itemCondition": "https://schema.org/NewCondition",
+                "availability": "https://schema.org/InStock"
+            }
+        };
+
+        return (
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+        );
+    };
+
     if (loading) {
         return <LoadingState />;
     } else if (!product) {
@@ -150,134 +198,378 @@ const ProductPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="sticky top-0 z-30 bg-white shadow-md">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between py-3">
-                        {/* Logo Image */}
-                        <div className="relative h-16 w-82">
-                            <Link href="/">
-                                <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
-                            </Link>
-                        </div>
+        <>
+            <Head>
+                <title>{pageTitle}</title>
+                <meta name="description" content={pageDescription} />
+                <meta property="og:title" content={pageTitle} />
+                <meta property="og:description" content={pageDescription} />
+                <meta property="og:image" content={product.heroImages?.[0] || "/logo.png"} />
+                <meta property="og:url" content={`https://www.lotustradersmachinery.com/products/${productId}`} />
+                <meta name="twitter:title" content={pageTitle} />
+                <meta name="twitter:description" content={pageDescription} />
+                <meta name="twitter:image" content={product.heroImages?.[0] || "/logo.png"} />
+                <meta name="keywords" content={`${product.name.toLowerCase()}, ${product.category_id}, construction equipment, construction machinery, lotus traders, guwahati, assam`} />
+                <link rel="canonical" href={`https://www.lotustradersmachinery.com/products/${productId}`} />
+            </Head>
+            <ProductSchema product={product} />
 
-                        {/* Navigation Buttons - Desktop */}
-                        <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
-                            <Link
-                                href={`/products/${productId}`}
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
-                            >
-                                Home
-                            </Link>
-                            <button
-                                onClick={() => document.getElementById('specification')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
-                            >
-                                Specification
-                            </button>
-                            <button
-                                onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
-                            >
-                                Products
-                            </button>
-                            <button
-                                onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
-                            >
-                                Details
-                            </button>
-                            <button
-                                onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
-                            >
-                                How To Use
-                            </button>
-                            <Link
-                                href="/contact"
-                                className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
-                            >
-                                Connect with us
-                            </Link>
+            <div className="min-h-screen bg-gray-50">
+                <div className="sticky top-0 z-30 bg-white shadow-md">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex items-center justify-between py-3">
+                            {/* Logo Image */}
+                            <div className="relative h-16 w-82">
+                                <Link href="/">
+                                    <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
+                                </Link>
+                            </div>
+
+                            {/* Navigation Buttons - Desktop */}
+                            <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
+                                <Link
+                                    href={`/products/${productId}`}
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
+                                >
+                                    Home
+                                </Link>
+                                <button
+                                    onClick={() => document.getElementById('specification')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                >
+                                    Specification
+                                </button>
+                                <button
+                                    onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                >
+                                    Products
+                                </button>
+                                <button
+                                    onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                >
+                                    Details
+                                </button>
+                                <button
+                                    onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                >
+                                    How To Use
+                                </button>
+                                <Link
+                                    href="/contact"
+                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-red-600 text-white"
+                                >
+                                    Connect with us
+                                </Link>
+                                <Link href="/products" className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white">Back to Products</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <main className="container mx-auto px-4 pt-24">
-                {/* Breadcrumb Navigation */}
+                <main className="container mx-auto px-4 pt-24">
+                    {/* Breadcrumb Navigation */}
 
-                <div className="space-y-16">
-                    {/* Main Product */}
-                    <ProductCard
-                        title={product.name}
-                        description={product.description}
-                        mainImage={product.heroImages?.[0]}
-                        thumbnails={product.heroImages || []}
-                        rating={product.rating}
-                        id={product.id.toString()}
-                    />
+                    <div className="space-y-16">
+                        {/* Main Product */}
+                        <ProductCard
+                            title={product.name}
+                            description={product.description}
+                            mainImage={product.heroImages?.[0]}
+                            thumbnails={product.heroImages || []}
+                            rating={product.rating}
+                            id={product.id.toString()}
+                        />
 
+                        {/* Product Specifications Section */}
+                        <section id="specification" className="bg-gray-50 py-12 md:py-16">
+                            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                                <div className="px-6 py-8">
+                                    <div className="flex items-center justify-between mb-6">
+                                        <h2 className="text-3xl font-bold text-gray-900">Product Specifications</h2>
+                                        <div className="w-20 h-1 bg-red-500"></div>
+                                    </div>
 
-                    {/* Product Specifications Section */}
-                    <section id="specification" className="bg-gray-50 py-12 md:py-16">
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                            <div className="px-6 py-8">
-                                <div className="flex items-center justify-between mb-6">
-                                    <h2 className="text-3xl font-bold text-gray-900">Product Specifications</h2>
-                                    <div className="w-20 h-1 bg-red-500"></div>
-                                </div>
-
-                                <div className="overflow-x-auto">
-                                    <table className="w-full">
-                                        <tbody>
-                                            {product.specification && Object.entries(product.specification).map(([key, value]) => (
-                                                <tr key={key} className="border-b hover:bg-gray-50 transition-colors">
-                                                    <td className="py-4 px-6 font-medium text-gray-900 bg-gray-50 w-1/3">
-                                                        {key}
-                                                    </td>
-                                                    <td className="py-4 px-6 text-gray-700">
-                                                        {Array.isArray(value) ? value.join(', ') : value}
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full">
+                                            <tbody>
+                                                {product.specification && Object.entries(product.specification).map(([key, value]) => (
+                                                    <tr key={key} className="border-b hover:bg-gray-50 transition-colors">
+                                                        <td className="py-4 px-6 font-medium text-gray-900 bg-gray-50 w-1/3">
+                                                            {key}
+                                                        </td>
+                                                        <td className="py-4 px-6 text-gray-700">
+                                                            {Array.isArray(value) ? value.join(', ') : value}
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
 
-                    <section id='products'>
-                        {/* Related Products Section */}
-                        <div id="related" className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
-                            <div className="container mx-auto">
-                                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
-                                    <div>
-                                        <h2 className="text-3xl font-bold text-gray-900">Related Products</h2>
-                                        <p className="text-gray-600 mt-2">Products you might also like</p>
+                        <section id='products'>
+                            {/* Related Products Section */}
+                            <div id="related" className="bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
+                                <div className="container mx-auto">
+                                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8">
+                                        <div>
+                                            <h2 className="text-3xl font-bold text-gray-900">Related Products</h2>
+                                            <p className="text-gray-600 mt-2">Products you might also like</p>
+                                        </div>
+                                        <div className="w-20 h-1 bg-red-500 mt-4"></div>
                                     </div>
-                                    <div className="w-20 h-1 bg-red-500 mt-4"></div>
+
+                                    {relatedProducts.length > 0 ? (
+                                        <Swiper
+                                            modules={[Navigation, Autoplay]}
+                                            navigation
+                                            autoplay={{ delay: 5000, disableOnInteraction: false }}
+                                            loop={relatedProducts.length > 3}
+                                            slidesPerView={1}
+                                            spaceBetween={24}
+                                            breakpoints={{
+                                                640: { slidesPerView: 2 },
+                                                768: { slidesPerView: 3 },
+                                                1024: { slidesPerView: 4 },
+                                            }}
+                                            className="py-4"
+                                        >
+                                            {relatedProducts.map((relatedProduct) => (
+                                                <SwiperSlide key={relatedProduct.id}>
+                                                    <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 group relative">
+                                                        <div className="relative h-64 w-full">
+                                                            <div
+                                                                style={{
+                                                                    background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
+                                                                    backgroundSize: 'contain',
+                                                                    backgroundPosition: 'center',
+                                                                    backgroundRepeat: 'no-repeat',
+                                                                    padding: '12px',
+                                                                    border: '1px solid rgba(229, 231, 235, 1)',
+                                                                    borderRadius: '8px',
+                                                                    margin: '8px',
+                                                                    height: '100%',
+                                                                    width: '100%'
+                                                                }}
+                                                                className="relative"
+                                                            >
+                                                                <Image
+                                                                    src={relatedProduct.heroImages?.[0]}
+                                                                    alt={relatedProduct.name}
+                                                                    fill
+                                                                    className="object-contain p-4"
+                                                                    style={{
+                                                                        filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
+                                                                    }}
+                                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="p-5 flex-grow">
+                                                            <h3 className="text-lg font-semibold text-black line-clamp-2 mb-2">{relatedProduct.name}</h3>
+                                                            <div className="flex items-center justify-between mt-4">
+                                                                <div className="w-full space-y-4">
+                                                                    {/* Rating shown by default, hidden on hover */}
+                                                                    <div className="group-hover:hidden">
+                                                                        {renderStarRating(relatedProduct.rating)}
+                                                                    </div>
+                                                                    {/* Buttons shown on hover - updated for mobile visibility */}
+                                                                    <div className="flex flex-col sm:flex-row gap-2 items-stretch justify-between w-full mt-2">
+                                                                        <Link
+                                                                            href={{
+                                                                                pathname: '/enquiry',
+                                                                                query: {
+                                                                                    productId: relatedProduct.id,
+                                                                                    productName: relatedProduct.name,
+                                                                                    productImage: relatedProduct.heroImages && relatedProduct.heroImages.length > 0
+                                                                                        ? relatedProduct.heroImages[0]
+                                                                                        : '',
+                                                                                    quantity: 1
+                                                                                }
+                                                                            }}
+                                                                            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
+                                                                        >
+                                                                            <span>Enquiry</span>
+                                                                            <FaChevronRight size={10} className="ml-1" />
+                                                                        </Link>
+                                                                        <Link
+                                                                            href={`/products/${relatedProduct.id}`}
+                                                                            className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
+                                                                        >
+                                                                            <span>Details</span>
+                                                                            <FaChevronRight size={10} className="ml-1" />
+                                                                        </Link>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </SwiperSlide>
+                                            ))}
+                                        </Swiper>
+                                    ) : (
+                                        <div className="text-center py-12">
+                                            <p className="text-gray-500">No related products found</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </section>
+
+
+                        {/* Product details Tabs */}
+                        <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div className="flex flex-wrap border-b border-gray-200">
+                                {['Benefits', 'Information', 'Reviews', 'FAQs'].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab)}
+                                        className={`px-6 py-4 font-medium text-sm sm:text-base transition-colors ${activeTab === tab
+                                            ? 'text-red-600 border-b-2 border-red-600 font-semibold'
+                                            : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                                            }`}
+                                    >
+                                        {tab}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="p-6 md:p-8">
+                                {activeTab === 'Benefits' && (
+                                    <div className="space-y-6">
+                                        <h3 className="text-2xl font-semibold text-gray-900">Key Benefits</h3>
+                                        <ul className="space-y-4">
+                                            {product.details?.benefits ? (
+                                                product.details.benefits.map((benefit, index) => (
+                                                    <li key={index} className="flex items-start">
+                                                        <svg className="flex-shrink-0 h-5 w-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                        </svg>
+                                                        <span className="text-gray-700">{benefit}</span>
+                                                    </li>
+                                                ))
+                                            ) : (
+                                                <li className="text-gray-500">No benefits information available</li>
+                                            )}
+                                        </ul>
+                                    </div>
+                                )}
+
+                                {activeTab === 'Information' && (
+                                    <div className="space-y-6">
+                                        <h3 className="text-2xl font-semibold text-gray-900">Information</h3>
+                                        <div className="prose max-w-none text-gray-700">
+                                            {Array.isArray(product.details?.information) ? (
+                                                <ul className="space-y-4">
+                                                    {product.details.information.map((instruction, index) => (
+                                                        <li key={index} className="flex items-start">
+                                                            <svg className="flex-shrink-0 h-5 w-5 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                                            </svg>
+                                                            <span>{instruction}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <p>No usage information available</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeTab === 'Reviews' && (
+                                    <div className="space-y-8">
+                                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                                            <h3 className="text-2xl font-semibold text-gray-900">Customer reviews</h3>
+                                            <div className="flex items-center mt-4 sm:mt-0">
+                                                {renderStarRating(product.rating)}
+                                                <span className="ml-2 text-gray-600">
+                                                    {product.details?.reviews?.length || 0} reviews
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {product.details?.reviews?.length > 0 ? (
+                                            <div className="space-y-6 divide-y divide-gray-200">
+                                                {product.details.reviews.map((review, index) => (
+                                                    <div key={index} className="pt-6 first:pt-0">
+                                                        <div className="flex items-center justify-between mb-2">
+                                                            <div className="flex items-center">
+                                                                {renderStarRating(review.rating)}
+                                                                <span className="ml-3 font-medium text-gray-900">{review.user}</span>
+                                                            </div>
+                                                            <span className="text-sm text-gray-500">{review.date}</span>
+                                                        </div>
+                                                        <p className="text-gray-700 mt-2">{review.comment}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <div className="text-center py-8">
+                                                <p className="text-gray-500">No reviews yet</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
+                                {activeTab === 'FAQs' && (
+                                    <div className="space-y-8">
+                                        <div className="space-y-4">
+                                            {product.details?.faqs?.length > 0 ? (
+                                                product.details.faqs.map((faq, index) => (
+                                                    <details
+                                                        key={index}
+                                                        className="group bg-white border border-gray-200 rounded-lg overflow-hidden"
+                                                    >
+                                                        <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
+                                                            <h4 className="font-medium text-lg text-black">{faq.question}</h4>
+                                                            <svg
+                                                                className="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke="currentColor"
+                                                            >
+                                                                <path
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={2}
+                                                                    d="M19 9l-7 7-7-7"
+                                                                />
+                                                            </svg>
+                                                        </summary>
+                                                        <div className="p-4 border-t border-gray-200 bg-gray-50">
+                                                            <p className="text-gray-700">{faq.answer}</p>
+                                                        </div>
+                                                    </details>
+                                                ))
+                                            ) : (
+                                                <p className="text-gray-500">No FAQs available</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </section>
+
+                        {/* Other Products Section */}
+
+                        <div className="bg-white py-12">
+                            <div className="container mx-auto">
+                                <div className="text-center mb-10">
+                                    <h2 className="text-3xl font-bold text-gray-900">You May Also Like</h2>
+                                    <div className="w-20 h-1 bg-red-500 mx-auto mt-4"></div>
                                 </div>
 
-                                {relatedProducts.length > 0 ? (
-                                    <Swiper
-                                        modules={[Navigation, Autoplay]}
-                                        navigation
-                                        autoplay={{ delay: 5000, disableOnInteraction: false }}
-                                        loop={relatedProducts.length > 3}
-                                        slidesPerView={1}
-                                        spaceBetween={24}
-                                        breakpoints={{
-                                            640: { slidesPerView: 2 },
-                                            768: { slidesPerView: 3 },
-                                            1024: { slidesPerView: 4 },
-                                        }}
-                                        className="py-4"
-                                    >
-                                        {relatedProducts.map((relatedProduct) => (
-                                            <SwiperSlide key={relatedProduct.id}>
-                                                <div className="bg-white rounded-xl shadow-lg overflow-hidden h-full flex flex-col transition-all hover:shadow-xl hover:-translate-y-1 group relative">
-                                                    <div className="relative h-64 w-full">
+                                {otherProducts.length > 0 ? (
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        {otherProducts.map((otherProduct) => (
+                                            <Link href={`/products/${otherProduct.id}`} key={otherProduct.id}>
+                                                <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+                                                    <div className="relative h-56 w-full">
                                                         <div
                                                             style={{
                                                                 background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
@@ -294,11 +586,11 @@ const ProductPage = () => {
                                                             className="relative"
                                                         >
                                                             <Image
-                                                                src={relatedProduct.heroImages?.[0]}
-                                                                alt={relatedProduct.name}
+                                                                src={otherProduct.heroImages?.[0]}
+                                                                alt={otherProduct.name}
                                                                 fill
                                                                 className="object-contain p-4"
-                                                                style={{ 
+                                                                style={{
                                                                     filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
                                                                 }}
                                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -306,284 +598,57 @@ const ProductPage = () => {
                                                         </div>
                                                     </div>
                                                     <div className="p-5 flex-grow">
-                                                        <h3 className="text-lg font-semibold text-black line-clamp-2 mb-2">{relatedProduct.name}</h3>
-                                                        <div className="flex items-center justify-between mt-4">
-                                                            <div className="w-full space-y-4">
-                                                                {/* Rating shown by default, hidden on hover */}
-                                                                <div className="group-hover:hidden">
-                                                                    {renderStarRating(relatedProduct.rating)}
-                                                                </div>
-                                                                {/* Buttons shown on hover - updated for mobile visibility */}
-                                                                <div className="flex flex-col sm:flex-row gap-2 items-stretch justify-between w-full mt-2">
-                                                                    <Link
-                                                                        href={{
-                                                                            pathname: '/enquiry',
-                                                                            query: {
-                                                                                productId: relatedProduct.id,
-                                                                                productName: relatedProduct.name,
-                                                                                productImage: relatedProduct.heroImages && relatedProduct.heroImages.length > 0
-                                                                                    ? relatedProduct.heroImages[0]
-                                                                                    : '',
-                                                                                quantity: 1
-                                                                            }
-                                                                        }}
-                                                                        className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
-                                                                    >
-                                                                        <span>Enquiry</span>
-                                                                        <FaChevronRight size={10} className="ml-1" />
-                                                                    </Link>
-                                                                    <Link 
-                                                                        href={`/products/${relatedProduct.id}`} 
-                                                                        className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-3 rounded-md text-sm font-medium hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg flex items-center justify-center flex-1"
-                                                                    >
-                                                                        <span>Details</span>
-                                                                        <FaChevronRight size={10} className="ml-1" />
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
+                                                        <h3 className="text-lg font-semibold text-black  mb-2 line-clamp-2">{otherProduct.name}</h3>
+                                                        <p className=" text-sm text-gray-800 mb-4 line-clamp-3">{otherProduct.description}</p>
+                                                        <div className="mt-auto flex justify-between items-center">
+                                                            <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                                                                View details →
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </SwiperSlide>
+                                            </Link>
                                         ))}
-                                    </Swiper>
+                                    </div>
                                 ) : (
-                                    <div className="text-center py-12">
-                                        <p className="text-gray-500">No related products found</p>
+                                    <div className="text-center py-8">
+                                        <p className="text-gray-500">No other products to display</p>
                                     </div>
                                 )}
                             </div>
                         </div>
-                    </section>
-
-
-                    {/* Product details Tabs */}
-                    <section id='details' className="bg-white rounded-xl shadow-md overflow-hidden">
-                        <div className="flex flex-wrap border-b border-gray-200">
-                            {['Benefits', 'Information', 'Reviews', 'FAQs'].map((tab) => (
-                                <button
-                                    key={tab}
-                                    onClick={() => setActiveTab(tab)}
-                                    className={`px-6 py-4 font-medium text-sm sm:text-base transition-colors ${activeTab === tab
-                                        ? 'text-red-600 border-b-2 border-red-600 font-semibold'
-                                        : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
-                                        }`}
-                                >
-                                    {tab}
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="p-6 md:p-8">
-                            {activeTab === 'Benefits' && (
-                                <div className="space-y-6">
-                                    <h3 className="text-2xl font-semibold text-gray-900">Key Benefits</h3>
-                                    <ul className="space-y-4">
-                                        {product.details?.benefits ? (
-                                            product.details.benefits.map((benefit, index) => (
-                                                <li key={index} className="flex items-start">
-                                                    <svg className="flex-shrink-0 h-5 w-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                    </svg>
-                                                    <span className="text-gray-700">{benefit}</span>
-                                                </li>
-                                            ))
-                                        ) : (
-                                            <li className="text-gray-500">No benefits information available</li>
-                                        )}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {activeTab === 'Information' && (
-                                <div className="space-y-6">
-                                    <h3 className="text-2xl font-semibold text-gray-900">Information</h3>
-                                    <div className="prose max-w-none text-gray-700">
-                                        {Array.isArray(product.details?.information) ? (
-                                            <ul className="space-y-4">
-                                                {product.details.information.map((instruction, index) => (
-                                                    <li key={index} className="flex items-start">
-                                                        <svg className="flex-shrink-0 h-5 w-5 text-blue-500 mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                                        </svg>
-                                                        <span>{instruction}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p>No usage information available</p>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-
-                            {activeTab === 'Reviews' && (
-                                <div className="space-y-8">
-                                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                                        <h3 className="text-2xl font-semibold text-gray-900">Customer reviews</h3>
-                                        <div className="flex items-center mt-4 sm:mt-0">
-                                            {renderStarRating(product.rating)}
-                                            <span className="ml-2 text-gray-600">
-                                                {product.details?.reviews?.length || 0} reviews
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {product.details?.reviews?.length > 0 ? (
-                                        <div className="space-y-6 divide-y divide-gray-200">
-                                            {product.details.reviews.map((review, index) => (
-                                                <div key={index} className="pt-6 first:pt-0">
-                                                    <div className="flex items-center justify-between mb-2">
-                                                        <div className="flex items-center">
-                                                            {renderStarRating(review.rating)}
-                                                            <span className="ml-3 font-medium text-gray-900">{review.user}</span>
-                                                        </div>
-                                                        <span className="text-sm text-gray-500">{review.date}</span>
-                                                    </div>
-                                                    <p className="text-gray-700 mt-2">{review.comment}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        <div className="text-center py-8">
-                                            <p className="text-gray-500">No reviews yet</p>
-                                        </div>
-                                    )}
-                                </div>
-                            )}
-
-                            {activeTab === 'FAQs' && (
-                                <div className="space-y-8">
-                                    <div className="space-y-4">
-                                        {product.details?.faqs?.length > 0 ? (
-                                            product.details.faqs.map((faq, index) => (
-                                                <details
-                                                    key={index}
-                                                    className="group bg-white border border-gray-200 rounded-lg overflow-hidden"
-                                                >
-                                                    <summary className="flex justify-between items-center p-4 cursor-pointer hover:bg-gray-50">
-                                                        <h4 className="font-medium text-lg text-black">{faq.question}</h4>
-                                                        <svg
-                                                            className="w-5 h-5 text-gray-500 transition-transform duration-200 group-open:rotate-180"
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M19 9l-7 7-7-7"
-                                                            />
-                                                        </svg>
-                                                    </summary>
-                                                    <div className="p-4 border-t border-gray-200 bg-gray-50">
-                                                        <p className="text-gray-700">{faq.answer}</p>
-                                                    </div>
-                                                </details>
-                                            ))
-                                        ) : (
-                                            <p className="text-gray-500">No FAQs available</p>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </section>
-
-                    {/* Other Products Section */}
-
-                    <div className="bg-white py-12">
-                        <div className="container mx-auto">
-                            <div className="text-center mb-10">
-                                <h2 className="text-3xl font-bold text-gray-900">You May Also Like</h2>
+                    </div>
+                    <div id='video' className="bg-gray-50 py-12">
+                        <div className="container mx-auto px-4">
+                            <div className="text-center mb-8">
+                                <h2 className="text-3xl font-bold text-gray-900">How to Use</h2>
                                 <div className="w-20 h-1 bg-red-500 mx-auto mt-4"></div>
                             </div>
 
-                            {otherProducts.length > 0 ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    {otherProducts.map((otherProduct) => (
-                                        <Link href={`/products/${otherProduct.id}`} key={otherProduct.id}>
-                                            <div className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer">
-                                                <div className="relative h-56 w-full">
-                                                    <div
-                                                        style={{
-                                                            background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
-                                                            backgroundSize: 'contain',
-                                                            backgroundPosition: 'center',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            padding: '12px',
-                                                            border: '1px solid rgba(229, 231, 235, 1)',
-                                                            borderRadius: '8px',
-                                                            margin: '8px',
-                                                            height: '100%',
-                                                            width: '100%'
-                                                        }}
-                                                        className="relative"
-                                                    >
-                                                        <Image
-                                                            src={otherProduct.heroImages?.[0]}
-                                                            alt={otherProduct.name}
-                                                            fill
-                                                            className="object-contain p-4"
-                                                            style={{ 
-                                                                filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))',
-                                                            }}
-                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="p-5 flex-grow">
-                                                    <h3 className="text-lg font-semibold text-black  mb-2 line-clamp-2">{otherProduct.name}</h3>
-                                                    <p className=" text-sm text-gray-800 mb-4 line-clamp-3">{otherProduct.description}</p>
-                                                    <div className="mt-auto flex justify-between items-center">
-                                                        <span className="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                                                            View details →
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    ))}
+                            <div className="max-w-4xl mx-auto">
+                                <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden shadow-lg">
+                                    <iframe
+                                        className="absolute top-0 left-0 w-full h-full"
+                                        src={`https://www.youtube.com/embed/${product.youtubeLink?.split('v=')[1] || ''}`}
+                                        title="Product Demo Video"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        frameBorder="0"
+                                        allowFullScreen
+                                    ></iframe>
                                 </div>
-                            ) : (
-                                <div className="text-center py-8">
-                                    <p className="text-gray-500">No other products to display</p>
+
+                                <div className="mt-6 text-center">
+                                    <p className="text-gray-600">
+                                        Watch our detailed guide on how to get the most out of your product
+                                    </p>
                                 </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-                <div id='video' className="bg-gray-50 py-12">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-8">
-                            <h2 className="text-3xl font-bold text-gray-900">How to Use</h2>
-                            <div className="w-20 h-1 bg-red-500 mx-auto mt-4"></div>
-                        </div>
-
-                        <div className="max-w-4xl mx-auto">
-                            <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden shadow-lg">
-                                <iframe
-                                    className="absolute top-0 left-0 w-full h-full"
-                                    src={`https://www.youtube.com/embed/${product.youtubeLink?.split('v=')[1] || ''}`}
-                                    title="Product Demo Video"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    frameBorder="0"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
-
-                            <div className="mt-6 text-center">
-                                <p className="text-gray-600">
-                                    Watch our detailed guide on how to get the most out of your product
-                                </p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </main>
-            <Footer />
-        </div>
+                </main>
+                <Footer />
+            </div>
+        </>
     );
 };
 

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import NavBar from '@/components/nav_bar';
 import Footer from '@/components/footer';
 import { useSearchParams } from 'next/navigation';
+import SuccessMessage from '@/components/SuccessMessage';
 
 const inputStyles = "block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:ring-opacity-50 text-sm";
 
@@ -45,6 +46,8 @@ function EnquiryForm() {
         message: '',
         quantity: 1
     });
+
+    const [showSuccess, setShowSuccess] = useState(false);
 
     // Use effect to get product details - MUST be called before any conditional returns
     useEffect(() => {
@@ -171,14 +174,11 @@ function EnquiryForm() {
                 quantity: 1
             });
             
-            // alert('Enquiry submitted successfully!');
+            // Show the success message
+            setShowSuccess(true);
             
         } catch (error) {
             console.error('Error submitting enquiry:', error);
-            // const errorMessage = error instanceof Error 
-            //     ? error.message
-            //     : 'Failed to submit enquiry. Please try again later.';
-            // // alert(errorMessage);
         } finally {
             // Reset button state
             const submitButton = document.querySelector('button[type="submit"]') as HTMLButtonElement;
@@ -226,7 +226,6 @@ function EnquiryForm() {
                         {/* Form Section */}
                         <div className="w-full md:w-3/5 p-6">
                             <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* ...existing code... */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
@@ -353,6 +352,11 @@ function EnquiryForm() {
                     </div>
                 </div>
             </div>
+
+            <SuccessMessage 
+                isVisible={showSuccess} 
+                onClose={() => setShowSuccess(false)} 
+            />
 
             <Footer />
         </div>

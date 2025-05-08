@@ -1,0 +1,1125 @@
+[{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a95"
+  },
+  "id": "brick_making_machine",
+  "name": "BRICK MAKING MACHINE",
+  "description": "Combines manual and automated processes for enhanced efficiency in brick production, suitable for various construction needs.",
+  "products": [
+    {
+      "id": "manual_4_cavity_brick_making_machine",
+      "name": "Manual 4 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Manual 4 Cavity Brick Machine_01_New.png",
+      "rating": 4.7
+    },
+    {
+      "id": "manual_interlocking_single_cavity_brick_making_machine",
+      "name": "Manual Interlocking Single Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Manual Interlocking Single Cavity Brick Machine_02.png",
+      "rating": 4.9
+    },
+    {
+      "id": "manual_interlocking_double_cavity_brick_making_machine",
+      "name": "Manual Interlocking Double Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Manual Interlocking Double Cavity Brick Machine_01.png",
+      "rating": 4.6
+    },
+    {
+      "id": "3_in_1_hydraulic_concrete_block_making_machine",
+      "name": "3 in 1 Hydraulic Concrete Block Making Machine",
+      "image": "/assets/images/products/brick_making/3 In 1 Hydraulic Block Making Machine_03.png",
+      "rating": 4.7
+    },
+    {
+      "id": "semi_automatic_double_cavity_brick_block_making_machine",
+      "name": "Semi Automatic Double Cavity Brick/Block Making Machine",
+      "image": "/assets/images/products/brick_making/Semi Automatic Double Cavity Brick-Block Machine_01.png",
+      "rating": 4.7
+    },
+    {
+      "id": "hydraulic_semi_automatic_brick_making_machine_dhokla",
+      "name": "Hydraulic Semi Automatic Brick Making Machine (Dhokla)",
+      "image": "/assets/products/Hyraulic Semi Automatic Brick Machine_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "egg_laying_type_block_making_machine",
+      "name": "Egg Laying Type Block Making Machine",
+      "image": "/assets/images/products/brick_making/Egg Laying Machine_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "vibration_table",
+      "name": "Vibration Table",
+      "image": "/assets/images/products/brick_making/Vibration Table.png",
+      "rating": 4.8
+    },
+    {
+      "id": "mini_automatic_3_cavity_brick_making_machine",
+      "name": "Mini Automatic 3 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Mini Automatic 3 Cavity brick Machine_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "automatic_4_cavity_brick_making_machine",
+      "name": "Automatic 4 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 4 Cavity brick Machine_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "automatic_6_cavity_brick_making_machine",
+      "name": "Automatic 6 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 6 Cavity Brick Making Machine.png",
+      "rating": 4.9
+    }
+  ],
+  "deals": [
+    {
+      "id": "automatic_4_cavity_brick_making_machine",
+      "name": "Automatic 4 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 4 Cavity brick Machine_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "automatic_6_cavity_brick_making_machine",
+      "name": "Automatic 6 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 6 Cavity Brick Making Machine.png",
+      "rating": 4.9
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "manual_interlocking_single_cavity_brick_making_machine",
+      "name": "Manual Interlocking Single Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Manual Interlocking Single Cavity Brick Machine_02.png",
+      "rating": 4.9
+    },
+    {
+      "id": "vibration_table",
+      "name": "Vibration Table",
+      "image": "/assets/images/products/brick_making/Vibration Table.png",
+      "rating": 4.8
+    },
+    {
+      "id": "automatic_6_cavity_brick_making_machine",
+      "name": "Automatic 6 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 6 Cavity Brick Making Machine.png",
+      "rating": 4.9
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "vibration_table",
+      "name": "Vibration Table",
+      "rating": 4.8,
+      "image": "/assets/images/products/brick_making/Vibration Table_02.png"
+    },
+    {
+      "id": "mini_automatic_3_cavity_brick_making_machine",
+      "name": "Mini Automatic 3 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Mini Automatic 3 Cavity brick Machine_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "automatic_6_cavity_brick_making_machine",
+      "name": "Automatic 6 Cavity Brick Making Machine",
+      "image": "/assets/images/products/brick_making/Automatic 6 Cavity Brick Making Machine.png",
+      "rating": 4.9
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/brick_making_machine_1.png",
+    "/assets/images/products/brick_making/Manual 4 Cavity Brick Machine_01_New.png",
+    "/assets/images/products/brick_making/Manual Interlocking Single Cavity Brick Machine_02.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a96"
+  },
+  "id": "trimix_system",
+  "name": "TRIMIX SYSTEM",
+  "description": "Ensures precise material binding for perfect quality, consistency, and controlled preparation of concrete surfaces.",
+  "products": [
+    {
+      "id": "vacuum_dewatering_pump",
+      "name": "Vacuum Dewatering Pump",
+      "image": "/assets/images/products/trimix/Vacuum Dewatering Pump_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "earth_compactor",
+      "name": "Earth Compactor",
+      "image": "/assets/images/products/trimix/earth_compactor.png",
+      "rating": 4.8
+    },
+    {
+      "id": "concrete_power_trowel",
+      "name": "Concrete Power Trowel",
+      "image": "/assets/images/products/trimix/Concrete Power Trowel.png",
+      "rating": 4.7
+    },
+    {
+      "id": "groove_cutting_machine",
+      "name": "Groove Cutting Machine",
+      "image": "/assets/images/products/trimix/Groove Cutting Machine_01.png",
+      "rating": 4.6
+    },
+    {
+      "id": "texture_brush",
+      "name": "Texture Brush",
+      "image": "/assets/images/products/trimix/Texture Brush_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "bull_floater",
+      "name": "Bull Floater",
+      "image": "/assets/images/products/trimix/bull_floater.png",
+      "rating": 4.6
+    },
+    {
+      "id": "plate_vibrator",
+      "name": "Plate Vibrator",
+      "image": "/assets/images/products/trimix/Plate Vibrator_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "double_beam_surface_vibrator",
+      "name": "Double Beam Surface Vibrator",
+      "image": "/assets/images/products/trimix/Double Beam Surface Vibrator_01.png",
+      "rating": 4.7
+    }
+  ],
+  "deals": [
+    {
+      "id": "plate_vibrator",
+      "name": "Plate Vibrator",
+      "image": "/assets/images/products/trimix/Plate Vibrator_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "double_beam_surface_vibrator",
+      "name": "Double Beam Surface Vibrator",
+      "image": "/assets/images/products/trimix/Double Beam Surface Vibrator_01.png",
+      "rating": 4.7
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "texture_brush",
+      "name": "Texture Brush",
+      "image": "/assets/images/products/trimix/Texture Brush_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "double_beam_surface_vibrator",
+      "name": "Double Beam Surface Vibrator",
+      "image": "/assets/images/products/trimix/Double Beam Surface Vibrator_01.png",
+      "rating": 4.7
+    },
+    {
+      "id": "vacuum_dewatering_pump",
+      "name": "Vacuum Dewatering Pump",
+      "image": "/assets/images/products/trimix/Vacuum Dewatering Pump_01.png",
+      "rating": 4.9
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "earth_compactor",
+      "name": "Earth Compactor",
+      "rating": 4.8,
+      "image": "/assets/images/products/trimix/earth_compactor.png"
+    },
+    {
+      "id": "vacuum_dewatering_pump",
+      "name": "Vacuum Dewatering Pump",
+      "image": "/assets/images/products/trimix/Vacuum Dewatering Pump_01.png",
+      "rating": 4.9
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/trimix_system_1.png",
+    "/assets/categories/trimix_system_2.png",
+    "/assets/categories/trimix_system_3.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a98"
+  },
+  "id": "moulds",
+  "name": "MOULDS",
+  "description": "Precision tools for creating consistent concrete shapes, blocks, and decorative elements for construction and landscaping projects.",
+  "products": [
+    {
+      "id": "brick_plastic_mould",
+      "name": "Brick Plastic Mould",
+      "image": "/assets/images/products/moulds/Brick Plastic Moulds.png",
+      "rating": 4.8
+    },
+    {
+      "id": "zig_zag_plastic_mould",
+      "name": "Zig Zag Plastic Mould",
+      "image": "/assets/images/products/moulds/Zig Zag Plastic Mould.png",
+      "rating": 4.7
+    },
+    {
+      "id": "cosmic_mould",
+      "name": "Cosmic Mould",
+      "image": "/assets/images/products/moulds/Cosmic Mould.png",
+      "rating": 4.9
+    },
+    {
+      "id": "milano_mould",
+      "name": "Milano Mould",
+      "image": "/assets/images/products/moulds/Milano Mould.png",
+      "rating": 4.6
+    },
+    {
+      "id": "i_shape_mould",
+      "name": "I Shape Mould",
+      "image": "/assets/images/products/moulds/I Shape Mould.png",
+      "rating": 4.8
+    },
+    {
+      "id": "damru_mould",
+      "name": "Damru Mould",
+      "image": "/assets/images/products/moulds/Damru Mould.png",
+      "rating": 4.7
+    },
+    {
+      "id": "diamond_mould",
+      "name": "Diamond",
+      "image": "/assets/images/products/moulds/Diamond Mould.png",
+      "rating": 4.8
+    },
+    {
+      "id": "grass_mould",
+      "name": "Grass",
+      "image": "/assets/images/products/moulds/Grass Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "thrihex_mould",
+      "name": "Thrihex",
+      "image": "/assets/images/products/moulds/Thrihex Mould.png",
+      "rating": 4.7
+    },
+    {
+      "id": "hexa_mould",
+      "name": "Hexa",
+      "image": "/assets/images/products/moulds/Hexa Mould.png",
+      "rating": 4.9
+    },
+    {
+      "id": "chatai_mould",
+      "name": "Chatai",
+      "image": "/assets/images/products/moulds/Chatai Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "luodo_mould",
+      "name": "Luodo",
+      "image": "/assets/images/products/moulds/Luodo Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "mosaic_mould",
+      "name": "Mosaic",
+      "image": "/assets/images/products/moulds/Mosaic Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "sunflower_mould",
+      "name": "Sunflower",
+      "image": "/assets/images/products/moulds/Sunflower Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "tablet_mould",
+      "name": "Tablet",
+      "image": "/assets/images/products/moulds/Tablet Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "16_db_mould",
+      "name": "16 DB",
+      "image": "/assets/images/products/moulds/16 DB Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "100_db_mould",
+      "name": "100 DB",
+      "image": "/assets/images/products/moulds/100 DB Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "flower_1_mould",
+      "name": "Flower 1",
+      "image": "/assets/images/products/moulds/Flower_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "flower_2_mould",
+      "name": "Flower 2",
+      "image": "/assets/images/products/moulds/Flower_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "om_1_mould",
+      "name": "Om 1",
+      "image": "/assets/images/products/moulds/OM_001.png",
+      "rating": 4.5
+    },
+    {
+      "id": "om_round_2_mould",
+      "name": "Om Round 2",
+      "image": "/assets/images/products/moulds/OM Round_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "vg_03_mould",
+      "name": "VG-03",
+      "image": "/assets/images/products/moulds/VG 03.png",
+      "rating": 4.5
+    },
+    {
+      "id": "vg_08_mould",
+      "name": "VG-08",
+      "image": "/assets/images/products/moulds/VG 08.png",
+      "rating": 4.5
+    },
+    {
+      "id": "vg_14_mould",
+      "name": "VG-14",
+      "image": "/assets/images/products/moulds/VG 14.png",
+      "rating": 4.5
+    },
+    {
+      "id": "vg_17_mould",
+      "name": "VG-17",
+      "image": "/assets/images/products/moulds/VG 17.png",
+      "rating": 4.5
+    },
+    {
+      "id": "bb_01_mould",
+      "name": "BB-01",
+      "image": "/assets/images/products/moulds/BB 01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "bb_08_mould",
+      "name": "BB-08",
+      "image": "/assets/images/products/moulds/BB 08.png",
+      "rating": 4.5
+    },
+    {
+      "id": "12_holes_mould",
+      "name": "12 Holes",
+      "image": "/assets/images/products/moulds/12 Holes.png",
+      "rating": 4.5
+    },
+    {
+      "id": "capsule_mould",
+      "name": "Capsule",
+      "image": "/assets/images/products/moulds/Capsule.png",
+      "rating": 4.5
+    },
+    {
+      "id": "barfi_mould",
+      "name": "Barfi",
+      "image": "/assets/images/products/moulds/Barfi.png",
+      "rating": 4.5
+    },
+    {
+      "id": "flower_6_mould",
+      "name": "Flower 6",
+      "image": "/assets/images/products/moulds/Flower 06.png",
+      "rating": 4.5
+    },
+    {
+      "id": "8_holes_mould",
+      "name": "8 Holes",
+      "image": "/assets/images/products/moulds/8 Holes.png",
+      "rating": 4.5
+    },
+    {
+      "id": "pillar_plain_mould",
+      "name": "Pillar Plain",
+      "image": "/assets/images/products/moulds/Pillar Plain.png",
+      "rating": 4.5
+    },
+    {
+      "id": "pillar_design_1_mould",
+      "name": "Pillar Design 1",
+      "image": "/assets/images/products/moulds/Pillar Design_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "pillar_design_2_mould",
+      "name": "Pillar Design 2",
+      "image": "/assets/images/products/moulds/Pillar Design_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "zig_zag_paver_mould",
+      "name": "Zig Zag Paver Mould",
+      "image": "/assets/images/products/moulds/Zig Zag Paver Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "diamond_paver_mould",
+      "name": "Diamond Paver Mould",
+      "image": "/assets/images/products/moulds/Diamond Paver Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "damru_paver_mould",
+      "name": "Damru Paver Mould",
+      "image": "/assets/images/products/moulds/Damru Paver Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "colorado_paver_mould",
+      "name": "Colorado Paver Mould",
+      "image": "/assets/images/products/moulds/Colorado Paver Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "milano_paver_mould",
+      "name": "Milano Paver Mould",
+      "image": "/assets/images/products/moulds/Milano Paver Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "dumble_single_set_mould",
+      "name": "Dumble Single Set",
+      "image": "/assets/images/products/moulds/Dumble Single Set Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "dumble_single_ring_mould",
+      "name": "Dumble Single Ring",
+      "image": "/assets/images/products/moulds/Dumble Single Ring Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "double_cavity_zig_zag_mould",
+      "name": "Double Cavity Zig Zag",
+      "image": "/assets/images/products/moulds/Double Cavity ZIg Zag Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "three_cavity_zig_zag_mould",
+      "name": "Three Cavity Zig Zag",
+      "image": "/assets/images/products/moulds/3 Cavity Zig Zag Iron Mould_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "hexagonal_mould",
+      "name": "Hexagonal",
+      "image": "/assets/images/products/moulds/Hexagonal Iron Mould_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_4_cavity_mould",
+      "name": "Solid Brick 4 Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick 4Cavity Iron MOuld_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_2_cavity_mould",
+      "name": "Solid Brick 2 Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick 2 Cavity Iron MOuld_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_3_cavity_mould",
+      "name": "Solid Brick 3 Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick 3 Cavity Iron MOuld_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_single_cavity_mould",
+      "name": "Solid Brick Single Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick Single Cavity_01.png",
+      "rating": 4.5
+    }
+  ],
+  "deals": [
+    {
+      "id": "pillar_design_1_mould",
+      "name": "Pillar Design 1",
+      "image": "/assets/images/products/moulds/Pillar Design_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "pillar_design_2_mould",
+      "name": "Pillar Design 2",
+      "image": "/assets/images/products/moulds/Pillar Design_02.png",
+      "rating": 4.5
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "dumble_single_set_mould",
+      "name": "Dumble Single Set",
+      "image": "/assets/images/products/moulds/Dumble Single Set Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "dumble_single_ring_mould",
+      "name": "Dumble Single Ring",
+      "image": "/assets/images/products/moulds/Dumble Single Ring Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "colorado_paver_mould",
+      "name": "Colorado Paver Mould",
+      "image": "/assets/images/products/moulds/Colorado Paver Mould.png",
+      "rating": 4.5
+    },
+    {
+      "id": "double_cavity_zig_zag_mould",
+      "name": "Double Cavity Zig Zag",
+      "image": "/assets/images/products/moulds/Double Cavity ZIg Zag Iron Mould_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "three_cavity_zig_zag_mould",
+      "name": "Three Cavity Zig Zag",
+      "image": "/assets/images/products/moulds/3 Cavity Zig Zag Iron Mould_02.png",
+      "rating": 4.5
+    },
+    {
+      "id": "hexagonal_mould",
+      "name": "Hexagonal",
+      "image": "/assets/images/products/moulds/Hexagonal Iron Mould_02.png",
+      "rating": 4.5
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "solid_brick_2_cavity_mould",
+      "name": "Solid Brick 2 Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick 2 Cavity Iron MOuld_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_3_cavity_mould",
+      "name": "Solid Brick 3 Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick 3 Cavity Iron MOuld_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "solid_brick_single_cavity_mould",
+      "name": "Solid Brick Single Cavity",
+      "image": "/assets/images/products/moulds/Solid Brick Single Cavity_01.png",
+      "rating": 4.5
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/moulds_1.png",
+    "/assets/categories/moulds_2.png",
+    "/assets/categories/moulds_3.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a9b"
+  },
+  "id": "other_machinery",
+  "name": "OTHER MACHINERY",
+  "description": "Specialized construction equipment for various applications, including cutting, grinding, lifting, and other essential construction operations.",
+  "products": [
+    {
+      "id": "monkey_crane",
+      "name": "Monkey Crane",
+      "image": "/assets/images/products/other/monkey crane 1.png",
+      "rating": 4.8
+    },
+    {
+      "id": "band_saw_machine",
+      "name": "Band Saw Machine",
+      "image": "/assets/images/products/other/band_saw.png",
+      "rating": 4.7
+    },
+    {
+      "id": "grouting_pump",
+      "name": "Grouting Pump",
+      "image": "/assets/images/products/other/grouting pump 3.png",
+      "rating": 4.8
+    },
+    {
+      "id": "rice_mill",
+      "name": "Rice Mill",
+      "image": "/assets/images/products/other/rice mill 1.png",
+      "rating": 4.6
+    },
+    {
+      "id": "demolition_hammer",
+      "name": "Demolition Hammer",
+      "image": "/assets/images/products/other/demolition hammer 1.png",
+      "rating": 4.7
+    }
+  ],
+  "deals": [
+    {
+      "id": "demolition_hammer",
+      "name": "Demolition Hammer",
+      "image": "/assets/images/products/other/demolition hammer 1.png",
+      "rating": 4.7
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "demolition_hammer",
+      "name": "Demolition Hammer",
+      "image": "/assets/images/products/other/demolition hammer 1.png",
+      "rating": 4.7
+    },
+    {
+      "id": "band_saw_machine",
+      "name": "Band Saw Machine",
+      "image": "/assets/images/products/other/band_saw.png",
+      "rating": 4.7
+    },
+    {
+      "id": "grouting_pump",
+      "name": "Grouting Pump",
+      "image": "/assets/images/products/other/grouting pump 3.png",
+      "rating": 4.8
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "band_saw_machine",
+      "name": "Band Saw Machine",
+      "rating": 4.9,
+      "image": "/assets/images/products/other/Band Saw Machine_Hero Product.png"
+    },
+    {
+      "id": "demolition_hammer",
+      "name": "Demolition Hammer",
+      "image": "/assets/images/products/other/demolition hammer 1.png",
+      "rating": 4.7
+    },
+    {
+      "id": "rice_mill",
+      "name": "Rice Mill",
+      "image": "/assets/images/products/other/rice mill 1.png",
+      "rating": 4.6
+    }
+  ],
+  "heroImages": [
+    "/assets/images/products/other/monkey crane 1.png",
+    "/assets/images/products/other/demolition hammer 1.png",
+    "/assets/images/products/other/band_saw.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a99"
+  },
+  "id": "construction_chemicals_and_colors",
+  "name": "CONSTRUCTION CHEMICALS AND COLORS",
+  "description": "Specialized additives, admixtures, and colorants that enhance concrete performance, appearance, and durability for construction projects.",
+  "products": [
+    {
+      "id": "silicon_emulsion_chemical",
+      "name": "Silicon Emulsion",
+      "image": "/assets/products/Silicon Emulsion.png",
+      "rating": 4.8
+    },
+    {
+      "id": "lecquers_polish_chemical",
+      "name": "Lecquers Polish",
+      "image": "/assets/images/products/chemicals/Lacquers.png",
+      "rating": 4.6
+    },
+    {
+      "id": "iron_oxide_red_chemical",
+      "name": "Iron Oxide Red",
+      "image": "/assets/products/Red Oxide Green.png",
+      "rating": 4.7
+    },
+    {
+      "id": "hardner_chemicals_chemical",
+      "name": "Hardner Chemicals",
+      "image": "/assets/images/products/chemicals/Concrete hardener.png",
+      "rating": 4.8
+    },
+    {
+      "id": "iron_oxide_yellow_chemical",
+      "name": "Iron Oxide Yellow",
+      "image": "/assets/products/Yellow Iron Oxide.png",
+      "rating": 4.7
+    },
+    {
+      "id": "iron_oxide_black_chemical",
+      "name": "Iron Oxide Black",
+      "image": "/assets/products/Black Oxide Green.png",
+      "rating": 4.7
+    },
+    {
+      "id": "iron_oxide_green_chemical",
+      "name": "Iron Oxide Green",
+      "image": "/assets/products/Iron Oxide Green.png",
+      "rating": 4.9
+    },
+    {
+      "id": "iron_oxide_blue_chemical",
+      "name": "Iron Oxide Blue",
+      "image": "/assets/products/Iron Oxide Blue.png",
+      "rating": 4.9
+    }
+  ],
+  "deals": [
+    {
+      "id": "iron_oxide_green_chemical",
+      "name": "Iron Oxide Green",
+      "image": "/assets/products/Iron Oxide Green.png",
+      "rating": 4.9
+    },
+    {
+      "id": "iron_oxide_blue_chemical",
+      "name": "Iron Oxide Blue",
+      "image": "/assets/products/Iron Oxide Blue.png",
+      "rating": 4.9
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "silicon_emulsion_chemical",
+      "name": "Silicon Emulsion",
+      "image": "/assets/products/Silicon Emulsion.png",
+      "rating": 4.8
+    },
+    {
+      "id": "lecquers_polish_chemical",
+      "name": "Lecquers Polish",
+      "image": "/assets/images/products/chemicals/Lacquers.png",
+      "rating": 4.6
+    },
+    {
+      "id": "iron_oxide_red_chemical",
+      "name": "Iron Oxide Red",
+      "image": "/assets/products/Red Oxide Green.png",
+      "rating": 4.7
+    },
+    {
+      "id": "iron_oxide_yellow_chemical",
+      "name": "Iron Oxide Yellow",
+      "image": "/assets/products/Yellow Iron Oxide.png",
+      "rating": 4.7
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "iron_oxide_red_chemical",
+      "name": "Iron Oxide Red",
+      "image": "/assets/products/Red Oxide Green.png",
+      "rating": 4.7
+    },
+    {
+      "id": "iron_oxide_yellow_chemical",
+      "name": "Iron Oxide Yellow",
+      "image": "/assets/products/Yellow Iron Oxide.png",
+      "rating": 4.7
+    },
+    {
+      "id": "iron_oxide_blue_chemical",
+      "name": "Iron Oxide Blue",
+      "image": "/assets/products/Iron Oxide Blue.png",
+      "rating": 4.9
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/construction_chemicals_and_colors_1.png",
+    "/assets/products/Iron Oxide Blue.png",
+    "/assets/products/Iron Oxide Green.png",
+    "/assets/products/Red Oxide Green.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a9a"
+  },
+  "id": "bar_bending_and_cutting_machine",
+  "name": "BAR BENDING AND BAR CUTTING MACHINE",
+  "description": "Specialized tools and machinery for evaluating concrete quality, strength, and other critical parameters to ensure construction standards.",
+  "products": [
+    {
+      "id": "bar_bending_machine",
+      "name": "Bar Bending Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Bending Machine_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "bar_cutting_machine",
+      "name": "Bar Cutting Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Cutting Machine.png",
+      "rating": 4.7
+    }
+  ],
+  "deals": [
+    {
+      "id": "bar_cutting_machine",
+      "name": "Bar Cutting Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Cutting Machine.png",
+      "rating": 4.7
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "bar_bending_machine",
+      "name": "Bar Bending Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Bending Machine_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "bar_cutting_machine",
+      "name": "Bar Cutting Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Cutting Machine.png",
+      "rating": 4.7
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "bar_bending_machine",
+      "name": "Bar Bending Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Bending Machine_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "bar_cutting_machine",
+      "name": "Bar Cutting Machine",
+      "image": "/assets/images/products/bar_bending_cutting_machine/Bar Cutting Machine.png",
+      "rating": 4.7
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/bar_bending_and_cutting_machine_1.png",
+    "/assets/categories/bar_bending_and_cutting_machine_3.png",
+    "/assets/categories/bar_bending_and_cutting_machine_2.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a94"
+  },
+  "id": "concrete_mixer",
+  "name": "CONCRETE MIXER MACHINE",
+  "description": "Efficiently blends and mixes cement, sand, and water to create uniform concrete for construction projects of all sizes.",
+  "products": [
+    {
+      "id": "reversible_concrete_mixer",
+      "name": "Reversible Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/reversible_concrete_mixer.png",
+      "rating": 4.7
+    },
+    {
+      "id": "concrete_mixer_with_hopper",
+      "name": "Concrete Mixer With Hopper",
+      "image": "/assets/images/products/concrete_mixer/Concrete Mixer with Hopper_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "lift_concrete_mixer",
+      "name": "Lift Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/lift_conrete_mixer_machine.png",
+      "rating": 4.6
+    },
+    {
+      "id": "1_bag_concrete_mixer",
+      "name": "1 Bag Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/1-Bag-Concrete-Machine.png",
+      "rating": 4.5
+    },
+    {
+      "id": "pan_mixer_machine",
+      "name": "Pan Mixer Machine",
+      "image": "/assets/images/products/concrete_mixer/Pan Mixer Machine_01.png",
+      "rating": 4.9
+    },
+    {
+      "id": "half_bag_concrete_mixer",
+      "name": "Half Bag Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/Half-Bag-Concrete-Machine.png",
+      "rating": 4.7
+    },
+    {
+      "id": "trolley_concrete_mixer",
+      "name": "Trolley Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/Trolley Concrete Mixer_01.png",
+      "rating": 4.2
+    },
+    {
+      "id": "laboratory_concrete_mixer",
+      "name": "Laboratory Concrete Mixer",
+      "image": "/assets/images/products/concrete_mixer/Laboratory Concrete Mixer_01.png",
+      "rating": 4.5
+    },
+    {
+      "id": "colour_mixer_pan_type",
+      "name": "Colour Mixer Pan Type",
+      "image": "/assets/images/products/concrete_mixer/Pan-Type-Color-Mixer.png",
+      "rating": 4
+    }
+  ],
+  "deals": [
+    {
+      "id": 1,
+      "name": "Pan_Mixer_Hero Product",
+      "description": "Complete mixing solution with spare parts and maintenance kit",
+      "discount": "15% OFF",
+      "image": "/assets/images/products/concrete_mixer/Pan_Mixer_Hero Products.png"
+    },
+    {
+      "id": 2,
+      "name": "Trolley Concrete Mixer",
+      "description": "Mixer with wheelbarrows and safety equipment included",
+      "discount": "20% OFF",
+      "image": "/assets/images/products/concrete_mixer/Trolley Concrete Mixer_01.png"
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "1_bag_concrete_mixer",
+      "name": "1 Bag Concrete Mixer",
+      "rating": 4.8,
+      "image": "/assets/images/products/concrete_mixer/1-Bag-Concrete-Machine.png"
+    },
+    {
+      "id": "trolley_concrete_mixer",
+      "name": "Trolley Concrete Mixer",
+      "rating": 4.7,
+      "image": "/assets/images/products/concrete_mixer/Trolley Concrete Mixer_01.png"
+    },
+    {
+      "id": "lift_concrete_mixer",
+      "name": "Lift Concrete Mixer",
+      "rating": 4.9,
+      "image": "/assets/images/products/concrete_mixer/lift_conrete_mixer_machine.png"
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "lift_concrete_mixer",
+      "name": "Lift Concrete Mixer",
+      "rating": 4.9,
+      "image": "/assets/images/products/concrete_mixer/Lift_Concrete_Mixer.png"
+    },
+    {
+      "id": "1_bag_concrete_mixer",
+      "name": "1 Bag Concrete Mixer",
+      "rating": 4.6,
+      "image": "/assets/images/products/concrete_mixer/1_Bag_Concrete_Mixer_new.png"
+    },
+    {
+      "id": "pan_mixer_machine",
+      "name": "Pan Mixer",
+      "rating": 4.7,
+      "image": "/assets/images/products/concrete_mixer/Pan_Mixer_Hero Products.png"
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/concrete_mixer_1.png",
+    "/assets/categories/concrete_mixer_2.png",
+    "/assets/categories/concrete_mixer_3.png"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67dc77d61e9499f30f1f5a97"
+  },
+  "id": "trolley",
+  "name": "TROLLEY",
+  "description": "Essential equipment for material transport and handling on construction sites, enhancing efficiency and reducing manual labor.",
+  "products": [
+    {
+      "id": "single_wheel_trolley",
+      "name": "Single Wheel Trolley",
+      "image": "/assets/images/products/trolley/Single Wheel Trolley.png",
+      "rating": 4.7
+    },
+    {
+      "id": "double_wheel_trolley",
+      "name": "Double Wheel Trolley",
+      "image": "/assets/images/products/trolley/Double Wheel Trolley.png",
+      "rating": 4.6
+    },
+    {
+      "id": "brick_shifting_trolley",
+      "name": "Brick Shifting Trolley",
+      "image": "/assets/images/products/trolley/Brick Shifting Trolley_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "hand_pallet_truck",
+      "name": "Hand Pallet Truck",
+      "image": "/assets/images/products/trolley/Hand Pallet Truck.png",
+      "rating": 4.5
+    }
+  ],
+  "deals": [
+    {
+      "id": "brick_shifting_trolley",
+      "name": "Brick Shifting Trolley",
+      "image": "/assets/images/products/trolley/Brick Shifting Trolley_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "hand_pallet_truck",
+      "name": "Hand Pallet Truck",
+      "image": "/assets/images/products/trolley/Hand Pallet Truck.png",
+      "rating": 4.5
+    }
+  ],
+  "trendingProducts": [
+    {
+      "id": "double_wheel_trolley",
+      "name": "Double Wheel Trolley",
+      "image": "/assets/images/products/trolley/Double Wheel Trolley.png",
+      "rating": 4.6
+    },
+    {
+      "id": "brick_shifting_trolley",
+      "name": "Brick Shifting Trolley",
+      "image": "/assets/images/products/trolley/Brick Shifting Trolley_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "hand_pallet_truck",
+      "name": "Hand Pallet Truck",
+      "image": "/assets/images/products/trolley/Hand Pallet Truck.png",
+      "rating": 4.5
+    }
+  ],
+  "newReleases": [
+    {
+      "id": "double_wheel_trolley",
+      "name": "Double Wheel Trolley",
+      "image": "/assets/images/products/trolley/Double Wheel Trolley.png",
+      "rating": 4.6
+    },
+    {
+      "id": "brick_shifting_trolley",
+      "name": "Brick Shifting Trolley",
+      "image": "/assets/images/products/trolley/Brick Shifting Trolley_01.png",
+      "rating": 4.8
+    },
+    {
+      "id": "hand_pallet_truck",
+      "name": "Hand Pallet Truck",
+      "image": "/assets/images/products/trolley/Hand Pallet Truck.png",
+      "rating": 4.5
+    }
+  ],
+  "heroImages": [
+    "/assets/categories/trolley_1.png",
+    "/assets/categories/trolley_2.png",
+    "/assets/images/products/trolley/Hand Pallet Truck.png"
+  ]
+}]

@@ -1,18 +1,17 @@
+import { ObjectId } from 'mongodb';
+
 export interface Product {
+  _id?: ObjectId | string;
   id: string;
   category_id: string;
   name: string;
   rating: number;
   specification: {
-    weight: string;
-    dimensions: string;
-    ingredients: string[];
-    skinType: string[];
-    shelfLife: string;
+    [key: string]: string | string[];
   };
   heroImages: string[];
-  relatedProducts: number[];
-  other_products: number[];
+  relatedProducts: string[]; // Changed from number[] to string[]
+  other_products: string[]; // Changed from number[] to string[]
   youtubeLink: string;
   description: string;
   details: {
