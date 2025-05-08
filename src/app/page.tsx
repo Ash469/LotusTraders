@@ -59,8 +59,12 @@ export default function Home() {
         <meta name="twitter:description" content="Manufacturing and supplying high-quality construction equipment in Northeast India" />
         <meta name="twitter:image" content="https://www.lotustradersmachinery.com/twitter-image.jpg" />
         <link rel="canonical" href="https://www.lotustradersmachinery.com" />
+
+       
+
       </Head>
       
+
       {/* Google Analytics Tag */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-VVB6VMXKHK"
@@ -81,7 +85,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeJsonLd) }}
       />
-      
+
       <Hero />
       <div id="categories">
         <Categories />
@@ -97,8 +101,8 @@ export default function Home() {
       </div>
       <Testimonials />
       <Footer />
-      
-      <ContactPopup 
+
+      <ContactPopup
         isVisible={showPopup}
         onClose={() => setShowPopup(false)}
       />

@@ -17,6 +17,9 @@ declare module 'next-auth' {
 const ADMIN_EMAIL = 'admin@lotus.com'
 const ADMIN_PASSWORD = 'admin123' 
 
+// Ensure NEXTAUTH_SECRET exists with a fallback for development
+const SECRET = process.env.NEXTAUTH_SECRET || 'THIS_IS_A_DEVELOPMENT_SECRET_CHANGE_IT'
+
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -50,7 +53,7 @@ const handler = NextAuth({
       }
     })
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: SECRET,
   pages: {
     signIn: '/admin/login',
   },
@@ -66,12 +69,13 @@ const handler = NextAuth({
       return token
     },
     async session({ session, token }) {
-      if (session.user) {
+      if (session.user && token) {
         session.user.id = token.id as string
       }
       return session
     }
-  }
+  },
+  debug: process.env.NODE_ENV === 'development',
 })
 
 export { handler as GET, handler as POST }
