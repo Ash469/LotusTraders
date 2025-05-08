@@ -8,8 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "ts-node --project tsconfig.json scripts/seed-db.ts",
-    "postbuild": "node ./scripts/generate-sitemap.js"
+    "seed": "ts-node --project tsconfig.json scripts/seed-db.ts"
   },
   "dependencies": {
     "@netlify/plugin-nextjs": "^5.10.3",
@@ -29,6 +28,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "sitemap": "^8.0.0",
     "swiper": "^11.2.5",
     "uuid": "^11.1.0",
     "xml2js": "^0.6.2"
