@@ -4,7 +4,7 @@ import clientPromise from '@/lib/mongodb';
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db('Lotus'); // Specify the correct database name
+    const db = client.db('Lotus');
     const products = await db.collection('products').find({}).toArray();
     
     console.log(`Found ${products.length} products`); // Debug log

@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState, useEffect, useRef } from 'react';
+import { use, useState, useEffect, useRef,useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { FaSave, FaTimes, FaPlus, FaTrash, FaUpload, FaSpinner, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
@@ -11,7 +11,7 @@ interface Product {
   name: string;
   image: string;
   rating: number;
-  discount?: string; // Added discount property as optional
+  discount?: string; 
 }
 
 interface Category {
@@ -62,7 +62,7 @@ function CategoryEditForm({ params }: { params: Promise<{ id: string }> }) {
     });
   };
 
-  const fetchCategory = async () => {
+  const fetchCategory = useCallback(async () => {
     try {
       const response = await fetch(`/api/admin/categories/${id}`);
       if (!response.ok) throw new Error('Failed to fetch category');
@@ -73,7 +73,7 @@ function CategoryEditForm({ params }: { params: Promise<{ id: string }> }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     if (id !== 'new') {
@@ -91,7 +91,7 @@ function CategoryEditForm({ params }: { params: Promise<{ id: string }> }) {
       });
       setLoading(false);
     }
-  }, [id]);
+  }, [fetchCategory, id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
