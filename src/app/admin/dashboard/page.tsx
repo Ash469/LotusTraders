@@ -1,25 +1,37 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope } from 'react-icons/fa'
+import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope, FaSignOutAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 
 export default function AdminDashboard() {
-  const { status } = useSession()
+  const { data: session, status } = useSession({ required: true })
   const router = useRouter()
   const [activeTab, setActiveTab] = useState('dashboard')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    // When required:true is used, we should check for authentication errors differently
+    if (status !== 'authenticated' && status !== 'loading') {
       router.push('/admin/login')
     }
   }, [status, router])
 
   if (status === 'loading') {
-    return <div>Loading...</div>
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/admin/login' })
   }
 
   const handleTabChange = (tab: string) => {
@@ -45,8 +57,11 @@ export default function AdminDashboard() {
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 transition-transform duration-200 ease-in-out
       `}>
-        <div className="mb-8 p-4 pt-16 lg:pt-4"> {/* Added pt-16 for mobile */}
+        <div className="mb-8 p-4 pt-16 lg:pt-4 flex flex-col"> {/* Added pt-16 for mobile */}
           <h2 className="text-white text-lg font-semibold">Admin Panel</h2>
+          {session?.user?.email && (
+            <p className="text-gray-400 text-sm mt-1">{session.user.email}</p>
+          )}
         </div>
         
         <nav className="space-y-2">
@@ -97,6 +112,16 @@ export default function AdminDashboard() {
           >
             Enquiries
           </SidebarButton>
+
+          <div className="pt-4 mt-4 border-t border-gray-700">
+            <SidebarButton 
+              active={false} 
+              icon={<FaSignOutAlt />}
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </SidebarButton>
+          </div>
         </nav>
       </div>
 

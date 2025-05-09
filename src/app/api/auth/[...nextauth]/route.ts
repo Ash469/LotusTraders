@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-// Extend Session type to include user.id
+// Extend Session type to include user.id and role
 declare module 'next-auth' {
   interface Session {
     user: {
@@ -9,7 +9,16 @@ declare module 'next-auth' {
       name?: string | null
       email?: string | null
       image?: string | null
+      role?: string | null
     }
+  }
+}
+
+// Extend User type to include role
+declare module 'next-auth' {
+  interface User {
+    id: string
+    role?: string
   }
 }
 
@@ -32,7 +41,7 @@ const handler = NextAuth({
         try {
           if (!credentials?.email || !credentials?.password) {
             console.log('Missing credentials')
-            throw new Error('Missing credentials')
+            throw new Error('Email and password are required')
           }
         
           if (credentials.email === ADMIN_EMAIL && credentials.password === ADMIN_PASSWORD) {
@@ -44,7 +53,7 @@ const handler = NextAuth({
             }
           }
           console.log('Invalid credentials')
-          throw new Error('Invalid credentials')
+          throw new Error('Invalid email or password')
         } catch (error: unknown) {
           const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
           console.error('Auth error:', errorMessage)
@@ -56,6 +65,7 @@ const handler = NextAuth({
   secret: SECRET,
   pages: {
     signIn: '/admin/login',
+    error: '/admin/login',
   },
   session: {
     strategy: "jwt",
@@ -65,12 +75,14 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id
+        token.role = user.role
       }
       return token
     },
     async session({ session, token }) {
       if (session.user && token) {
         session.user.id = token.id as string
+        session.user.role = token.role as string
       }
       return session
     }
