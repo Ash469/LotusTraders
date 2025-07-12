@@ -11,7 +11,9 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: {
+      enableCriticalClientOnlyStyles: false,
+    },
     optimizePackageImports: ['@mui/icons-material', 'react-icons'],
     turbo: {
       resolveAlias: {
@@ -25,6 +27,30 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onError: (err: any) => {
+    console.error('Next.js build error:', err);
+  },
+  webpack: (config, { dev, isServer }) => {
+    // Only run CSS optimization in production
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization?.splitChunks,
+          cacheGroups: {
+            styles: {
+              name: 'styles',
+              test: /\.css$/,
+              chunks: 'all',
+              enforce: true,
+            },
+          },
+        },
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
