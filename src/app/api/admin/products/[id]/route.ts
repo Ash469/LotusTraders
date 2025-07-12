@@ -1,18 +1,14 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
-import { unstable_cache, revalidateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 
-
-const getProduct = unstable_cache(
-  async (id: string) => {
-    const client = await clientPromise;
-    const db = client.db('Lotus');
-    const collection = db.collection('products');
-    return collection.findOne({id});
-  },
-  ['product'],
-  { revalidate: 3600 }
-);
+// Fetch product by id (no cache, real-time)
+async function getProductById(id: string) {
+  const client = await clientPromise;
+  const db = client.db('Lotus');
+  const collection = db.collection('products');
+  return collection.findOne({ id });
+}
 
 export async function GET(
   request: Request,
@@ -26,8 +22,8 @@ export async function GET(
       return NextResponse.json({ error: 'Missing product ID' }, { status: 400 });
     }
 
-    const product = await getProduct(id);
-    
+    const product = await getProductById(id);
+
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
@@ -54,17 +50,19 @@ export async function PUT(
       return NextResponse.json({ error: 'Missing product ID' }, { status: 400 });
     }
 
-    if (!body.information) {
-      return NextResponse.json({ error: 'Missing information data' }, { status: 400 });
+    // Remove _id if present to avoid immutable field error
+    if ('_id' in body) {
+      delete body._id;
     }
 
     const client = await clientPromise;
     const db = client.db('Lotus');
     const collection = db.collection('products');
 
+    // Update the entire product document except _id
     const result = await collection.updateOne(
       { id },
-      { $set: { 'details.information': body.information } }
+      { $set: { ...body } }
     );
 
     if (result.matchedCount === 0) {
@@ -74,7 +72,7 @@ export async function PUT(
     // Revalidate the cache
     revalidateTag('product');
 
-    return NextResponse.json({ message: 'Product information updated successfully' });
+    return NextResponse.json({ message: 'Product updated successfully' });
   } catch (error) {
     console.error('Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

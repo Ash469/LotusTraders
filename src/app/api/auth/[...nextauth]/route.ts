@@ -23,8 +23,8 @@ declare module 'next-auth' {
 }
 
 // In a real app, these would be in a database
-const ADMIN_EMAIL = 'admin@lotus.com'
-const ADMIN_PASSWORD = 'admin123' 
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL 
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD
 
 // Ensure NEXTAUTH_SECRET exists with a fallback for development
 const SECRET = process.env.NEXTAUTH_SECRET || 'THIS_IS_A_DEVELOPMENT_SECRET_CHANGE_IT'

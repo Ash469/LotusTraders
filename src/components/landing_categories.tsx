@@ -17,63 +17,63 @@ const Categories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndices, setCurrentImageIndices] = useState<{ [key: string]: number }>({});
-  const [initialized, setInitialized] = useState(false);
 
-  // Separate data fetching effect
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await fetch('/api/categories', {
-          cache: 'force-cache' // Add caching
+          next: { revalidate: 3600 } // Cache for 1 hour
         });
         const data = await response.json();
         setCategories(data);
         
-        // Initialize image indices immediately
-        const initialIndices: { [key: string]: number } = {};
-        data.forEach((category: Category) => {
-          initialIndices[category._id] = 0;
-        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const initialIndices = data.reduce((acc: any, category: Category) => {
+          acc[category._id] = 0;
+          return acc;
+        }, {});
         setCurrentImageIndices(initialIndices);
-        
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      } finally {
         setLoading(false);
-        setInitialized(true);
+      } catch (error) {
+        console.error('Error:', error);
+        setLoading(false);
       }
     };
 
     fetchCategories();
   }, []);
 
-  // Animation effect
+  // Optimize animation effect
   useEffect(() => {
-    if (!loading && initialized && categories.length > 0) {
-      const columnCount = 4;
-      
-      const startColumnDominoEffect = () => {
-        for (let col = 0; col < columnCount; col++) {
-          categories.forEach((category, index) => {
-            if (category.heroImages.length > 1 && index % columnCount === col) {
-              setTimeout(() => {
-                setCurrentImageIndices(prev => ({
-                  ...prev,
-                  [category._id]: ((prev[category._id] || 0) + 1) % category.heroImages.length
-                })); 
-              }, col * 1000);
-            }
-          });
-        }
-      };
+    if (loading || !categories.length) return;
 
-      // Start animation immediately
-      startColumnDominoEffect();
-      
-      const interval = setInterval(startColumnDominoEffect, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [loading, initialized, categories]);
+    const timeouts: NodeJS.Timeout[] = [];
+    const columnCount = 4;
+    
+    const animateColumns = () => {
+      for (let col = 0; col < columnCount; col++) {
+        categories.forEach((category, index) => {
+          if (category.heroImages.length > 1 && index % columnCount === col) {
+            const timeout = setTimeout(() => {
+              setCurrentImageIndices(prev => ({
+                ...prev,
+                [category._id]: ((prev[category._id] || 0) + 1) % category.heroImages.length
+              }));
+            }, col * 1000);
+            timeouts.push(timeout);
+          }
+        });
+      }
+    };
+
+    animateColumns();
+    const interval = setInterval(animateColumns, 5000);
+
+    return () => {
+      clearInterval(interval);
+      timeouts.forEach(clearTimeout);
+    };
+  }, [loading, categories]);
 
   if (loading) {
     return (

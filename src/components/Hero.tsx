@@ -8,9 +8,7 @@ import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
-import './Hero.css';
 import NavBar from './nav_bar';
 
 const Hero = () => {
@@ -55,18 +53,24 @@ const Hero = () => {
           speed={800}
           effect="fade"
           fadeEffect={{ crossFade: true }}
-          className="w-full aspect-[16/8] sm:aspect-[16/6]"
+          className="w-full"
+          style={{ aspectRatio: '16/6' }}
         >
           {bannerContent.map((banner, index) => (
             <SwiperSlide key={index} className="relative w-full">
-              <Link href={banner.link} className="block relative w-full aspect-[16/8] sm:aspect-[16/6]">
+              <Link 
+                href={banner.link} 
+                className="block relative w-full"
+                style={{ aspectRatio: '16/6' }}
+              >
                 <Image
                   src={banner.image}
                   alt={banner.title}
                   fill
                   priority={index === 0}
                   sizes="100vw"
-                  quality={90}
+                  quality={75}
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="object-cover object-center"
                 />
               </Link>

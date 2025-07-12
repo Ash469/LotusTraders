@@ -108,12 +108,18 @@ const Footer = () => {
                 </li>
                 <li className="pt-4">
                   <div className="flex gap-4">
-                    <a href="https://wa.me/9435559130" target="_blank" rel="noopener noreferrer" 
-                       className="hover:text-blue-400">
+                    <a href="https://wa.me/9435559130" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       className="hover:text-blue-400"
+                       aria-label="Chat with us on WhatsApp">
                       <FaWhatsapp size={24} />
                     </a>
-                    <a href="https://www.youtube.com/@LOTUSTRADERS" target="_blank" rel="noopener noreferrer"
-                       className="hover:text-blue-400">
+                    <a href="https://www.youtube.com/@LOTUSTRADERS" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       className="hover:text-blue-400"
+                       aria-label="Visit our YouTube channel">
                       <FaYoutube size={24} />
                     </a>
                   </div>
@@ -126,6 +132,7 @@ const Footer = () => {
               <h3 className="text-xl font-bold mb-4">Find Us</h3>
               <div className="w-full h-48">
                 <iframe
+                  title="Lotus Traders Location Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.683259945561!2d91.77427527536754!3d26.175181976345233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a59a0dd4459ad%3A0x1622d50b645999ad!2sLotus%20Traders!5e0!3m2!1sen!2sin!4v1712305184315!5i0"
                   width="100%"
                   height="100%"

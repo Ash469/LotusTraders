@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist} from "next/font/google";
 import "./globals.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -8,25 +8,21 @@ import 'swiper/css/pagination';
 import { Providers } from './providers';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  adjustFontFallback: true,
+  weight: ["400", "500", "600", "700"], 
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.lotustradersmachinery.com'),
   title: {
-    default: "Lotus Traders - Construction Equipment Manufacturer in Northeast India",
-    template: "%s | Lotus Traders"
+    default: "Construction Equipment & Machinery in Assam | Brick Making Machines",
+    template: "%s | Construction Equipment Supplier Guwahati"
   },
-  description: "Lotus Traders - Your trusted partner in construction equipment. We manufacture and supply high-quality machinery across Northeast India including Assam, Meghalaya, Arunachal Pradesh.",
-  keywords: ["construction equipment", "brick making machine", "concrete mixer", "trimix system", "construction machinery", "Assam", "Northeast India", "Guwahati"],
+  description: "Buy construction equipment in Guwahati. Best brick making machines, concrete mixers & construction machinery. Top supplier in Assam. Call: 9435559130",
+  keywords: ["construction equipment Assam", "brick making machine price", "concrete mixer Guwahati", "construction machinery dealer", "equipment supplier Northeast"],
   authors: [{ name: "Lotus Traders" }],
   creator: "Lotus Traders",
   publisher: "Lotus Traders",
@@ -39,8 +35,8 @@ export const metadata: Metadata = {
     icon: '/title_logo.png',
   },
   openGraph: {
-    title: "Lotus Traders - Construction Equipment Manufacturer in Northeast India",
-    description: "Manufacturing and supplying high-quality construction equipment in Guwahati, Assam and across Northeast India since 1990.",
+    title: "Construction Equipment Supplier in Assam | Brick Making Machines",
+    description: "Leading construction equipment supplier in Guwahati. Best prices on brick making machines, concrete mixers. Trusted dealer in Assam. Contact: 9435559130",
     url: 'https://www.lotustradersmachinery.com',
     siteName: 'Lotus Traders',
     images: [
@@ -84,6 +80,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link 
+          rel="preload" 
+          href="/fonts/some-font.woff2" 
+          as="font" 
+          type="font/woff2" 
+          crossOrigin="anonymous"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <meta name="description" content="Lotus Traders - Your trusted partner in construction equipment. We manufacture and supply high-quality machinery across Northeast India including Assam, Meghalaya, Arunachal Pradesh." />
         <meta name="keywords" content="construction equipment, brick making machine, concrete mixer, trimix system, construction machinery, Assam, Northeast India, Guwahati" />
         <meta name="author" content="Lotus Traders" />
@@ -124,8 +131,22 @@ export default function RootLayout({
             })(window,document,'script','dataLayer','GTM-P3FTHN4T');`
           }}
         />
+        
+        {/* Preload critical assets */}
+        <link
+          rel="preload"
+          href="/logo.png"
+          as="image"
+          type="image/png"
+        />
+        
+        {/* Defer non-critical scripts */}
+        <script
+          defer
+          src="https://www.googletagmanager.com/gtag/js"
+        />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.className} antialiased`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

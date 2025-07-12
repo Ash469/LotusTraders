@@ -5,7 +5,7 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient>;
 }
 
-const uri = process.env.MONGODB_URI || 'mongodb+srv://ashshandilya4:VpRWSEhHzVJBMeRL@cluster0.nygvy.mongodb.net/'; // MongoDB URI from .env.local or local fallback
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/Lotus';
 const options = {};
 
 let client;
@@ -16,7 +16,6 @@ if (!uri) {
 }
 
 if (process.env.NODE_ENV === 'development') {
-  // Use a global variable to preserve the connection in development
   if (!global._mongoClientPromise) {
     client = new MongoClient(uri, options);
     global._mongoClientPromise = client.connect();

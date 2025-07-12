@@ -24,8 +24,8 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ isVisible, onClose }) => {
       <div className={`popup ${isVisible ? 'show' : ''}`}>
         <button className="closeButton" onClick={onClose}>×</button>
         <div className="formContent">
-          <h2>Welcome To Lotus Traders</h2>
-          <p>Help us with your contact details</p>
+          <h2 className="text-gray-900 text-xl font-semibold">Welcome To Lotus Traders</h2>
+          <p className="text-gray-900 mb-4">Help us with your contact details</p>
           
           <form onSubmit={handleSubmit}>
             <div className="formGroup">
@@ -52,7 +52,12 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ isVisible, onClose }) => {
               />
             </div>
             
-            <button type="submit" className="submitButton">Submit</button>
+            <button 
+              type="submit" 
+              className="submitButton bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>

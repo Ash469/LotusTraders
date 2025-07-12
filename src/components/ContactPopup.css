@@ -14,7 +14,7 @@
 }
 
 .popup {
-  background-color: #F7ECDF;
+  background-color: #ffffff; /* Changed to white for better contrast */
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0px -15px 0px 0px #FE7F4C inset;

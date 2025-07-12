@@ -10,8 +10,8 @@ export interface Product {
     [key: string]: string | string[];
   };
   heroImages: string[];
-  relatedProducts: string[]; // Changed from number[] to string[]
-  other_products: string[]; // Changed from number[] to string[]
+  relatedProducts: string[]; 
+  other_products: string[]; 
   youtubeLink: string;
   description: string;
   details: {

@@ -28,6 +28,7 @@ const ProductPage = () => {
     const [loading, setLoading] = useState(true);
     const [pageTitle, setPageTitle] = useState('Product | Lotus Traders');
     const [pageDescription, setPageDescription] = useState('High-quality construction equipment by Lotus Traders in Guwahati, Assam');
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -106,6 +107,34 @@ const ProductPage = () => {
             fetchData();
         }
     }, [productId]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['specification', 'products', 'details', 'video'];
+            const scrollPosition = window.scrollY + 100; // Offset for better trigger point
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const top = element.offsetTop;
+                    const height = element.offsetHeight;
+                    
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        setActiveSection(section);
+                        return;
+                    }
+                }
+            }
+            
+            // If we're at the top, set to home
+            if (scrollPosition < 300) {
+                setActiveSection('home');
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const renderStarRating = (rating: number) => {
         const stars = [];
@@ -229,31 +258,41 @@ const ProductPage = () => {
                             <div className="hidden md:flex space-x-4 lg:space-x-6 flex-grow justify-center">
                                 <Link
                                     href={`/products/${productId}`}
-                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white"
+                                    className={`whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                                        activeSection === 'home' ? 'bg-blue-600 text-white' : 'text-gray-800 hover:bg-gray-100'
+                                    }`}
                                 >
                                     Home
                                 </Link>
                                 <button
                                     onClick={() => document.getElementById('specification')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                    className={`whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                                        activeSection === 'specification' ? 'bg-blue-600 text-white' : 'text-gray-800 hover:bg-gray-100'
+                                    }`}
                                 >
                                     Specification
                                 </button>
                                 <button
                                     onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                    className={`whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                                        activeSection === 'products' ? 'bg-blue-600 text-white' : 'text-gray-800 hover:bg-gray-100'
+                                    }`}
                                 >
                                     Products
                                 </button>
                                 <button
                                     onClick={() => document.getElementById('details')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                    className={`whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                                        activeSection === 'details' ? 'bg-blue-600 text-white' : 'text-gray-800 hover:bg-gray-100'
+                                    }`}
                                 >
                                     Details
                                 </button>
                                 <button
                                     onClick={() => document.getElementById('video')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
+                                    className={`whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all ${
+                                        activeSection === 'video' ? 'bg-blue-600 text-white' : 'text-gray-800 hover:bg-gray-100'
+                                    }`}
                                 >
                                     How To Use
                                 </button>
@@ -263,7 +302,6 @@ const ProductPage = () => {
                                 >
                                     Connect with us
                                 </Link>
-                                <Link href="/products" className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all bg-blue-600 text-white">Back to Products</Link>
                             </div>
                         </div>
                     </div>

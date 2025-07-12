@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+Allow: /_next/image/*
+
+Disallow: /api/*
+Disallow: /admin/*
+Disallow: /private/*
+
+Sitemap: https://www.lotustradersmachinery.com/sitemap.xml
+Host: https://www.lotustradersmachinery.com
