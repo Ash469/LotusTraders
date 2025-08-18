@@ -1,5 +1,13 @@
 import type { NextConfig } from "next";
+const withPWA = require("@ducanh2912/next-pwa").default({
+    dest: "public",
+    disable: false,
+    register: true,
+    skipWaiting: true,
+});
 
+
+// Define your regular Next.js configuration
 const nextConfig: NextConfig = {
   images: {
     domains: ['www.lotustradersmachinery.com'],
@@ -27,12 +35,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onError: (err: any) => {
     console.error('Next.js build error:', err);
   },
   webpack: (config, { dev, isServer }) => {
-    // Only run CSS optimization in production
     if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,
@@ -52,5 +58,4 @@ const nextConfig: NextConfig = {
     return config;
   },
 };
-
-export default nextConfig;
+export default withPWA(nextConfig);
