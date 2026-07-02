@@ -1,17 +1,22 @@
 /* eslint-disable @next/next/next-script-for-ga */
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Providers } from './providers';
 
-const geistSans = Geist({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  adjustFontFallback: true,
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-heading",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
@@ -65,7 +70,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Meta */}
         <meta charSet="UTF-8" />
@@ -139,7 +144,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${geistSans.className} antialiased`}>
+      <body className={`${inter.className} ${spaceGrotesk.variable} antialiased bg-white text-gray-900`} suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>

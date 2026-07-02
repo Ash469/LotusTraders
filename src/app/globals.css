@@ -1,18 +1,64 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-  --background: #dad1d1;
-  --foreground: #f5eaea;
-  --color-green-50: oklch(0.8 0.23 151.61);
+@theme {
+  --color-primary: #0F172A;
+  --color-secondary: #111827;
+  --color-accent: #F59E0B;
+  --color-light: #F8FAFC;
+  --color-dark: #1F2937;
+  --color-muted: #6B7280;
+  
+  /* Centralized Theme Variables */
+  --color-theme-bg: var(--theme-bg);
+  --color-theme-surface: var(--theme-surface);
+  --color-theme-text: var(--theme-text);
+  --color-theme-text-muted: var(--theme-text-muted);
+  --color-theme-border: var(--theme-border);
+  
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
+:root {
+  /* Global Native Fallbacks */
+  --background: var(--theme-bg);
+  --foreground: var(--theme-text);
 
+  /* Light Theme Variables */
+  --theme-bg: #f4faff6b;       /* Softer gray for main background */
+  --theme-surface: #feecec;  /* White for cards and elevated sections */
+  --theme-text: #0f172a;     /* Slate-900 */
+  --theme-text-muted: #475569; /* Slate-600 */
+  --theme-border: #e2e8f0;   /* Slate-200 */
+}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #dad1d1;
-    --foreground: #ededed;
+.dark {
+  /* Dark Theme Variables */
+  --theme-bg: #0f172a;       /* Slate-900 */
+  --theme-surface: #1e293b;  /* Slate-800 */
+  --theme-text: #f8fafc;     /* Slate-50 */
+  --theme-text-muted: #94a3b8; /* Slate-400 */
+  --theme-border: #334155;   /* Slate-700 */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base input styles to ensure text is always visible */
+@layer base {
+  input:not([type="checkbox"]):not([type="radio"]), textarea, select {
+    @apply text-gray-900 bg-white dark:bg-slate-800 dark:text-gray-100 dark:border-slate-700;
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
 }
 
 @keyframes slide-up {
@@ -30,8 +76,11 @@
     animation: slide-up 0.3s ease-out forwards;
 }
 
-body {
-  background: var(--background);
-  color: rgb(54, 52, 52);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }

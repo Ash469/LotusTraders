@@ -6,6 +6,7 @@ import { Product } from '@/models/Product';
 import { FaSave, FaTimes, FaPlus, FaTrash, FaUpload, FaSpinner, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import AdminNavBar from '@/components/admin/AdminNavBar';
 
 const gradients = {
   primary: "bg-gradient-to-r from-blue-800 via-blue-600 to-indigo-700",
@@ -363,7 +364,28 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-theme-bg flex flex-col pt-20">
+      <AdminNavBar>
+        <div className="flex space-x-2 sm:space-x-3">
+          <button
+            type="button"
+            onClick={() => router.push('/admin/dashboard')}
+            className="inline-flex items-center px-3 sm:px-4 py-2 border border-theme-border rounded-lg shadow-sm text-sm font-medium text-theme-text bg-theme-surface hover:bg-theme-bg transition-all duration-200"
+          >
+            <FaTimes className="mr-1 sm:mr-2" />
+            <span className="hidden sm:inline">Cancel</span>
+          </button>
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="inline-flex items-center px-3 sm:px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-accent hover:bg-amber-600 transition-all duration-200"
+          >
+            <FaSave className="mr-1 sm:mr-2" />
+            <span className="hidden sm:inline">Save</span>
+          </button>
+        </div>
+      </AdminNavBar>
+
       <input 
         type="file" 
         ref={fileInputRef}
@@ -375,35 +397,6 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
         }}
       />
 
-      <div className="sticky top-0 z-30 backdrop-blur-md bg-white/90 shadow-md border-b border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
-            <div className="relative h-14 w-72">
-              <Link href="/admin/dashboard">
-                <Image src="/logo.png" alt="Logo" fill priority className="object-cover" />
-              </Link>
-            </div>
-            <div className="flex space-x-3">
-              <button
-                type="button"
-                onClick={() => router.push('/admin/dashboard')}
-                className="inline-flex items-center px-4 py-2.5 border border-slate-200 rounded-lg shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-200"
-              >
-                <FaTimes className="mr-2" />
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="inline-flex items-center px-4 py-2.5 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 transition-all duration-200"
-              >
-                <FaSave className="mr-2" />
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {success && (
         <div className="fixed top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white p-4 rounded-lg shadow-2xl z-50 animate-fade-in-down">
@@ -417,32 +410,32 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
       )}
       <main className="container mx-auto px-4 py-8">
         <div className="space-y-8">
-          <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:shadow-lg">
+          <section className="bg-theme-surface rounded-2xl shadow-xl overflow-hidden border border-theme-border transition-all hover:shadow-lg">
             <div className={`px-8 py-5 ${gradients.primary}`}>
               <h2 className="text-xl font-bold text-white">Basic Information</h2>
             </div>
             <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Product Name</label>
+                  <label className="block text-sm font-medium text-theme-text mb-2">Product Name</label>
                   <input
                     type="text"
                     value={product?.name || ''}
                     onChange={(e) => setProduct({ ...product, name: e.target.value })}
-                    className="w-full border border-slate-200 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white transition-all duration-200"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Category ID</label>
+                  <label className="block text-sm font-medium text-theme-text mb-2">Category ID</label>
                   <input
                     type="text"
                     value={product?.category_id || ''}
                     onChange={(e) => setProduct({ ...product, category_id: e.target.value })}
-                    className="w-full border border-slate-200 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white transition-all duration-200"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Rating</label>
+                  <label className="block text-sm font-medium text-theme-text mb-2">Rating</label>
                   <div className="flex gap-4 items-center">
                     <input
                       type="range"
@@ -459,18 +452,18 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Description</label>
+                  <label className="block text-sm font-medium text-theme-text mb-2">Description</label>
                   <textarea
                     value={product?.description || ''}
                     onChange={(e) => setProduct({ ...product, description: e.target.value })}
                     rows={5}
-                    className="w-full border border-slate-200 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm py-3 px-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white transition-all duration-200"
                   />
                 </div>
               </div>
               
               <div className="space-y-4">
-                <label className="block text-sm font-medium text-slate-700 mb-2">Product Images</label>
+                <label className="block text-sm font-medium text-theme-text mb-2">Product Images</label>
                 <div className="grid grid-cols-2 gap-4">
                   {(product?.heroImages || []).map((image, index) => (
                     <div key={index} className="relative group border rounded-xl overflow-hidden bg-slate-50 aspect-square shadow-sm transition-all duration-300 hover:shadow-md">
@@ -538,29 +531,29 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:shadow-lg">
+          <section className="bg-theme-surface rounded-2xl shadow-xl overflow-hidden border border-theme-border transition-all hover:shadow-lg">
             <div className={`px-8 py-5 ${gradients.primary}`}>
               <h2 className="text-xl font-bold text-white">Specifications</h2>
             </div>
             <div className="p-8 space-y-6">
-              <div className="overflow-x-auto bg-slate-50 rounded-xl p-6 border border-slate-200 shadow-inner">
+              <div className="overflow-x-auto bg-theme-bg rounded-xl p-6 border border-theme-border shadow-inner">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b-2 border-slate-200">
-                      <th className="text-left px-4 py-3 w-1/3 text-slate-700 font-semibold">Specification</th>
-                      <th className="text-left px-4 py-3 text-slate-700 font-semibold">Value</th>
-                      <th className="px-4 py-3 w-16 text-slate-700 font-semibold">Actions</th>
+                    <tr className="border-b-2 border-theme-border">
+                      <th className="text-left px-4 py-3 w-1/3 text-theme-text font-semibold">Specification</th>
+                      <th className="text-left px-4 py-3 text-theme-text font-semibold">Value</th>
+                      <th className="px-4 py-3 w-16 text-theme-text font-semibold">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {product?.specification && Object.entries(product.specification).map(([key, value]) => (
-                      <tr key={key} className="border-b border-slate-200 hover:bg-white">
+                      <tr key={key} className="border-b border-theme-border hover:bg-theme-surface">
                         <td className="px-4 py-3">
                           <input
                             type="text"
                             value={key}
                             onChange={(e) => updateSpecificationKey(key, e.target.value)}
-                            className="w-full p-2.5 border border-slate-300 rounded-lg bg-white/70 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+                            className="w-full p-2.5 border border-slate-300 dark:border-slate-600 rounded-lg bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                             placeholder="Specification name"
                           />
                         </td>
@@ -569,7 +562,7 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
                             type="text"
                             value={value}
                             onChange={(e) => handleSpecificationChange(key, e.target.value)}
-                            className="w-full p-2.5 border border-slate-300 rounded-lg bg-white/70 focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
+                            className="w-full p-2.5 border border-slate-300 dark:border-slate-600 rounded-lg bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200"
                             placeholder="Specification value"
                           />
                         </td>
@@ -598,7 +591,7 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:shadow-lg">
+          <section className="bg-theme-surface rounded-2xl shadow-xl overflow-hidden border border-theme-border transition-all hover:shadow-lg">
             <div className={`px-8 py-5 ${gradients.primary}`}>
               <h2 className="text-xl font-bold text-white">Product Details</h2>
             </div>
@@ -609,8 +602,8 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={`px-8 py-4 font-medium text-sm transition-all duration-200 ${activeTab === tab
-                    ? 'text-blue-700 border-b-2 border-blue-600 font-semibold bg-blue-50'
-                    : 'text-slate-600 hover:text-slate-800 hover:bg-slate-50'
+                    ? 'text-accent border-b-2 border-accent font-semibold bg-accent/10'
+                    : 'text-theme-text-muted hover:text-theme-text hover:bg-theme-bg'
                     }`}
                 >
                   {tab}
@@ -795,7 +788,7 @@ function ProductEditForm({ params }: { params: Promise<{ id: string }> }) {
             </div>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 transition-all hover:shadow-lg">
+          <section className="bg-theme-surface rounded-2xl shadow-xl overflow-hidden border border-theme-border transition-all hover:shadow-lg">
             <div className={`px-8 py-5 ${gradients.secondary}`}>
               <h2 className="text-xl font-bold text-white">Related Products</h2>
             </div>

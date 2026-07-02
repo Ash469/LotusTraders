@@ -1,16 +1,23 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
-import Hero from '@/components/Hero';
-import Categories from '@/components/landing_categories';
-import Products from '@/components/landing_products';
-import DealsOfTheDay from '@/components/DoD';
-import Founder from '@/components/founder';
-import Testimonials from '@/components/testimonial';
-import Footer from '@/components/footer';
-import ContactPopup from '@/components/ContactPopup';
 import Script from 'next/script';
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+// Components
+import Hero from '@/components/Hero';
+import TrustedCompanies from '@/components/TrustedCompanies';
+import About from '@/components/About';
+import Categories from '@/components/landing_categories';
+import DealsOfTheDay from '@/components/DoD';
+import Products from '@/components/landing_products';
+import WhyChooseUs from '@/components/WhyChooseUs';
+import IndustriesServed from '@/components/IndustriesServed';
+import Blogs from '@/components/Blogs';
+import Testimonials from '@/components/testimonial';
+import CtaSection from '@/components/CtaSection';
+import Footer from '@/components/footer';
+import ContactPopup from '@/components/ContactPopup';
 
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
@@ -18,7 +25,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowPopup(true);
-    }, 5500); 
+    }, 8500); // Delayed popup to let user experience the site first
     return () => clearTimeout(timer);
   }, []);
 
@@ -26,10 +33,10 @@ export default function Home() {
   const homeJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Lotus Traders",
+    "name": "Lotus Traders Machinery",
     "url": "https://www.lotustradersmachinery.com",
     "logo": "https://www.lotustradersmachinery.com/logo.png",
-    "description": "Manufacturer and supplier of construction equipment in Northeast India",
+    "description": "Premium Manufacturer and supplier of construction equipment in Northeast India",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+919435559130",
@@ -44,7 +51,7 @@ export default function Home() {
   const localBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Lotus Traders",
+    "name": "Lotus Traders Machinery",
     "image": "https://www.lotustradersmachinery.com/logo.png",
     "telephone": "+919435559130",
     "address": {
@@ -56,7 +63,7 @@ export default function Home() {
       "addressCountry": "IN"
     },
     "url": "https://www.lotustradersmachinery.com",
-    "priceRange": "$$",
+    "priceRange": "$$$",
     "openingHours": "Mo,Tu,We,Th,Fr,Sa 09:00-18:00",
     "sameAs": [
       "https://www.youtube.com/@LOTUSTRADERS"
@@ -66,9 +73,9 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Construction Equipment Dealer in Guwahati | Brick Making Machines Assam</title>
-        <meta name="description" content="Buy construction equipment in Guwahati at best price. Top dealer of brick making machines, concrete mixers in Assam. EMI available. Call: 9435559130" />
-        <meta name="keywords" content="construction equipment dealer, brick machine price, concrete mixer Guwahati, construction machinery Assam, equipment price list, machinery supplier" />
+        <title>Premium Construction Equipment | Lotus Traders Machinery Assam</title>
+        <meta name="description" content="Lotus Traders Machinery is the trusted industrial brand for premium construction equipment in Northeast India. Buy brick making machines, concrete mixers with EMI." />
+        <meta name="keywords" content="premium construction equipment, heavy machinery assam, industrial brick machine, reliable concrete mixer Guwahati, Lotus Traders Machinery" />
         
         {/* Location and business specific meta tags */}
         <meta name="geo.region" content="IN-AS" />
@@ -84,14 +91,14 @@ export default function Home() {
         <meta name="business:contact_data:phone_number" content="+919435559130" />
 
         {/* Open Graph tags */}
-        <meta property="og:title" content="Construction Equipment Dealer in Guwahati | Best Prices" />
-        <meta property="og:description" content="Top construction equipment dealer in Guwahati. Best price on brick machines, concrete mixers. EMI available. Trusted supplier since 1990." />
+        <meta property="og:title" content="Lotus Traders Machinery | Premium Construction Equipment" />
+        <meta property="og:description" content="Industrial-grade construction machinery trusted by professionals across Northeast India. Engineering excellence since 1990." />
         <meta property="og:image" content="https://www.lotustradersmachinery.com/og-image.jpg" />
 
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Lotus Traders - Construction Equipment" />
-        <meta name="twitter:description" content="Buy construction machines and mixers in Assam and Northeast India. Best prices. Fast delivery." />
+        <meta name="twitter:title" content="Lotus Traders Machinery" />
+        <meta name="twitter:description" content="Industrial-grade construction machinery trusted by professionals across Northeast India." />
         <meta name="twitter:image" content="https://www.lotustradersmachinery.com/twitter-image.jpg" />
       </Head>
       
@@ -125,22 +132,35 @@ export default function Home() {
       {/* Vercel Speed Insights */}
       <SpeedInsights />
 
-      <main>
-        <Hero />
-        <section id="categories" aria-label="Product Categories">
-          <Categories />
-        </section>
-        <section id="dod" aria-label="Deals of the Day">
-          <DealsOfTheDay />
-        </section>
-        <section id="products" aria-label="Featured Products">
-          <Products />
-        </section>
-        <section id="about" aria-label="About Lotus Traders">
-          <Founder />
-        </section>
-        <Testimonials />
-        <Footer />
+      <main className="bg-theme-bg min-h-screen transition-colors duration-300 relative">
+        {/* Global Subtle Background Effects */}
+        <div className="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+          <div className="absolute -top-[20rem] -right-[20rem] w-[50rem] h-[50rem] rounded-full bg-accent/15 dark:bg-accent/5 blur-[100px]"></div>
+          <div className="absolute -bottom-[20rem] -left-[20rem] w-[50rem] h-[50rem] rounded-full bg-blue-500/15 dark:bg-blue-500/5 blur-[100px]"></div>
+        </div>
+        
+        <div className="relative z-10">
+          <Hero />
+          <TrustedCompanies />
+          <section id="about">
+            <About />
+          </section>
+          <section id="categories">
+            <Categories />
+          </section>
+          <section id="dod">
+            <DealsOfTheDay />
+          </section>
+          <section id="products">
+            <Products />
+          </section>
+          <WhyChooseUs />
+          <IndustriesServed />
+          <Blogs />
+          <Testimonials />
+          <CtaSection />
+          <Footer />
+        </div>
       </main>
 
       <ContactPopup

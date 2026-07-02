@@ -1,54 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { v2 as cloudinary } from 'cloudinary';
 
-export async function POST(request: NextRequest) {
+// Note: Ensure these are set in .env
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'placeholder',
+  api_key: process.env.CLOUDINARY_API_KEY || 'placeholder',
+  api_secret: process.env.CLOUDINARY_API_SECRET || 'placeholder',
+});
+
+export async function POST(req: NextRequest) {
   try {
-    const formData = await request.formData();
+    const formData = await req.formData();
     const file = formData.get('file') as File;
-    
+
     if (!file) {
-      return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
+      return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    // Create buffer from file
-    const buffer = Buffer.from(await file.arrayBuffer());
-    
-    // Get file extension
-    const fileExtension = path.extname(file.name).toLowerCase();
-    
-    // Only accept image files
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-    if (!allowedExtensions.includes(fileExtension)) {
-      return NextResponse.json(
-        { error: 'Only image files are allowed' },
-        { status: 400 }
-      );
-    }
+    // Read file as ArrayBuffer
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
-    // Create unique filename
-    const uniqueFilename = `${uuidv4()}${fileExtension}`;
-    
-    // Ensure directory exists
-    const uploadDir = path.join(process.cwd(), 'public', 'assets', 'new_images');
-    await mkdir(uploadDir, { recursive: true });
-    
-    // Save the file
-    const filePath = path.join(uploadDir, uniqueFilename);
-    await writeFile(filePath, buffer);
-    
-    // Return the path that will be stored in the database
-    const relativePath = `/assets/new_images/${uniqueFilename}`;
-    
-    return NextResponse.json({ 
-      success: true, 
-      filePath: relativePath 
+    // Upload to Cloudinary using a Promise
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { folder: 'lotus_blogs' }, // Store in specific folder
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(buffer);
     });
-  } catch (error) {
-    console.error('Error uploading file:', error);
+
+    return NextResponse.json(result, { status: 200 });
+  } catch (error: any) {
+    console.error('Error uploading to Cloudinary:', error);
     return NextResponse.json(
-      { error: 'Failed to upload file' },
+      { error: error.message || 'Failed to upload image' },
       { status: 500 }
     );
   }

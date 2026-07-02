@@ -1,27 +1,24 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-
+import Link from 'next/link';
 
 const deals = [
   {
     id: 1,
     name: 'One Bag Concrete Mixer',
-    description: 'Durable and efficient concrete mixer with a capacity of 10 cft Unmixed and 7 cft Mixed, designed for professional construction projects.',
     image: '/assets/DoD/landing_dod_1.jpg',
     link: '/products/1_bag_concrete_mixer',
   },
   {
     id: 2,
     name: 'Lift Cement Mixer',
-    description: 'Compact and portable lift cement mixer with advanced lifting mechanism, perfect for efficient mixing and pouring in construction tasks.',
     image: '/assets/DoD/landing_dod_2.png',
     link: '/products/lift_concrete_mixer',
   },
   {
     id: 3,
     name: 'Hydraulic Semi Automatic Brick Machine',
-    description: 'Efficient and reliable hydraulic semi-automatic brick machine designed for high-quality brick production in construction projects.',
     image: '/assets/DoD/landing_dod_3.jpg',
     link: '/products/hydraulic_semi_automatic_brick_making_machine_dhokla',
   },
@@ -38,7 +35,6 @@ const DealsOfTheDay = () => {
       return Math.floor((midnight.getTime() - now.getTime()) / 1000);
     };
 
-    // Initialize timers for all deals with the same time until midnight
     const initialTimers = deals.reduce((acc, deal) => {
       acc[deal.id] = calculateTimeUntilMidnight();
       return acc;
@@ -46,7 +42,6 @@ const DealsOfTheDay = () => {
 
     setTimers(initialTimers);
 
-    // Update timers every second
     const interval = setInterval(() => {
       setTimers((prevTimers) => {
         const newTimers = { ...prevTimers };
@@ -54,7 +49,6 @@ const DealsOfTheDay = () => {
           if (newTimers[Number(key)] > 0) {
             newTimers[Number(key)] -= 1;
           }
-          // Reset timer at midnight
           if (newTimers[Number(key)] === 0) {
             newTimers[Number(key)] = 86400; // Reset to 24 hours
           }
@@ -63,11 +57,9 @@ const DealsOfTheDay = () => {
       });
     }, 1000);
 
-    // Check for midnight reset
     const midnightCheck = setInterval(() => {
       const timeUntilMidnight = calculateTimeUntilMidnight();
       if (timeUntilMidnight === 86400) {
-        // Reset all timers at midnight
         setTimers((prevTimers) => {
           const newTimers = { ...prevTimers };
           Object.keys(newTimers).forEach((key) => {
@@ -92,82 +84,64 @@ const DealsOfTheDay = () => {
   };
 
   return (
-    <section className="py-16 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
-        <div className="absolute bottom-10 right-10 w-60 h-60 bg-white opacity-10 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-white opacity-10 rounded-full"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-800">
-            Deals of the Day
-          </h2>
-          <p className="text-gray-800 max-w-2xl mx-auto mb-8">
-            Don&apos;t miss out on these amazing offers. Limited stock available!
-          </p>
+    <section className="py-24 relative overflow-hidden border-b border-theme-border transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold font-heading text-theme-text mb-4">
+              Deals of the Day
+            </h2>
+            <p className="text-lg text-theme-text-muted max-w-2xl">
+              Limited-time industrial offers on our premium machinery. Secure your equipment today before the timer runs out.
+            </p>
+          </div>
         </div>
 
-        <div className="grid gap-6 sm:gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {deals.map((deal) => (
             <div
               key={deal.id}
-              className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-3xl"
+              className="bg-white dark:bg-slate-800 rounded-[12px] border border-theme-border overflow-hidden hover:shadow-xl dark:hover:shadow-black/50 transition-all duration-300 group"
             >
-              <div className="relative h-72 sm:h-80 lg:h-96"> {/* Increased height */}
-                <div className="absolute top-0 right-0 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-bl-lg font-bold z-10">
-                  SPECIAL OFFER
+              <div className="relative h-[300px] w-full bg-light dark:bg-slate-900/50 p-6">
+                <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-[4px] z-10 shadow-sm">
+                  Special Offer
                 </div>
-                <div 
-                  className="relative h-full w-full"
-                  style={{
-                    background: `rgb(232, 209, 209) url('/assets/categories/categories-bg.png')`,
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    // padding: '12px',
-                  }}
-                >
+                <div className="relative w-full h-full">
                   <Image
                     src={deal.image}
                     alt={deal.name}
                     fill
-                    className="object-cover"
+                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority
                   />
                 </div>
               </div>
 
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-gray-800">
+              <div className="p-8">
+                <h3 className="text-xl font-bold mb-6 text-theme-text font-heading h-14 line-clamp-2">
                   {deal.name}
                 </h3>
-                {/* <p className="text-gray-600 mb-4">
-                  {deal.description}
-                </p> */}
 
-                {/* Updated Timer Display */}
-                <div className="flex items-center justify-center space-x-4 mb-6">
+                {/* Timer Display */}
+                <div className="flex items-center justify-between mb-8">
                   {(() => {
                     const time = formatTime(timers[deal.id] || 0).split(':');
                     return (
                       <>
-                        <div className="flex flex-col items-center bg-gray-100 px-3 py-2 rounded-lg w-20">
-                          <span className="text-2xl font-bold text-gray-800">{time[0]}</span>
-                          <span className="text-xs text-gray-600">Hours</span>
+                        <div className="flex flex-col items-center flex-1 bg-light dark:bg-slate-900 py-3 rounded-[8px] border border-theme-border">
+                          <span className="text-2xl font-bold text-theme-text font-heading">{time[0]}</span>
+                          <span className="text-[10px] text-theme-text-muted uppercase tracking-wider mt-1">Hours</span>
                         </div>
-                        <span className="text-2xl font-bold text-gray-800">:</span>
-                        <div className="flex flex-col items-center bg-gray-100 px-3 py-2 rounded-lg w-20">
-                          <span className="text-2xl font-bold text-gray-800">{time[1]}</span>
-                          <span className="text-xs text-gray-600">Minutes</span>
+                        <span className="text-2xl font-bold text-gray-300 dark:text-slate-700 px-2">:</span>
+                        <div className="flex flex-col items-center flex-1 bg-light dark:bg-slate-900 py-3 rounded-[8px] border border-theme-border">
+                          <span className="text-2xl font-bold text-theme-text font-heading">{time[1]}</span>
+                          <span className="text-[10px] text-theme-text-muted uppercase tracking-wider mt-1">Mins</span>
                         </div>
-                        <span className="text-2xl font-bold text-gray-800">:</span>
-                        <div className="flex flex-col items-center bg-gray-100 px-3 py-2 rounded-lg w-20">
-                          <span className="text-2xl font-bold text-gray-800">{time[2]}</span>
-                          <span className="text-xs text-gray-600">Seconds</span>
+                        <span className="text-2xl font-bold text-gray-300 dark:text-slate-700 px-2">:</span>
+                        <div className="flex flex-col items-center flex-1 bg-light dark:bg-slate-900 py-3 rounded-[8px] border border-theme-border">
+                          <span className="text-2xl font-bold text-theme-text font-heading">{time[2]}</span>
+                          <span className="text-[10px] text-theme-text-muted uppercase tracking-wider mt-1">Secs</span>
                         </div>
                       </>
                     );
@@ -175,19 +149,22 @@ const DealsOfTheDay = () => {
                 </div>
 
                 {/* Progress bar */}
-                <div className="flex justify-between items-center mb-4">
-                  <div className="bg-gray-100 h-2 rounded-full flex-grow mr-4">
-                    <div className="bg-red-500 h-2 rounded-full w-3/4"></div>
+                <div className="mb-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-bold text-theme-text">Available Stock</span>
+                    <span className="text-sm font-bold text-accent">25% Left</span>
                   </div>
-                  <span className="text-sm font-medium text-red-600">75% sold</span>
+                  <div className="bg-light dark:bg-slate-900 h-2 rounded-full overflow-hidden border border-theme-border">
+                    <div className="bg-accent h-full w-[75%] rounded-full"></div>
+                  </div>
                 </div>
 
-                <a
+                <Link
                   href={deal.link}
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition-all flex items-center justify-center"
+                  className="block w-full bg-primary dark:bg-slate-700 text-white text-center px-6 py-4 rounded-[8px] font-bold hover:bg-accent dark:hover:bg-accent transition-all duration-300 shadow-sm hover:shadow-md"
                 >
-                  Grab the Deal
-                </a>
+                  Secure This Deal
+                </Link>
               </div>
             </div>
           ))}

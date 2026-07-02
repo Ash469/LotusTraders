@@ -192,12 +192,6 @@ export default function CategoryPage() {
                 >
                   Home
                 </Link>
-                <Link
-                  href="/categories"
-                  className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"
-                >
-                  Back to Categories
-                </Link>
                 <button
                   onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
                   className="whitespace-nowrap px-3 lg:px-4 py-2 text-sm font-medium rounded-full transition-all text-gray-800 hover:bg-gray-100"

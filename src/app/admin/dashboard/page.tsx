@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope, FaSignOutAlt } from 'react-icons/fa'
+import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope, FaSignOutAlt, FaPen } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import BlogsManager from './BlogsManager'
+import AdminNavBar from '@/components/admin/AdminNavBar'
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession({ required: true })
@@ -13,7 +15,6 @@ export default function AdminDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   useEffect(() => {
-    // When required:true is used, we should check for authentication errors differently
     if (status !== 'authenticated' && status !== 'loading') {
       router.push('/admin/login')
     }
@@ -21,128 +22,87 @@ export default function AdminDashboard() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen flex items-center justify-center bg-theme-bg">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent mx-auto"></div>
+          <p className="mt-4 text-theme-text-muted">Loading dashboard...</p>
         </div>
       </div>
     )
   }
 
-  const handleSignOut = async () => {
-    await signOut({ callbackUrl: '/admin/login' })
-  }
-
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
-    setIsSidebarOpen(false); // Close sidebar on mobile when changing tabs
+    setIsSidebarOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex relative">
-      {/* Mobile menu button */}
-      <button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-gray-900 text-white"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isSidebarOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-        </svg>
-      </button>
+    <div className="min-h-screen bg-theme-bg flex flex-col pt-20">
+      <AdminNavBar onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-      {/* Sidebar */}
-      <div className={`
-        fixed lg:static inset-y-0 left-0 z-40 w-64 bg-gray-900 transform 
-        ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:translate-x-0 transition-transform duration-200 ease-in-out
-      `}>
-        <div className="mb-8 p-4 pt-16 lg:pt-4 flex flex-col"> {/* Added pt-16 for mobile */}
-          <h2 className="text-white text-lg font-semibold">Admin Panel</h2>
-          {session?.user?.email && (
-            <p className="text-gray-400 text-sm mt-1">{session.user.email}</p>
-          )}
-        </div>
-        
-        <nav className="space-y-2">
-          <SidebarButton 
-            active={activeTab === 'dashboard'} 
-            icon={<FaChartBar />}
-            onClick={() => handleTabChange('dashboard')}
-          >
-            Dashboard
-          </SidebarButton>
-          
-          <SidebarButton 
-            active={activeTab === 'products'} 
-            icon={<FaBox />}
-            onClick={() => handleTabChange('products')}
-          >
-            Products
-          </SidebarButton>
-          
-          <SidebarButton 
-            active={activeTab === 'categories'} 
-            icon={<FaList />}
-            onClick={() => handleTabChange('categories')}
-          >
-            Categories
-          </SidebarButton>
-          
-          <SidebarButton 
-            active={activeTab === 'banners'} 
-            icon={<FaImage />}
-            onClick={() => handleTabChange('banners')}
-          >
-            Banners
-          </SidebarButton>
-          
-          <SidebarButton 
-            active={activeTab === 'reviews'} 
-            icon={<FaComment />}
-            onClick={() => handleTabChange('reviews')}
-          >
-            Reviews
-          </SidebarButton>
-          
-          <SidebarButton 
-            active={activeTab === 'enquiries'} 
-            icon={<FaEnvelope />}
-            onClick={() => handleTabChange('enquiries')}
-          >
-            Enquiries
-          </SidebarButton>
-
-          <div className="pt-4 mt-4 border-t border-gray-700">
-            <SidebarButton 
-              active={false} 
-              icon={<FaSignOutAlt />}
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </SidebarButton>
+      <div className="flex flex-1 relative overflow-hidden">
+        {/* Sidebar */}
+        <div className={`
+          fixed lg:static inset-y-0 left-0 z-40 w-64 bg-theme-surface border-r border-theme-border transform 
+          ${isSidebarOpen ? 'translate-x-0 pt-20' : '-translate-x-full'}
+          lg:translate-x-0 transition-transform duration-200 ease-in-out h-[calc(100vh-5rem)] overflow-y-auto
+        `}>
+          <div className="mb-6 p-4 pt-6 lg:pt-6 flex flex-col">
+            <h2 className="text-theme-text text-lg font-semibold tracking-wide">Admin Dashboard</h2>
+            <div className="h-1 w-10 bg-accent mt-2 rounded-full"></div>
           </div>
-        </nav>
-      </div>
+          
+          <nav className="space-y-1 px-3">
+            <SidebarButton active={activeTab === 'dashboard'} icon={<FaChartBar />} onClick={() => handleTabChange('dashboard')}>
+              Dashboard
+            </SidebarButton>
+            
+            <SidebarButton active={activeTab === 'products'} icon={<FaBox />} onClick={() => handleTabChange('products')}>
+              Products
+            </SidebarButton>
+            
+            <SidebarButton active={activeTab === 'categories'} icon={<FaList />} onClick={() => handleTabChange('categories')}>
+              Categories
+            </SidebarButton>
+            
+            <SidebarButton active={activeTab === 'banners'} icon={<FaImage />} onClick={() => handleTabChange('banners')}>
+              Banners
+            </SidebarButton>
+            
+            <SidebarButton active={activeTab === 'reviews'} icon={<FaComment />} onClick={() => handleTabChange('reviews')}>
+              Reviews
+            </SidebarButton>
+            
+            <SidebarButton active={activeTab === 'enquiries'} icon={<FaEnvelope />} onClick={() => handleTabChange('enquiries')}>
+              Enquiries
+            </SidebarButton>
 
-      {/* Overlay for mobile */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
+            <SidebarButton active={activeTab === 'blogs'} icon={<FaPen />} onClick={() => handleTabChange('blogs')}>
+              Blogs
+            </SidebarButton>
+          </nav>
+        </div>
 
-      {/* Main Content */}
-      <div className="flex-1 w-full lg:w-auto">
-        <div className="p-4 lg:p-8 mt-14 lg:mt-0">
-          <div className="bg-white rounded-lg shadow-sm p-4 lg:p-6">
-            {activeTab === 'dashboard' && <DashboardOverview />}
-            {activeTab === 'products' && <ProductsManager />}
-            {activeTab === 'categories' && <CategoriesManager />}
-            {activeTab === 'banners' && <BannersManager />}
-            {activeTab === 'reviews' && <ReviewsManager />}
-            {activeTab === 'enquiries' && <EnquiriesManager />}
+        {/* Overlay for mobile */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 lg:hidden mt-20"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
+        {/* Main Content */}
+        <div className="flex-1 w-full lg:w-auto h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="p-4 lg:p-8">
+            <div className="bg-theme-surface rounded-xl shadow-lg border border-theme-border p-4 lg:p-8 transition-colors duration-300">
+              {activeTab === 'dashboard' && <DashboardOverview />}
+              {activeTab === 'products' && <ProductsManager />}
+              {activeTab === 'categories' && <CategoriesManager />}
+              {activeTab === 'banners' && <BannersManager />}
+              {activeTab === 'reviews' && <ReviewsManager />}
+              {activeTab === 'enquiries' && <EnquiriesManager />}
+              {activeTab === 'blogs' && <BlogsManager />}
+            </div>
           </div>
         </div>
       </div>
@@ -163,11 +123,11 @@ function SidebarButton({ children, active, icon, onClick }: SidebarButtonProps) 
       onClick={onClick}
       className={`flex items-center space-x-3 w-full px-4 py-2 rounded-lg transition-colors ${
         active 
-          ? 'bg-blue-600 text-white' 
-          : 'text-gray-300 hover:bg-gray-800'
+          ? 'bg-accent/10 text-accent dark:bg-accent/20 border border-accent/20' 
+          : 'text-theme-text-muted hover:bg-theme-bg hover:text-theme-text'
       }`}
     >
-      {icon}
+      <span className={active ? 'text-accent' : ''}>{icon}</span>
       <span>{children}</span>
     </button>
   )
@@ -205,12 +165,12 @@ function DashboardOverview() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">Dashboard Overview</h2>
+        <h2 className="text-xl lg:text-2xl font-semibold text-theme-text">Dashboard Overview</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-gray-50 p-6 rounded-lg border border-gray-200 animate-pulse">
-              <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-              <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+            <div key={i} className="bg-theme-bg p-6 rounded-lg border border-theme-border animate-pulse">
+              <div className="h-4 bg-theme-border rounded w-1/2 mb-4"></div>
+              <div className="h-8 bg-theme-border rounded w-1/3"></div>
             </div>
           ))}
         </div>
@@ -234,7 +194,7 @@ function DashboardOverview() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">Dashboard Overview</h2>
+      <h2 className="text-xl lg:text-2xl font-semibold text-theme-text">Dashboard Overview</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -244,7 +204,7 @@ function DashboardOverview() {
           <StatCard 
             title="Total Products" 
             value={stats?.totalProducts.toString() || '0'} 
-            icon={<FaBox className="text-blue-500" size={24} />}
+             icon={<FaBox className="text-accent" size={24} />}
           />
         </motion.div>
         <motion.div
@@ -282,12 +242,12 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon }: StatCardProps) {
   return (
-    <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-theme-surface p-6 rounded-lg border border-theme-border shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-center gap-4 mb-4">
         {icon}
-        <h3 className="text-gray-600 font-medium">{title}</h3>
+        <h3 className="text-theme-text-muted font-medium">{title}</h3>
       </div>
-      <p className="text-3xl font-bold text-gray-900">
+      <p className="text-3xl font-bold text-theme-text">
         {value.padStart(2, '0')}
       </p>
     </div>
@@ -336,10 +296,10 @@ function ProductsManager() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">Products Management</h2>
+        <h2 className="text-xl lg:text-2xl font-semibold text-theme-text">Products Management</h2>
         <button 
           onClick={handleAddNew} 
-          className="w-full sm:w-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="w-full sm:w-auto bg-accent text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors"
         >
           Add New Product
         </button>
@@ -347,16 +307,16 @@ function ProductsManager() {
 
       <div className="overflow-x-auto -mx-4 sm:mx-0">
         <div className="inline-block min-w-full align-middle">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-theme-border">
+            <thead className="bg-theme-bg">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">Category</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">Rating</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-theme-text-muted uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-theme-surface divide-y divide-theme-border text-theme-text">
               {products.map((product) => (
                 <tr key={product.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
@@ -365,7 +325,7 @@ function ProductsManager() {
                   <td className="px-6 py-4 whitespace-nowrap text-right">
                     <button
                       onClick={() => handleEdit(product)}
-                      className="text-blue-600 hover:text-blue-900 mr-4"
+                      className="text-accent hover:text-amber-600 mr-4"
                     >
                       Edit
                     </button>
@@ -422,34 +382,34 @@ function CategoriesManager() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-semibold text-gray-800">Categories Management</h2>
+        <h2 className="text-2xl font-semibold text-theme-text">Categories Management</h2>
         <button 
           onClick={handleAddNew}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="bg-accent text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors"
         >
           Add New Category
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-theme-border">
+          <thead className="bg-theme-bg">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Products Count</th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">ID</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">Name</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-theme-text-muted uppercase tracking-wider">Products Count</th>
+              <th className="px-6 py-3 text-right text-xs font-medium text-theme-text-muted uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-theme-surface divide-y divide-theme-border text-theme-text">
             {categories.map((category) => (
-              <tr key={category.id} className="hover:bg-gray-50">
+              <tr key={category.id} className="hover:bg-theme-bg">
                 <td className="px-6 py-4 whitespace-nowrap">{category.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{category.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{category.products?.length || 0}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-right">
                   <button
                     onClick={() => handleEdit(category.id)}
-                    className="text-blue-600 hover:text-blue-900"
+                    className="text-accent hover:text-amber-600"
                   >
                     Edit
                   </button>
@@ -547,24 +507,24 @@ function EnquiriesManager() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">Enquiries Management</h2>
+      <h2 className="text-xl lg:text-2xl font-semibold text-theme-text">Enquiries Management</h2>
       <div className="overflow-x-auto -mx-4 sm:mx-0">
         <div className="inline-block min-w-full align-middle">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-theme-border">
+            <thead className="bg-theme-bg">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Qty</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Date</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Name</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Product</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Qty</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Contact</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-theme-text-muted uppercase">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-theme-surface divide-y divide-theme-border text-theme-text">
               {enquiries.map((enquiry) => (
-                <tr key={enquiry._id} className="hover:bg-gray-50">
+                <tr key={enquiry._id} className="hover:bg-theme-bg">
                   <td className="px-2 sm:px-4 py-2 sm:py-4 whitespace-nowrap text-xs sm:text-sm">
                     {new Date(enquiry.createdAt).toLocaleDateString()}
                   </td>
