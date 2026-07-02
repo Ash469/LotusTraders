@@ -34,10 +34,6 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
-  onError: (err: any) => {
-    console.error('Next.js build error:', err);
-  },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.optimization = {
