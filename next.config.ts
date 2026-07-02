@@ -10,7 +10,10 @@ const withPWA = require("@ducanh2912/next-pwa").default({
 // Define your regular Next.js configuration
 const nextConfig: NextConfig = {
   images: {
-    domains: ['www.lotustradersmachinery.com', 'res.cloudinary.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'www.lotustradersmachinery.com' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' }
+    ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/avif', 'image/webp'],
@@ -22,36 +25,13 @@ const nextConfig: NextConfig = {
     optimizeCss: {
       enableCriticalClientOnlyStyles: false,
     },
-    optimizePackageImports: ['@mui/icons-material', 'react-icons'],
-    turbo: {
-      resolveAlias: {
-        '@/*': './src/*'
-      }
-    }
+    optimizePackageImports: ['@mui/icons-material', 'react-icons']
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   poweredByHeader: false,
   reactStrictMode: true,
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          ...config.optimization?.splitChunks,
-          cacheGroups: {
-            styles: {
-              name: 'styles',
-              test: /\.css$/,
-              chunks: 'all',
-              enforce: true,
-            },
-          },
-        },
-      };
-    }
-    return config;
-  },
+  turbopack: {},
 };
 export default withPWA(nextConfig);

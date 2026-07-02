@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 // Fetch product by id (no cache, real-time)
 async function getProductById(id: string) {
@@ -70,7 +70,7 @@ export async function PUT(
     }
 
     // Revalidate the cache
-    revalidateTag('product');
+    revalidatePath('/', 'layout');
 
     return NextResponse.json({ message: 'Product updated successfully' });
   } catch (error) {
@@ -100,7 +100,7 @@ export async function DELETE(
     }
 
     // Revalidate the cache
-    revalidateTag('product');
+    revalidatePath('/', 'layout');
 
     return NextResponse.json({ message: 'Product deleted successfully' });
   } catch (error) {

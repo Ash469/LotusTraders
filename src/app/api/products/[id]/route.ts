@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
-import { revalidateTag } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 // Fetch product by id (no cache, real-time)
 async function getProductById(id: string) {
@@ -59,7 +59,7 @@ export async function PUT(
 
 
     // Revalidate the cache (if used elsewhere)
-    revalidateTag('product');
+    revalidatePath('/', 'layout');
     return NextResponse.json({ message: 'Product information updated successfully' });
   } catch (error) {
     console.error('Error:', error);
