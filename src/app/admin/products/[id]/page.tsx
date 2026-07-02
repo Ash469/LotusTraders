@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { Product } from '@/models/Product';
 import { FaSave, FaTimes, FaPlus, FaTrash, FaUpload, FaSpinner, FaSearch } from 'react-icons/fa';
 import Image from 'next/image';
-import Link from 'next/link';
 import AdminNavBar from '@/components/admin/AdminNavBar';
 
 const gradients = {

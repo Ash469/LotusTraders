@@ -1,15 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope, FaSignOutAlt, FaPen } from 'react-icons/fa'
+import { FaBox, FaList, FaImage, FaComment, FaChartBar, FaEnvelope, FaPen } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import BlogsManager from './BlogsManager'
 import AdminNavBar from '@/components/admin/AdminNavBar'
 
 export default function AdminDashboard() {
-  const { data: session, status } = useSession({ required: true })
+  const { status } = useSession({ required: true })
   const router = useRouter()
   const [activeTab, setActiveTab] = useState('dashboard')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)

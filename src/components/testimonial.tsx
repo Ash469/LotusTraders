@@ -42,7 +42,7 @@ const TestimonialCard = ({ name, role, content}: TestimonialProps) => (
     <div className="bg-theme-surface p-8 md:p-10 rounded-[16px] border border-theme-border shadow-sm hover:shadow-xl dark:hover:shadow-black/50 transition-all duration-300 h-full flex flex-col justify-between">
         <div className="mb-8">
             {/* Quote Icon */}
-            <div className="text-accent text-6xl font-serif leading-none mb-4">"</div>
+            <div className="text-accent text-6xl font-serif leading-none mb-4">&quot;</div>
             <p className="text-theme-text-muted text-lg leading-relaxed transition-colors duration-300">{content}</p>
         </div>
         <div className="flex items-center gap-4 pt-6 border-t border-theme-border">

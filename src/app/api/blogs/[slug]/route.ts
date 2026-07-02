@@ -5,9 +5,16 @@ import { getServerSession } from 'next-auth/next';
 
 const MONGODB_URI = process.env.MONGODB_URI!;
 
-let cached = (global as any).mongoose;
+interface GlobalMongoose {
+  mongoose: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  };
+}
+
+let cached = (global as unknown as GlobalMongoose).mongoose;
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = (global as unknown as GlobalMongoose).mongoose = { conn: null, promise: null };
 }
 
 async function connectToDatabase() {
@@ -27,10 +34,10 @@ async function connectToDatabase() {
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
     
     if (!slug) {
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
@@ -53,7 +60,7 @@ export async function GET(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     const session = await getServerSession();
@@ -61,7 +68,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { slug } = params;
+    const { slug } = await params;
     await connectToDatabase();
     
     const deletedBlog = await Blog.findOneAndDelete({ slug });

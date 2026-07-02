@@ -9,9 +9,16 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env');
 }
 
-let cached = (global as any).mongoose;
+interface GlobalMongoose {
+  mongoose: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  };
+}
+
+let cached = (global as unknown as GlobalMongoose).mongoose;
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = (global as unknown as GlobalMongoose).mongoose = { conn: null, promise: null };
 }
 
 async function connectToDatabase() {
@@ -30,7 +37,7 @@ async function connectToDatabase() {
 }
 
 // GET all blogs
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     await connectToDatabase();
     
@@ -80,8 +87,9 @@ export async function POST(req: NextRequest) {
     });
     
     return NextResponse.json(newBlog, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating blog:', error);
-    return NextResponse.json({ error: error.message || 'Failed to create blog' }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : 'Failed to create blog';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

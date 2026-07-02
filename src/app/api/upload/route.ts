@@ -33,10 +33,11 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(result, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error uploading to Cloudinary:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to upload image';
     return NextResponse.json(
-      { error: error.message || 'Failed to upload image' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

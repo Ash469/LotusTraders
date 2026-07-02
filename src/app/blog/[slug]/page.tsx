@@ -7,13 +7,24 @@ import Blog from '@/models/Blog';
 import NavBar from '@/components/nav_bar';
 import Footer from '@/components/footer';
 
+interface IBlog {
+  _id: string;
+  title: string;
+  slug: string;
+  author: string;
+  publishedAt: Date;
+  coverImage: string;
+  content: string;
+  tags?: string[];
+}
+
 async function getBlog(slug: string) {
   const MONGODB_URI = process.env.MONGODB_URI!;
   if (mongoose.connection.readyState !== 1) {
     await mongoose.connect(MONGODB_URI, { bufferCommands: false });
   }
   
-  const blog = await Blog.findOne({ slug }).lean();
+  const blog = await Blog.findOne({ slug }).lean() as IBlog | null;
   return blog;
 }
 
